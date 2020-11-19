@@ -4,8 +4,8 @@ function helperServices($location) {
     var service = { IsBusy: false, absUrl: $location.$$absUrl };
     service.url = $location.$$protocol + '://' + $location.$$host;
     if ($location.$$port) {
-        service.url = service.url + ':' + $location.$$port;
-        // service.url = service.url + ':' + $location.$$port + '/musrembang';
+        // service.url = service.url + ':' + $location.$$port;
+        service.url = service.url + ':' + $location.$$port + '/almira';
     }
 
     // '    http://localhost:5000';
@@ -23,6 +23,7 @@ function helperServices($location) {
         });
         return map;
     };
+    service.roles = [{ id: 1, role: 'Admin' }, { id: 2, role: 'Siswa' }]
     service.romanize = (num) => {
         if (isNaN(num))
             return NaN;

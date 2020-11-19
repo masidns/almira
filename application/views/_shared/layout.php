@@ -227,9 +227,11 @@ $this->load->view('_shared/header');
     </div>
   </div>
   <!-- Libs JS -->
+  <script src="<?=base_url()?>public/libs/jquery/dist/jquery.slim.min.js"></script>
   <script src="<?=base_url()?>public/libs/angular/angular.min.js"></script>
   <script src="<?=base_url()?>public/js/apps.js"></script>
   <script src="<?=base_url()?>public/js/services/helper.services.js"></script>
+  <script src="<?=base_url()?>public/js/services/services.js"></script>
   <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
   <script src="<?=base_url()?>public/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="<?=base_url()?>public/libs/jquery/dist/jquery.slim.min.js"></script>
