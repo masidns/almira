@@ -19,10 +19,29 @@ class Staff extends CI_Controller
         $this->load->view('_sharedadmin/layout', $data);
     }
 
+    public function get($idstaf = null)
+    {
+        $result = $this->Staff_model->select($idstaf);
+        echo json_encode($result);
+    }
+
     public function add()
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
         $result = $this->Staff_model->insert($data);
+        echo json_encode($result);
+    }
+
+    public function update()
+    {
+        $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
+        $result = $this->Staff_model->update($data);
+        echo json_encode($result);
+    }
+
+    public function delete($iduser)
+    {
+        $result = $this->Staff_model->delete($iduser);
         echo json_encode($result);
     }
 }

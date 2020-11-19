@@ -1,0 +1,32 @@
+@controller=http://localhost/almira/admin/kendaraan
+
+GET {{controller}}/get/2 HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{controller}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+  "namamobil": "Nice Car",
+  "jenismobil": "Pickup",
+  "merkmobil": "Daihatsu",
+  "stok": "2"
+}
+
+###
+
+PUT {{controller}}/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "idkendaraan": "2",
+  "namamobil": "Nice Car",
+  "jenismobil": "Pickup",
+  "merkmobil": "Daihatsu",
+  "stok": "2"
+}
+
+###
+
+DELETE {{controller}}/delete/1 HTTP/1.1

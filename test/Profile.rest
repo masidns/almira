@@ -1,0 +1,40 @@
+@controller=http://localhost/almira/admin/profile
+
+GET {{controller}}/get HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{controller}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+  "layananlain": "Kursus Mengemudi",
+  "promo": "-",
+  "kontak": "0821212131",
+  "namaperusahaan": "Almira",
+  "alamat": "Kota Jayapura",
+  "email": "almira@mail.com",
+  "visi": " Menghasilkan lulusan yang berkualitas, beriman, dan siap bersaing dalam dunia global",
+  "misi": "1. Melaksanakan pendidikan dan pelatihan komputer dengan menggunakan kurikulumberbasis kompetennsi secara berkesinambungan.2.Melaksanakan pendidikan dan pelatihan yang sesuai dengan tuntutan pasar kerja.3.Peningkatan profesionalisme, kompetensi tenaga administrasi dan edukatif.4.Memberikan pelayanan yang prima dan meningkatkan kepuasan pelanggan.5.Peningkatan sarana dan prasarana Diklat serta penunjang sesuai dengan tuntutan"
+}
+
+###
+
+PUT {{controller}}/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "idprofile": "5",
+  "layananlain": "Kursus Mengemudi",
+  "promo": "-",
+  "kontak": "0821212131",
+  "namaperusahaan": "Almira",
+  "alamat": "Kota Jayapura",
+  "email": "almira@mail.com",
+  "visi": " Menghasilkan lulusan yang berkualitas, beriman, dan siap bersaing dalam dunia global",
+  "misi": "1. Melaksanakan pendidikan dan pelatihan komputer dengan menggunakan kurikulumberbasis kompetennsi secara berkesinambungan.2.Melaksanakan pendidikan dan pelatihan yang sesuai dengan tuntutan pasar kerja.3.Peningkatan profesionalisme, kompetensi tenaga administrasi dan edukatif.4.Memberikan pelayanan yang prima dan meningkatkan kepuasan pelanggan.5.Peningkatan sarana dan prasarana Diklat serta penunjang sesuai dengan tuntutan"
+}
+
+###
+
+DELETE {{controller}}/delete/2 HTTP/1.1

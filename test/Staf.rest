@@ -1,0 +1,39 @@
+@controller=http://localhost/almira/admin/staff
+
+GET {{controller}}/get/7 HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{controller}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+	"namastaf": "Deni Malik",
+	"alamat": "Perumahan Penda II",
+	"tlpn": "082238281801",
+	"email": "deni@mail.com",
+	"password": "123456",
+	"roles": {"idrule": 1}
+}
+
+###
+
+PUT {{controller}}/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "namastaf": "Deni Malikk",
+  "alamat": "Perumahan Penda II",
+  "tlpn": "082238281801",
+  "email": "deni@mail.com",
+  "password": "123456",
+  "roles": {
+    "idrule": 1
+  },
+  "idstaf": 7,
+  "iduser": 7
+}
+
+###
+
+DELETE {{controller}}/delete/7 HTTP/1.1

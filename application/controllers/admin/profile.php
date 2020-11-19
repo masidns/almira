@@ -2,44 +2,44 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Kendaraan extends CI_Controller
+class profile extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Kendaraan_model');
+        $this->load->model('Profile_model');
     }
 
     public function index()
     {
-        $data['content'] = $this->load->view('admin/kendaraan/index', '', true);
+        $data['content'] = $this->load->view('admin/profile/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }
 
-    public function get($idkendaraan = null)
+    public function get()
     {
-        $result = $this->Kendaraan_model->select($idkendaraan);
+        $result = $this->Profile_model->select();
         echo json_encode($result);
     }
 
     public function add()
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-        $result = $this->Kendaraan_model->insert($data);
+        $result = $this->Profile_model->insert($data);
         echo json_encode($result);
     }
 
     public function update()
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
-        $result = $this->Kendaraan_model->update($data);
+        $result = $this->Profile_model->update($data);
         echo json_encode($result);
     }
 
-    public function delete($idkendaraan)
+    public function delete($idprofile)
     {
-        $result = $this->Kendaraan_model->delete($idkendaraan);
+        $result = $this->Profile_model->delete($idprofile);
         echo json_encode($result);
     }
 

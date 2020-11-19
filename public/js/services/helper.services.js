@@ -23,7 +23,7 @@ function helperServices($location) {
         });
         return map;
     };
-    service.roles = [{ id: 1, role: 'Admin' }, { id: 2, role: 'Siswa' }]
+    service.roles = [{ idrule: 1, rule: 'Admin' }, { id: 2, role: 'Siswa' }]
     service.romanize = (num) => {
         if (isNaN(num))
             return NaN;
