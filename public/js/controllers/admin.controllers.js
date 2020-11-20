@@ -4,6 +4,7 @@ angular.module('adminctrl', [])
     .controller('UserController', UserController)
     .controller('LoginController', LoginController)
     .controller('StaffController', StaffController)
+    .controller('siswaController', siswaController)
     ;
 
 function pageController($scope) {
@@ -25,8 +26,34 @@ function UserController($scope, helperServices) {
 
 function StaffController($scope, helperServices, StaffServices) {
     $scope.roles = helperServices.roles;
+    $scope.sex = helperServices.sex;
     $scope.title = "candrakampret";
     $scope.simpan = true;
+    $scope.datas = [];
+    StaffServices.get().then(x => {
+        $scope.datas = x;
+    })
+    $scope.save = (item) => {
+        if (item.id) {
+            StaffServices.put(item).then(x => {
+
+            })
+        } else {
+            StaffServices.post(item).then(x => {
+
+            })
+        }
+    }
+}
+function siswaController($scope, helperServices, SiswaServices) {
+    $scope.roles = helperServices.roles;
+    $scope.sex = helperServices.sex;
+    $scope.title = "candrakampret";
+    $scope.simpan = true;
+    $scope.datas = [];
+    StaffServices.get().then(x => {
+        $scope.datas = x;
+    })
     $scope.save = (item) => {
         if (item.id) {
             StaffServices.put(item).then(x => {

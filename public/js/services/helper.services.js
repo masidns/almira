@@ -24,6 +24,7 @@ function helperServices($location) {
         return map;
     };
     service.roles = [{ idrule: 1, rule: 'Admin' }, { id: 2, role: 'Siswa' }]
+    service.sex = ['Pria', 'Wanita'];
     service.romanize = (num) => {
         if (isNaN(num))
             return NaN;

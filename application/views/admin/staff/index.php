@@ -65,7 +65,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Username</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Sebagai</th>
@@ -78,10 +77,9 @@
                                     <th scope="row">
                                         {{$index+1}}
                                     </th>
-                                    <td>{{item.userName}}</td>
-                                    <td>{{item.firstName}} {{item.lastName}}</td>
+                                    <td>{{item.namastaf}}</td>
                                     <td>{{item.email}}</td>
-                                    <td>{{item.userRoles[0].role.name}}</td>
+                                    <td>{{item.roles.rule}}</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Staff extends CI_Controller
+class staff extends CI_Controller
 {
 
     public function __construct()
