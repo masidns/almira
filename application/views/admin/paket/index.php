@@ -1,46 +1,91 @@
-<div class="container-fluid">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
-    <div class="container-fluid">
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fa fa-table"></i>
-                        Paket Almira
-                    </div>
-                    <div>
-                        <a href="" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
+<div class="container-fluid" ng-controller="PaketController">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Tambah Paket
+                        </div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <form ng-submit="save(model)">
+                        <label for="iduser" class="control-label">Nama Paket</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.namapaket" required
+                                placeholder="Nama Paket" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                autofocus>
+                        </div>
+                        <label for="iduser" class="control-label">Harga Paket</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.hargapaket" required
+                                    placeholder="Harga Paket" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                    autofocus>
+                        </div>
+                        <label for="iduser" class="control-label">Keterangan Paket</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control" name="ketpaket" ng-model="model.ketpaket">
+                                <option value="Dengan Sim">Dengan Sim</option>
+                                <option value="Female">Tanpa Sim</option>
+                            </select>
+                        </div>
+                        <label for="iduser" class="control-label">Pertemuan</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.jumlahkali" required placeholder="Jumlah Pertemuan"
+                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label for="iduser" class="control-label">Durasi Waktu</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.durasiwaktu" required placeholder="Durasi Pertemuan"
+                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        
+                        <br>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-            <div class="row">
-            <div class="col-md-12">
-                <div class="tile-body">
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Daftar User
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="sampleTable">
+                        <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Paket</th>
-                                    <th>Harga</th>
-                                    <th>Keterangan Paket</th>
-                                    <th>Jumlah Pertemuan</th>
-                                    <th>Durasi Waktu</th>
-                                    <th>Action</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Paket</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Keterangan Paket</th>
+                                    <th scope="col">Pertemuan</th>
+                                    <th scope="col">Durasi Waktu</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>tet</th>
-                                    <th>fff</th>
-                                    <th>Action</th>
+                                <tr ng-repeat="item in datas">
+                                    <th scope="row">
+                                        {{$index+1}}
+                                    </th>
+                                    <td>{{item.namapaket}}</td>
+                                    <td>{{item.hargapaket}}</td>
+                                    <td>{{item.ketpaket}}</td>
+                                    <td>{{item.jumlahkali}}</td>
+                                    <td>{{item.durasiwaktu}}</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
+                                                class="fa fa-edit"></i> </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,18 +93,5 @@
                 </div>
             </div>
         </div>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fas fa-table mr-1"></i>
-                    Data Kategori KBLI
-                    </div>
-                    <div>
-                        <a href="<?= base_url('kategorikbli/tambah') ?>" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
-                    </div>
-                </div>
-            </div>
-        </div> 
     </div>
 </div>

@@ -1,44 +1,83 @@
-<div class="container-fluid">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
-    <div class="container-fluid">
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fa fa-table"></i>
-                        Kendaraan Almira
-                    </div>
-                    <div>
-                        <a href="" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
+<div class="container-fluid" ng-controller="KendaraanController">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Tambah Kendaraan
+                        </div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <form ng-submit="save(model)">
+                        <label for="kendaraan" class="control-label">Nama Mobil</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.namamobil" required
+                                placeholder="Nama Mobil" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                autofocus>
+                        </div>
+                        <label for="kendaraan" class="control-label">Jenis Mobil</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.jenismobil" required
+                                    placeholder="Matic/Manual" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                    autofocus>
+                        </div>
+                        <label for="kendaraan" class="control-label">Merek Mobil</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.merkmobil" required
+                                placeholder="Merek Mobil" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label for="kendaraan" class="control-label">Stok Mobil</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.stok" required placeholder="Jumlah Pertemuan"
+                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        
+                        <br>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-            <div class="row">
-            <div class="col-md-12">
-                <div class="tile-body">
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Daftar User
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="sampleTable">
+                        <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Mobil</th>
-                                    <th>Jenis Kendaraan</th>
-                                    <th>Merek Mobil</th>
-                                    <th>Stock</th>
-                                    <th>Action</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Mobil</th>
+                                    <th scope="col">Jenis Mobil</th>
+                                    <th scope="col">Merek Mobil</th>
+                                    <th scope="col">Stok</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>No. Telepon</th>
-                                    <th>Action</th>
+                                <tr ng-repeat="item in datas">
+                                    <th scope="row">
+                                        {{$index+1}}
+                                    </th>
+                                    <td>{{item.namamobil}}</td>
+                                    <td>{{item.jenismobil}}</td>
+                                    <td>{{item.merkmobil}}</td>
+                                    <td>{{item.stok}}</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
+                                                class="fa fa-edit"></i> </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -46,18 +85,5 @@
                 </div>
             </div>
         </div>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fas fa-table mr-1"></i>
-                    Data Kategori KBLI
-                    </div>
-                    <div>
-                        <a href="<?= base_url('kategorikbli/tambah') ?>" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
-                    </div>
-                </div>
-            </div>
-        </div> 
     </div>
 </div>

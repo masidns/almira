@@ -1,46 +1,116 @@
-<div class="container-fluid" ng-controller="siswaController">
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
-    <div class="container-fluid">
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fa fa-table"></i>
-                    User Siswa
-                    </div>
-                    <div>
-                        <a href="" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
+<div class="container-fluid" ng-controller="SiswaController">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Tambah User
+                        </div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <form ng-submit="save(model)">
+                        <label for="iduser" class="control-label">Nama Siswa</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.namasiswa" required
+                                placeholder="Nama" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                autofocus>
+                        </div>
+                        <label for="iduser" class="control-label">Alamat</label>
+                        <div class="input-group mb-3">
+                            <textarea rows="3" class="form-control" ng-model="model.alamatsiswa" required></textarea>
+                        </div>
+                        <label for="iduser" class="control-label">Tempat Lahir</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.tempatlahir" required
+                                placeholder="Tempat Lahir" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label for="iduser" class="control-label">Tanggal Lahir</label>
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" ng-model="model.tanggallahir" required
+                                placeholder="Tanggal Lahir" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label for="iduser" class="control-label">Telepon</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="model.notlpn" required
+                                placeholder="Nomor Telepon" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label for="iduser" class="control-label">Email</label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" ng-model="model.email" required placeholder="email"
+                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label ng-if="simpan" for="iduser" class="control-label">Password</label>
+                        <div class="input-group mb-3" ng-show="simpan">
+                            <input type="password" class="form-control" ng-model="model.password"
+                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <label ng-if="simpan" for="">Akses</label>
+                        <div class="input-group sm-3" ng-if="simpan">
+                            <select ui-select2 class="form-control" ng-options="item as item.role for item in roles"
+                                ng-model="model.roles">
+                            </select>
+                        </div><br>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="card-body">
-            <div class="row">
-            <div class="col-md-12">
-                <div class="tile-body">
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="fa fa-table mr-1"></i> Daftar User
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="sampleTable">
+                        <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Email</th>
-                                    <th>No. Telepon</th>
-                                    <th>Action</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Tempat Lahir</th>
+                                    <th scope="col">Tanggal Lahir</th>
+                                    <th scope="col">Telepon</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Sebagai</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Email</th>
-                                    <th>No. Telepon</th>
-                                    <th>Action</th>
+                                <tr ng-repeat="item in datas">
+                                    <th scope="row">
+                                        {{$index+1}}
+                                    </th>
+                                    <td>{{item.namasiswa}}</td>
+                                    <td>{{item.alamatsiswa}}</td>
+                                    <td>{{item.tempatlahir}}</td>
+                                    <td>{{item.tanggallahir}}</td>
+                                    <td>{{item.notlpn}}</td>
+                                    <td>{{item.email}}</td>
+                                    <td>{{item.roles.rule}}</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
+                                                class="fa fa-edit"></i> </a>
+                                    </td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="{{item.id}}"
+                                                ng-model="item.status" ng-checked="item.status" ng-change="save(item)">
+                                            <label class="custom-control-label" for="{{item.id}}"></label>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,18 +118,5 @@
                 </div>
             </div>
         </div>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <i class="fas fa-table mr-1"></i>
-                    Data Kategori KBLI
-                    </div>
-                    <div>
-                        <a href="<?= base_url('kategorikbli/tambah') ?>" class="btn btn-success btn-sm"><i class="fas fa-plus mr-1"></i>Tambah</a>
-                    </div>
-                </div>
-            </div>
-        </div> 
     </div>
 </div>

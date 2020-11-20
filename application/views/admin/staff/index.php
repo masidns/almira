@@ -66,6 +66,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
+                                    <th scope="col">Telepon</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Sebagai</th>
                                     <th scope="col">Action</th>
@@ -78,6 +79,7 @@
                                         {{$index+1}}
                                     </th>
                                     <td>{{item.namastaf}}</td>
+                                    <td>{{item.tlpn}}</td>
                                     <td>{{item.email}}</td>
                                     <td>{{item.roles.rule}}</td>
                                     <td>
