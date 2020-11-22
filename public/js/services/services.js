@@ -232,7 +232,7 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         var def = $q.defer();
         $http({
             method: 'put',
-            url: helperServices.url + 'update',
+            url: controller + 'update',
             data: param,
             headers: AuthService.getHeader()
         }).then(
@@ -323,10 +323,11 @@ function PaketServices($http, $q, helperServices, AuthService) {
             (res) => {
                 var data = service.data.find(x => x.id == param.id);
                 if (data) {
-                    data.firstName = param.firstName;
-                    data.lastName = param.lastName;
-                    data.userName = param.userName;
-                    data.email = param.email;
+                    data.namapaket = param.namapaket;
+                    data.hargapaket = param.hargapaket;
+                    data.ketpaket = param.ketpaket;
+                    data.jumlahkali = param.jumlahkali;
+                    data.durasiwaktu = param.durasiwaktu;
                 }
                 def.resolve(res.data);
             },
@@ -400,7 +401,7 @@ function KendaraanServices($http, $q, helperServices, AuthService) {
         var def = $q.defer();
         $http({
             method: 'put',
-            url: helperServices.url + 'update',
+            url: controller + 'update',
             data: param,
             headers: AuthService.getHeader()
         }).then(

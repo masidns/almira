@@ -11,29 +11,29 @@
                 </div>
                 <div class="card-body">
                     <form ng-submit="save(model)">
-                        <label for="iduser" class="control-label">Nama Paket</label>
+                        <label for="paket" class="control-label">Nama Paket</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" ng-model="model.namapaket" required
                                 placeholder="Nama Paket" aria-label="Default" aria-describedby="inputGroup-sizing-default"
                                 autofocus>
                         </div>
-                        <label for="iduser" class="control-label">Harga Paket</label>
+                        <label for="paket" class="control-label">Harga Paket</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" ng-model="model.hargapaket" required
                                     placeholder="Harga Paket" aria-label="Default" aria-describedby="inputGroup-sizing-default"
                                     autofocus>
                         </div>
-                        <label for="iduser" class="control-label">Keterangan Paket</label>
+                        <label for="paket" class="control-label">Keterangan Paket</label>
                         <div class="input-group mb-3">
                             <select class="form-control" name="ketpaket" ng-options="item as item for item in ketPaket" ng-model="model.ketpaket">
                             </select>
                         </div>
-                        <label for="iduser" class="control-label">Pertemuan</label>
+                        <label for="paket" class="control-label">Pertemuan</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" ng-model="model.jumlahkali" required placeholder="Jumlah Pertemuan"
                                 aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
-                        <label for="iduser" class="control-label">Durasi Waktu</label>
+                        <label for="paket" class="control-label">Durasi Waktu</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" ng-model="model.durasiwaktu" required placeholder="Durasi Pertemuan"
                                 aria-label="Default" aria-describedby="inputGroup-sizing-default">
