@@ -316,7 +316,7 @@ function PaketServices($http, $q, helperServices, AuthService) {
         var def = $q.defer();
         $http({
             method: 'put',
-            url: helperServices.url + 'update',
+            url: controller + 'update',
             data: param,
             headers: AuthService.getHeader()
         }).then(

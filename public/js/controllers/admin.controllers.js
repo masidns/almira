@@ -80,6 +80,7 @@ function SiswaController($scope, helperServices, SiswaServices) {
 
 function PaketController($scope, helperServices, PaketServices) {
     $scope.sex = helperServices.sex;
+    $scope.ketPaket = helperServices.ketPaket
     $scope.simpan = true;
     $scope.datas = [];
     $scope.model = {};

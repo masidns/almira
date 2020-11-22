@@ -25,9 +25,7 @@
                         </div>
                         <label for="iduser" class="control-label">Keterangan Paket</label>
                         <div class="input-group mb-3">
-                            <select class="form-control" name="ketpaket" ng-model="model.ketpaket">
-                                <option value="Dengan Sim">Dengan Sim</option>
-                                <option value="Tanpa Sim">Tanpa Sim</option>
+                            <select class="form-control" name="ketpaket" ng-options="item as item for item in ketPaket" ng-model="model.ketpaket">
                             </select>
                         </div>
                         <label for="iduser" class="control-label">Pertemuan</label>
