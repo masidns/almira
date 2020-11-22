@@ -27,7 +27,7 @@
                         <div class="input-group mb-3">
                             <select class="form-control" name="ketpaket" ng-model="model.ketpaket">
                                 <option value="Dengan Sim">Dengan Sim</option>
-                                <option value="Female">Tanpa Sim</option>
+                                <option value="Tanpa Sim">Tanpa Sim</option>
                             </select>
                         </div>
                         <label for="iduser" class="control-label">Pertemuan</label>
@@ -85,6 +85,8 @@
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>
+                                        <a class="btn btn-danger btn-sm" ng-click="delete(item)"><i
+                                                class="fa fa-trash"></i> </a>
                                     </td>
                                 </tr>
                             </tbody>

@@ -407,10 +407,10 @@ function KendaraanServices($http, $q, helperServices, AuthService) {
             (res) => {
                 var data = service.data.find(x => x.id == param.id);
                 if (data) {
-                    data.firstName = param.firstName;
-                    data.lastName = param.lastName;
-                    data.userName = param.userName;
-                    data.email = param.email;
+                    data.namamobil = param.namamobil;
+                    data.jenismobil = param.jenismobil;
+                    data.merkmobil = param.merkmobil;
+                    data.stok = param.stok;
                 }
                 def.resolve(res.data);
             },

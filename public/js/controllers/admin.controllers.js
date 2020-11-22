@@ -62,7 +62,7 @@ function SiswaController($scope, helperServices, SiswaServices) {
         $scope.datas = x;
     })
     $scope.save = (item) => {
-        if (item.id) {
+        if (item.siswa) {
             SiswaServices.put(item).then(_x => {
 
             })
@@ -87,7 +87,7 @@ function PaketController($scope, helperServices, PaketServices) {
         $scope.datas = x;
     })
     $scope.save = (item) => {
-        if (item.id) {
+        if (item.idpaket) {
             PaketServices.put(item).then(_x => {
 
             })
@@ -103,7 +103,7 @@ function PaketController($scope, helperServices, PaketServices) {
 }
 
 function KendaraanController($scope, helperServices, KendaraanServices) {
-    $scope.sex = helperServices.sex;
+    $scope.roles = helperServices.roles;
     $scope.simpan = true;
     $scope.datas = [];
     $scope.model = {};
@@ -111,7 +111,7 @@ function KendaraanController($scope, helperServices, KendaraanServices) {
         $scope.datas = x;
     })
     $scope.save = (item) => {
-        if (item.id) {
+        if (item.kendaraan) {
             KendaraanServices.put(item).then(_x => {
 
             })
