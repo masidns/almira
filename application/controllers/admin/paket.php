@@ -14,6 +14,7 @@ class Paket extends CI_Controller
 
     public function index()
     {
+        $data ['title'] = 'PAKET KHURSUS ALMIRA';
         $data['content'] = $this->load->view('admin/paket/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }

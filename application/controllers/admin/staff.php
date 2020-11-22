@@ -15,6 +15,7 @@ class staff extends CI_Controller
 
     public function index()
     {
+        $data ['title'] = 'Daftar Staff Almira';
         $data['content'] = $this->load->view('admin/staff/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }

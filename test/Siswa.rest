@@ -36,26 +36,27 @@ PUT {{controller}}/update HTTP/1.1
 Content-Type: application/json
 
 {
-  "idpaket": "1",
-  "namasiswa": "Candra",
-  "alamatsiswa": "Tanah Hitam",
-  "tempatlahir": "Kasur",
-  "tanggallahir": "2000-02-02",
-  "email": "candra@mail.com",
-  "notlpn": "082111",
-  "password": "123456",
-  "paket": {
+    "idsiswa": "3",
     "idpaket": "1",
-    "namapaket": "Reguler",
-    "hargapaket": "1290000",
-    "ketpaket": "Dengan Sim",
-    "jumlahkali": "12",
-    "durasiwaktu": "2 Jam"
-  },
-  "pembayaran": null,
-  "roles": {
-    "idrule": "2",
-    "rule": "Siswa"
+    "namasiswa": "Candra Ewaw",
+    "alamatsiswa": "Tanah Hitam",
+    "tempatlahir": "kasur",
+    "tanggallahir": "1111-02-10",
+    "email": "candra212@mail.com",
+    "notlpn": "082111234165",
+    "iduser": "25",
+    "paket": {
+      "idpaket": "1",
+      "namapaket": "Reguler",
+      "hargapaket": "1290000",
+      "ketpaket": "Dengan SIM",
+      "jumlahkali": "12",
+      "durasiwaktu": "2 Jam"
+    },
+    "pembayaran": null,
+    "roles": {
+      "idrule": "2",
+      "rule": "siswa"
   }
 }
 

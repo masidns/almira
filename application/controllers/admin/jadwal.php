@@ -14,6 +14,7 @@ class Jadwal extends CI_Controller
 
     public function index()
     {
+        $data ['title'] = 'Jadwal';
         $data['content'] = $this->load->view('admin/siswa/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }

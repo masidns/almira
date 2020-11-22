@@ -54,9 +54,10 @@ function StaffController($scope, helperServices, StaffServices) {
 
 function SiswaController($scope, helperServices, SiswaServices) {
     $scope.roles = helperServices.roles;
-    $scope.sex = helperServices.sex;
     $scope.title = "candrakampret";
+    $scope.simpan = true;
     $scope.datas = [];
+    $scope.model = {};
     SiswaServices.get().then(x => {
         $scope.datas = x;
     })
@@ -73,6 +74,7 @@ function SiswaController($scope, helperServices, SiswaServices) {
     }
     $scope.edit = (item) => {
         $scope.model = angular.copy(item);
+        $scope.simpan = false;
     }
 }
 
@@ -80,6 +82,7 @@ function PaketController($scope, helperServices, PaketServices) {
     $scope.sex = helperServices.sex;
     $scope.simpan = true;
     $scope.datas = [];
+    $scope.model = {};
     PaketServices.get().then(x => {
         $scope.datas = x;
     })
@@ -103,6 +106,7 @@ function KendaraanController($scope, helperServices, KendaraanServices) {
     $scope.sex = helperServices.sex;
     $scope.simpan = true;
     $scope.datas = [];
+    $scope.model = {};
     KendaraanServices.get().then(x => {
         $scope.datas = x;
     })

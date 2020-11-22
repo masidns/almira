@@ -13,6 +13,7 @@ class Kendaraan extends CI_Controller
 
     public function index()
     {
+        $data ['title'] = 'Kendaraan Almira';
         $data['content'] = $this->load->view('admin/kendaraan/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }
