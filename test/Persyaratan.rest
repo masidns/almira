@@ -1,0 +1,26 @@
+@controller=http://localhost/almira/admin/persyaratan
+
+GET {{controller}}/get/1 HTTP/1.1
+Content-Type: application/json
+
+###
+POST {{controller}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "namapersyaratan": "KTP"
+}
+
+###
+
+PUT {{controller}}/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "idpersyaratan": "1",
+  "namapersyaratan": "Kartu Keluarga"
+}
+
+###
+
+DELETE {{controller}}/delete/1 HTTP/1.1

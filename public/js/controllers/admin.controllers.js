@@ -6,7 +6,8 @@ angular.module('adminctrl', [])
     .controller('StaffController', StaffController)
     .controller('SiswaController', SiswaController)
     .controller('PaketController', PaketController)
-    .controller('KendaraanController', KendaraanController);
+    .controller('KendaraanController', KendaraanController)
+    .controller('PersyaratanController', PersyaratanController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -118,6 +119,30 @@ function KendaraanController($scope, helperServices, KendaraanServices) {
             })
         } else {
             KendaraanServices.post(item).then(_x => {
+
+            })
+        }
+    }
+    $scope.edit = (item) => {
+        $scope.model = angular.copy(item);
+    }
+}
+
+function PersyaratanController($scope, helperServices, PersyaratanServices) {
+    $scope.roles = helperServices.roles;
+    $scope.simpan = true;
+    $scope.datas = [];
+    $scope.model = {};
+    PersyaratanServices.get().then(x => {
+        $scope.datas = x;
+    })
+    $scope.save = (item) => {
+        if (item.idpersyaratan) {
+            PersyaratanServices.put(item).then(_x => {
+
+            })
+        } else {
+            PersyaratanServices.post(item).then(_x => {
 
             })
         }

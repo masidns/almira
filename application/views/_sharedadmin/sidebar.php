@@ -29,6 +29,7 @@
         <li><a class="app-menu__item" href="<?= base_url('admin/jadwal')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Jadwal</span></a></li>
         <li><a class="app-menu__item" href="<?= base_url('admin/kriterianilai')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Kriteria Nilai</span></a></li>
         <li><a class="app-menu__item" href="<?= base_url('admin/penilaian')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Penilaian</span></a></li>
+        <li><a class="app-menu__item" href="<?= base_url('admin/persyaratan')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Persyaratan</span></a></li>
         <li><a class="app-menu__item" href="<?= base_url('admin/pembayaran')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Pembayaran</span></a></li>
         <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
