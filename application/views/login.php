@@ -21,9 +21,9 @@
   <link href="<?=base_url()?>public/css/tabler-vendors.min.css" rel="stylesheet" />
   <link href="<?=base_url()?>public/css/demo.min.css" rel="stylesheet" />
   <style>
-    body {
+    /* body {
       display: none;
-    }
+    } */
   </style>
 </head>
 
