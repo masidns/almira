@@ -7,8 +7,8 @@ class home extends CI_Controller {
     public function index()
     {
         $data ['title'] = 'Siswa';
-        // $data ['content'] = $this->load->view('login', '',true);
-        $this->load->view('loginalmira',$data);
+        $data ['content'] = $this->load->view('siswa/home', '',true);
+        $this->load->view('_sharedsiswa/layout',$data);
     }
 
 }

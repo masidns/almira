@@ -16,7 +16,9 @@
 						<li><a href="#team">INSTRUKTUR</a></li>
 						<li><a href="#service">PAKET</a></li>
 						<li><a href="#contact">CONTACT</a></li>
-						<li><a href=""  data-toggle="modal" data-target="#modalLoginForm">LOGIN</a></li>
+						<li>
+							<a href="<?= base_url('login') ?>">LOGIN</a>
+						</li>
   
 
 					</ul>
@@ -104,18 +106,22 @@
     			<div class="row">
     				<div class="col-md-12">
     					<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">Instruktur Khursus <span>ALMIRA</span></h2>
-    				</div>
+					</div>
+					<?php foreach ($staf as $key => $value):?>
+						<center>
     				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s">
     					<div class="team-wrapper">
     						<img src="public/assets/onepage/images/team-img1.jpg" class="img-responsive" alt="team img 1">
     							<div class="team-des">
-    								<h4>TRACY</h4>
-    								<span>Designer</span>
-    								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
+									<h4><?= $value->namastaf; ?></h4>
+    								<span><?= $value->tlpn; ?></span>
+    								<p><?= $value->email; ?></p>
     							</div>
     					</div>
-    				</div>
-    				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.6s">
+					</div>
+					</center>
+					<?php endforeach; ?>
+    				<!-- <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.6s">
     					<div class="team-wrapper">
     						<img src="public/assets/onepage/images/team-img2.jpg" class="img-responsive" alt="team img 2">
     							<div class="team-des">
@@ -144,7 +150,7 @@
     								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
     							</div>
     					</div>
-    				</div>
+    				</div> -->
     			</div>
     		</div>
     	</section>
@@ -156,36 +162,16 @@
     			<div class="row">
     				<div class="col-md-12">
     					<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PAKET KHURSUS <span>ALMIRA</span> JAYAPURA</h2>
-    				</div>
-                    <center>
+					</div>
+					<center>
                         <?php foreach ($paket as $key => $value): ?>
     				<div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
     					<i class="fa fa-car"></i>
     					<h4><?= $value->namapaket; ?></h4>
     					<p>Biaya Rp. <?= $value->hargapaket; ?>,- <br> <?= $value->ketpaket; ?> <br> Jumlah Pertemuan <?= $value->jumlahkali; ?> <br> Dengan Latihan <?= $value->durasiwaktu; ?> </p>
                     </div>
-                        <?php endforeach; ?>
-    				<!-- <div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
-    					<i class="fa fa-car"></i>
-    					<h4>Kelas Privat</h4>
-    					<p>Biaya Rp. 1.000.000,- <br> Dengan SIM <br> Jumlah Pertemuan 12 <br> Dengan Latihan 2 Jam </p>
-    				</div>
-    				<div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
-    					<i class="fa fa-car"></i>
-    					<h4>Kelas Reguler</h4>
-    					<p>Biaya Rp. 1.000.000,- <br> Dengan SIM <br> Jumlah Pertemuan 12 <br> Dengan Latihan 2 Jam </p>
-    				</div> -->
-                    </center>
-    				<!-- <div class="col-md-4  wow fadeIn" data-wow-offset="50" data-wow-delay="0.9s">
-    					<i class="fa fa-cloud"></i>
-    					<h4>Cloud Computing</h4>
-    					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie. Adipiscing vitae vel quam proin eget mauris eget. Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie.</p>
-    				</div>
-    				<div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
-    					<i class="fa fa-cog"></i>
-    					<h4>UX Design</h4>
-    					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie. Adipiscing vitae vel quam proin eget mauris eget. Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie.</p>
-    				</div> -->
+						<?php endforeach; ?>
+					</center>
     			</div>
     		</div>
     	</section>
@@ -241,33 +227,5 @@
     	<!-- end contact -->
 
         <!-- modal login -->
-        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body mx-3">
-                    <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                    </div>
 
-                    <div class="md-form mb-4">
-                    <i class="fas fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                    </div>
-
-                </div>
-                <div class="modal-footer d-flex ; justify-content-center">
-                    <button class="btn btn-default">Login</button>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- modal login -->
+		<!-- modal login -->

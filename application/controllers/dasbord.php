@@ -9,11 +9,13 @@ class dasbord extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Paket_model');
+        $this->load->model('Staff_model');
     }
     
 
     public function index()
     {
+        $result['staf'] = $this->Staff_model->select();
         $result['paket'] = $this->Paket_model->select(null);
         $data ['content'] = $this->load->view('dasbord/content', $result, true);
         $this->load->view('dasbord/layout', $data);

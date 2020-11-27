@@ -78,15 +78,15 @@
         </footer>
         <!-- end copyright -->
 
-        <script src="<?=base_url()?>public/libs/angular/angular.min.js"></script>
-        <script src="<?=base_url()?>public/libs/angular-ui-select2/src/select2.js"></script>
-        <script src="<?=base_url()?>public/libs/angular-local-storage/dist/angular-local-storage.js"></script>
-        <script src="<?=base_url()?>public/js/apps.js"></script>
-        <script src="<?=base_url()?>public/js/services/helper.services.js"></script>
-        <script src="<?=base_url()?>public/js/services/auth.services.js"></script>
-        <script src="<?=base_url()?>public/js/services/storage.services.js"></script>
-        <script src="<?=base_url()?>public/js/services/services.js"></script>
-        <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
+    <script src="<?=base_url()?>public/libs/angular/angular.min.js"></script>
+    <script src="<?=base_url()?>public/libs/angular-ui-select2/src/select2.js"></script>
+    <script src="<?=base_url()?>public/libs/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="<?=base_url()?>public/js/apps.js"></script>
+    <script src="<?=base_url()?>public/js/services/helper.services.js"></script>
+    <script src="<?=base_url()?>public/js/services/auth.services.js"></script>
+    <script src="<?=base_url()?>public/js/services/storage.services.js"></script>
+    <script src="<?=base_url()?>public/js/services/services.js"></script>
+    <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
 
 	</body>
 </html>
