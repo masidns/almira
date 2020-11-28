@@ -71,6 +71,41 @@ class Siswa_model extends CI_Model
             return false;
         }
     }
+    public function register($data)
+    {
+        $this->db->trans_begin();
+        $user = [
+            'username' => $data['email'],
+            'password' => md5($data['password']),
+        ];
+        $this->db->insert('user', $user);
+        $data['iduser'] = $this->db->insert_id();
+        $role = [
+            'iduser' => $data['iduser'],
+            'idrule' => 2,
+        ];
+        $this->db->insert('userrule', $role);
+        $siswa = [
+            'idpaket' => $data['idpaket'],
+            'namasiswa' => $data['namasiswa'],
+            'alamatsiswa' => $data['alamatsiswa'],
+            'tempatlahir' => $data['tempatlahir'],
+            'tanggallahir' => $data['tanggallahir'],
+            'email' => $data['email'],
+            'notlpn' => $data['notlpn'],
+            'iduser' => $data['iduser'],
+        ];
+        $this->db->insert('siswa', $siswa);
+        $data['idsiswa'] = $this->db->insert_id();
+        if ($this->db->trans_status()) {
+            $this->db->trans_commit();
+            $data['pembayaran'] = [];
+            return $data;
+        } else {
+            $this->db->trans_rollback();
+            return false;
+        }
+    }
     public function update($data = null)
     {
         $siswa = [

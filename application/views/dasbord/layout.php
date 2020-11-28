@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<!-- 
+		<!--
         Awesome Template
         http://www.templatemo.com/preview/templatemo_450_awesome
         -->
@@ -11,18 +11,20 @@
 		<meta name="description" content="">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="<?= base_url()?>public/assets/onepage/css/animate.min.css">
-		<link rel="stylesheet" href="<?= base_url()?>public/assets/onepage/css/bootstrap.min.css">
-		<link rel="stylesheet" href="<?= base_url()?>public/assets/onepage/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>public/assets/onepage/css/animate.min.css">
+		<link rel="stylesheet" href="<?=base_url()?>public/assets/onepage/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?=base_url()?>public/assets/onepage/css/font-awesome.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="<?= base_url()?>public/assets/onepage/css/templatemo-style.css">
-		
-		<script src="<?= base_url()?>public/assets/onepage/js/jquery.js"></script>
-		<script src="<?= base_url()?>public/assets/onepage/js/bootstrap.min.js"></script>
-        <script src="<?= base_url()?>public/assets/onepage/js/jquery.singlePageNav.min.js"></script>
-		<script src="<?= base_url()?>public/assets/onepage/js/typed.js"></script>
-		<script src="<?= base_url()?>public/assets/onepage/js/wow.min.js"></script>
-		<script src="<?= base_url()?>public/assets/onepage/js/custom.js"></script>
+		<link rel="stylesheet" href="<?=base_url()?>public/assets/onepage/css/templatemo-style.css">
+		<link rel="stylesheet" href="<?=base_url()?>public/assets/onepage/css/form.wizard.css">
+
+		<script src="<?=base_url()?>public/assets/onepage/js/jquery.js"></script>
+		<script src="<?=base_url()?>public/assets/onepage/js/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>public/assets/onepage/js/jquery.singlePageNav.min.js"></script>
+		<script src="<?=base_url()?>public/assets/onepage/js/typed.js"></script>
+		<script src="<?=base_url()?>public/assets/onepage/js/wow.min.js"></script>
+		<script src="<?=base_url()?>public/assets/onepage/js/custom.js"></script>
+		<script src="<?=base_url()?>public/assets/onepage/js/form.wizard.js"></script>
 	</head>
 	<body id="top">
 
@@ -63,7 +65,7 @@
         </header>
         <!-- end header -->
 
-        <?= $content; ?>
+        <?=$content;?>
 
         <!-- start copyright -->
         <footer id="copyright">
@@ -87,6 +89,14 @@
     <script src="<?=base_url()?>public/js/services/storage.services.js"></script>
     <script src="<?=base_url()?>public/js/services/services.js"></script>
     <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
+    <script>
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() == $('#confirm_password').val()) {
+                $('#message').html('Matching').css('color', 'green');
+            } else
+                $('#message').html('Not Matching').css('color', 'red');
+        });
+    </script>
 
 	</body>
 </html>
