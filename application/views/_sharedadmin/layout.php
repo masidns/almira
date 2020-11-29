@@ -26,7 +26,14 @@
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
-    <?php $this->load->view('_sharedadmin/header');?>
+    <?php 
+      
+      if(!$this->session->userdata('is_login')){
+        redirect('login');
+      }
+      
+      $this->load->view('_sharedadmin/header');
+    ?>
   <?php $this->load->view("_sharedadmin/sidebar");?>
     <main class="app-content">
       <div class="app-title">
