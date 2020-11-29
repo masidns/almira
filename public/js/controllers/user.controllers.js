@@ -9,14 +9,14 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
     $scope.model = {};
     $scope.persyaratan = [];
     $scope.showRegistrasi = true;
-    $scope.dataPembayaran={}
+    $scope.dataPembayaran = {}
     var fd = new FormData();
     PersyaratanServices.get().then(x => {
         $scope.persyaratan = x;
         var pembayaran = $scope.getCookie('data');
         // pembayaran.detailpembayaran.status = "Success";
         // $scope.setCookie('data', JSON.stringify(pembayaran), 14);
-        if(pembayaran!= ""){
+        if (pembayaran != "") {
             $scope.showRegistrasi = false;
             $scope.dataPembayaran = JSON.parse(pembayaran);
             console.log(JSON.parse(pembayaran));
@@ -25,8 +25,8 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
     $scope.ChangeFile = (x) => {
         $scope.fileTitle = x.files[0].name;
     };
-    $scope.setJenisBayar = (item)=>{
-        if(item == "DP"){
+    $scope.setJenisBayar = (item) => {
+        if (item == "DP") {
             console.log(item);
         }
     }
@@ -42,7 +42,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
         RegisterServices.post(fd).then(x => {
             $scope.setCookie('data', JSON.stringify(x), 14);
             snap.pay(x.token, {
-                onSuccess: function (result) {
+                onSuccess: function(result) {
                     PembayaranServices.status(result.order_id).then(statuspembayaran => {
                         if (statuspembayaran.transaction_status == 'settlement') {
                             var itemUpdate = {};
@@ -50,16 +50,16 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                             itemUpdate.transaction_time = statuspembayaran.transaction_time;
                             itemUpdate.transaction_status = statuspembayaran.transaction_status;
 
-                            RegisterServices.put(itemUpdate).then(value =>{
+                            RegisterServices.put(itemUpdate).then(value => {
                                 swal({
                                     title: "Information!",
                                     text: "Proses Pembayaran berhasil",
                                     icon: "success",
                                 });
-                                $scope.model={};
+                                $scope.model = {};
                                 fd = new FormData();
                                 $scope.showRegistrasi = false;
-                                x.detailpembayaran.status='Success';
+                                x.detailpembayaran.status = 'Success';
                             })
                         } else if (statuspembayaran.transaction_status == 'pending') {
                             swal({
@@ -80,7 +80,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                         console.log(x);
                     })
                 },
-                onPending: function (result) {
+                onPending: function(result) {
                     PembayaranServices.status(result.order_id).then(statuspembayaran => {
                         if (statuspembayaran.transaction_status == 'settlement') {
                             var itemUpdate = {};
@@ -88,16 +88,16 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                             itemUpdate.transaction_time = statuspembayaran.transaction_time;
                             itemUpdate.transaction_status = statuspembayaran.transaction_status;
 
-                            RegisterServices.put(itemUpdate).then(value =>{
+                            RegisterServices.put(itemUpdate).then(value => {
                                 swal({
                                     title: "Information!",
                                     text: "Proses Pembayaran berhasil",
                                     icon: "success",
                                 });
-                                $scope.model={};
+                                $scope.model = {};
                                 fd = new FormData();
                                 $scope.showRegistrasi = false;
-                                x.detailpembayaran.status='Success';
+                                x.detailpembayaran.status = 'Success';
                             })
                         } else if (statuspembayaran.transaction_status == 'pending') {
                             swal({
@@ -119,7 +119,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                     })
 
                 },
-                onError: function (result) {
+                onError: function(result) {
                     PembayaranServices.status(result.order_id).then(statuspembayaran => {
                         if (statuspembayaran.transaction_status == 'settlement') {
                             swal({
@@ -170,13 +170,14 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
         }
         return "";
     }
-    $scope.login =()=>{
+    $scope.login = () => {
         document.location.href = helperServices.url + '/login';
     }
 }
+
 function loginController($scope, helperServices) {
     $scope.Title = "Page Header";
-    $scope.login =()=>{
+    $scope.login = () => {
         document.location.href = helperServices.url + '/login';
     }
 }
