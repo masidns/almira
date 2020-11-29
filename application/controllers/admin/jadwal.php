@@ -14,7 +14,7 @@ class Jadwal extends CI_Controller
 
     public function index()
     {
-        $data ['title'] = 'Jadwal';
+        $data['title'] = 'Jadwal';
         $data['content'] = $this->load->view('admin/jadwal/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }
@@ -44,7 +44,6 @@ class Jadwal extends CI_Controller
         $result = $this->Jadwal_model->delete($idjadwal);
         echo json_encode($result);
     }
-
 }
 
 /* End of file Siswa.php */

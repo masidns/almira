@@ -186,116 +186,200 @@
 		</div>
 	</div>
 </section>
-<section id="pendaftaran">
+<section id="pendaftaran" ng-app="appsusers" ng-controller="registrasiController">
 	<div class="container">
 		<div class="col-md-12">
-				<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PENDAFTARAN <span>ALMIRA</span>
-					JAYAPURA</h2>
+			<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PENDAFTARAN <span>ALMIRA</span>
+				JAYAPURA</h2>
+		</div>
+		<div  ng-show="showRegistrasi">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step col-xs-3">
+						<a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+						<p><small>User</small></p>
+					</div>
+					<div class="stepwizard-step col-xs-3">
+						<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+						<p><small>Biodata</small></p>
+					</div>
+					<div class="stepwizard-step col-xs-3">
+						<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+						<p><small>Paket</small></p>
+					</div>
+					<div class="stepwizard-step col-xs-3">
+						<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+						<p><small>Peryaratan</small></p>
+					</div>
+				</div>
 			</div>
-		<div class="stepwizard">
-			<div class="stepwizard-row setup-panel">
-				<div class="stepwizard-step col-xs-3">
-					<a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
-					<p><small>User</small></p>
+
+			<form>
+				<div class="panel panel-primary setup-content" id="step-1">
+					<div class="panel-heading">
+						<h3 class="panel-title">User</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label">Email</label>
+							<input maxlength="100" type="email" required="required" ng-model="model.email"
+								class="form-control" placeholder="Enter Email" />
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Password</label>
+							<input maxlength="100" type="password" ng-model="model.password" required="required"
+								class="form-control" placeholder="Enter Last Name" id="password" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Re-Password</label>
+							<input maxlength="100" type="password" ng-model="model.repassword" required="required"
+								class="form-control" placeholder="Enter Last Name" id="confirm_password" />
+							<span id='message'></span>
+						</div>
+
+
+						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+					</div>
 				</div>
-				<div class="stepwizard-step col-xs-3">
-					<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-					<p><small>Biodata</small></p>
+
+				<div class="panel panel-primary setup-content" id="step-2">
+					<div class="panel-heading">
+						<h3 class="panel-title">Biodata</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label">Nama</label>
+							<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
+								class="form-control" placeholder="Nama Anda" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Alamat</label>
+							<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
+								placeholder="Alamat"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tempat Lahir</label>
+							<input maxlength="200" type="text" ng-model="model.tempatlahir" required="required"
+								class="form-control" placeholder="Tempat Lahir" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tanggal Lahir</label>
+							<input maxlength="200" type="date" ng-model="model.tanggallahir" required="required"
+								class="form-control" placeholder="Tempat Lahir" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Kontak</label>
+							<input maxlength="200" type="text" ng-model="model.notlpn" required="required"
+								class="form-control" placeholder="kontak" />
+						</div>
+						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+					</div>
 				</div>
-				<div class="stepwizard-step col-xs-3">
-					<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-					<p><small>Paket</small></p>
+
+				<div class="panel panel-primary setup-content" id="step-3">
+					<div class="panel-heading">
+						<h3 class="panel-title">Paket</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label">Paket</label>
+							<select class="form-control" ng-model="model.idpaket" id="idpaket">
+								<option value="">---Pilih Paket---</option>
+								<?php foreach ($paket as $key => $value): ?>
+								<option value="<?=$value->idpaket?>"><?=$value->namapaket?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tanggal Mulai Kursus</label>
+							<select class="form-control" ng-model="model.idjadwal" id="idjadwal">
+								<option value="">---Pilih Jadwal---</option>
+								<?php foreach ($jadwal as $key => $value): ?>
+								<option value="<?=$value->idjadwal?>">
+									<?=$value->hari . ' ' . $value->jadwal . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
+								</option>
+								<?php endforeach;?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Jenis Bayar</label>
+							<div class="form-check form-check-inline">
+								<label class="form-check-label">
+									<input class="form-check-input" type="radio" name="jenisbayar1"
+										ng-model="model.jenisbayar" value="Lunas"
+										ng-change="setJenisBayar(model.jenisbayar)"> Lunas
+									<input class="form-check-input" type="radio" name="jenisbayar1"
+										ng-model="model.jenisbayar" value="DP" ng-change="setJenisBayar(model.jenisbayar)">
+									DP
+								</label>
+							</div>
+						</div>
+						<div class="form-group" ng-show="model.jenisbayar=='DP'">
+							<label class="control-label">Nominal DP</label>
+							<input maxlength="100" type="number" ng-model="model.nominaldp" required="required"
+								class="form-control" placeholder="Nominal DP" />
+						</div>
+						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+					</div>
 				</div>
-				<div class="stepwizard-step col-xs-3">
-					<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-					<p><small>Peryaratan</small></p>
+
+				<div class="panel panel-primary setup-content" id="step-4">
+					<div class="panel-heading">
+						<h3 class="panel-title">Perysaratan</h3>
+					</div>
+					<div class="panel-body">
+						<?php foreach ($persyaratan as $key => $value): ?>
+						<div class="form-group">
+							<label class="control-label"><?=$value->namapersyaratan;?></label>
+							<input type="file" required="required" class="form-control" id="inputFile"
+								file-model="model.<?=$value->file?>" accept="image/*, application/pdf"
+								onchange="angular.element(this).scope().ChangeFile(this)" />
+						</div>
+						<?php endforeach;?>
+						<button class="btn btn-success pull-right" type="submit" ng-click="simpan()">Finish!</button>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
-		<form role="form">
-			<div class="panel panel-primary setup-content" id="step-1">
-				<div class="panel-heading">
-					<h3 class="panel-title">User</h3>
+		<div ng-if="!showRegistrasi">
+			<form action="">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Biodata</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label">Nama</label>
+							<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
+								class="form-control" placeholder="Nama Anda" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Alamat</label>
+							<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
+								placeholder="Alamat"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tempat Lahir</label>
+							<input maxlength="200" type="text" ng-model="model.tempatlahir" required="required"
+								class="form-control" placeholder="Tempat Lahir" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tanggal Lahir</label>
+							<input maxlength="200" type="date" ng-model="model.tanggallahir" required="required"
+								class="form-control" placeholder="Tempat Lahir" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Kontak</label>
+							<input maxlength="200" type="text" ng-model="model.notlpn" required="required" class="form-control"
+								placeholder="kontak" />
+						</div>
+						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+					</div>
 				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<label class="control-label">First Name</label>
-						<input maxlength="100" type="text" required="required" class="form-control"
-							placeholder="Enter First Name" />
-					</div>
-					<div class="form-group">
-						<label class="control-label">Password</label>
-						<input maxlength="100" type="password" name="password" required="required" class="form-control"
-							placeholder="Enter Last Name" id="password"/>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Re-Password</label>
-						<input maxlength="100" type="password" name="repassword" required="required" class="form-control"
-							placeholder="Enter Last Name" id="confirm_password"/>
-						<span id='message'></span>
-					</div>
-					<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-				</div>
-			</div>
-
-			<div class="panel panel-primary setup-content" id="step-2">
-				<div class="panel-heading">
-					<h3 class="panel-title">Biodata</h3>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<label class="control-label">Company Name</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Name" />
-					</div>
-					<div class="form-group">
-						<label class="control-label">Company Address</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Address" />
-					</div>
-					<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-				</div>
-			</div>
-
-			<div class="panel panel-primary setup-content" id="step-3">
-				<div class="panel-heading">
-					<h3 class="panel-title">Paket</h3>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<label class="control-label">Company Name</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Name" />
-					</div>
-					<div class="form-group">
-						<label class="control-label">Company Address</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Address" />
-					</div>
-					<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-				</div>
-			</div>
-
-			<div class="panel panel-primary setup-content" id="step-4">
-				<div class="panel-heading">
-					<h3 class="panel-title">Perysaratan</h3>
-				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<label class="control-label">Company Name</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Name" />
-					</div>
-					<div class="form-group">
-						<label class="control-label">Company Address</label>
-						<input maxlength="200" type="text" required="required" class="form-control"
-							placeholder="Enter Company Address" />
-					</div>
-					<button class="btn btn-success pull-right" type="submit">Finish!</button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </section>
 <!-- end servie -->
@@ -310,14 +394,14 @@
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-offset="50" data-wow-delay="0.9s">
 				<!-- <form action="#" method="post">
-    						<label>NAME</label>
-    						<input name="fullname" type="text" class="form-control" id="fullname">
+    						<label>ng-model</model.label>
+    						<input ng-model="model.fullng-model" model.type="text" class="form-control" id="fullng-model">model.
 
                             <label>EMAIL</label>
-    						<input name="email" type="email" class="form-control" id="email">
+    						<input ng-model="model.email" type="email" class="form-control" id="email">
 
                             <label>MESSAGE</label>
-    						<textarea name="message" rows="4" class="form-control" id="message"></textarea>
+    						<textarea ng-model="model.message" rows="4" class="form-control" id="message"></textarea>
 
                             <input type="submit" class="form-control">
     					</form> -->

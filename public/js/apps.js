@@ -4,5 +4,17 @@ angular.module('apps', [
     'services',
     "ui.select2",
     "auth.service",
-    "storage.services"
-]);
+    "storage.services",
+    'userctrl'
+])
+.directive('fileModel', function ($parse) {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attrs) {
+          element.bind('change', function(){
+          $parse(attrs.fileModel).assign(scope,element[0].files)
+             scope.$apply();
+          });
+       }
+    };
+});

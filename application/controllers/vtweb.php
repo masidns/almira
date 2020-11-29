@@ -64,8 +64,8 @@ class Vtweb extends CI_Controller
             'first_name' => "Andri",
             'last_name' => "Setiawan",
             'address' => "Karet Belakang 15A, Setiabudi.",
-            'city' => "Jakarta",
-            'postal_code' => "51161",
+            'city' => "Jayapura",
+            'postal_code' => "99111",
             'phone' => "081322311801",
             'country_code' => 'IDN',
         );
@@ -75,8 +75,8 @@ class Vtweb extends CI_Controller
             'first_name' => "John",
             'last_name' => "Watson",
             'address' => "Bakerstreet 221B.",
-            'city' => "Jakarta",
-            'postal_code' => "51162",
+            'city' => "Jayapura",
+            'postal_code' => "99111",
             'phone' => "081322311801",
             'country_code' => 'IDN',
         );

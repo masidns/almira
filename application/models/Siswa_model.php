@@ -4,7 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Siswa_model extends CI_Model
 {
-
     public function select($idsiswa = null)
     {
         if ($idsiswa == null) {
@@ -73,6 +72,9 @@ class Siswa_model extends CI_Model
     }
     public function register($data)
     {
+        $this->load->model('Persyaratan_model');
+
+        $file = $_FILES;
         $this->db->trans_begin();
         $user = [
             'username' => $data['email'],
@@ -94,17 +96,62 @@ class Siswa_model extends CI_Model
             'email' => $data['email'],
             'notlpn' => $data['notlpn'],
             'iduser' => $data['iduser'],
+            'idjadwal' => $data['idjadwal'],
+            'status' => 'Pendaftaran',
         ];
         $this->db->insert('siswa', $siswa);
         $data['idsiswa'] = $this->db->insert_id();
+        $pembayaran = [
+            'idsiswa'=>$data['idsiswa'],
+            'nominal'=>$data['jenisbayar'] == 'DP' ? $data['nominaldp']: $data['nominal'],
+            'jenis'=>$data['jenisbayar'],
+            'order_id'=>$data['order_id'],
+            'status'=>'Proses',
+        ];
+        $this->db->insert('pembayaran', $pembayaran);
+        $pembayaran['idpembayaran']= $this->db->insert_id();
+        $data['detailpembayaran'] = $pembayaran;
+        $persyaratan = $this->Persyaratan_model->select();
+        $data['persyaratan'] = [];
+        foreach ($persyaratan as $key => $value) {
+            $itemFile = $_FILES[str_replace(' ', '', $value->namapersyaratan)];
+            if ($itemFile != null) {
+                $config['upload_path'] = './public/berkas';
+                $config['allowed_types'] = 'gif|jpg|png|pdf';
+                $config['max_size'] = 5000;
+                $config['encrypt_name'] = true;
+
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload(str_replace(' ', '', $value->namapersyaratan))) {
+                    $itemPersyaratan = [
+                        'idsiswa' => $data['idsiswa'],
+                        'idpersyaratan' => $value->idpersyaratan,
+                        'berkas' => $this->upload->data()['file_name'],
+                    ];
+                    $this->db->insert('detailpersyaratan', $itemPersyaratan);
+                    $itemPersyaratan['iddetailpersyaratan'] = $this->db->insert_id();
+                    array_push($data['persyaratan'], $itemPersyaratan);
+                }
+            }
+        }
         if ($this->db->trans_status()) {
             $this->db->trans_commit();
-            $data['pembayaran'] = [];
             return $data;
         } else {
             $this->db->trans_rollback();
             return false;
         }
+    }
+
+    public function updatePembayaran($data)
+    {
+        $item = [
+            'tgl_bayar' => $data['transaction_time'],
+            'status' => $data['transaction_status']
+        ];
+        $this->db->where('idpembayaran', $data['idpembayaran']);
+        return $this->db->update('pembayaran', $item);
+
     }
     public function update($data = null)
     {

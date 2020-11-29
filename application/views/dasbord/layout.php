@@ -83,20 +83,75 @@
     <script src="<?=base_url()?>public/libs/angular/angular.min.js"></script>
     <script src="<?=base_url()?>public/libs/angular-ui-select2/src/select2.js"></script>
     <script src="<?=base_url()?>public/libs/angular-local-storage/dist/angular-local-storage.js"></script>
-    <script src="<?=base_url()?>public/js/apps.js"></script>
+    <script src="<?=base_url()?>public/js/appsusers.js"></script>
     <script src="<?=base_url()?>public/js/services/helper.services.js"></script>
     <script src="<?=base_url()?>public/js/services/auth.services.js"></script>
     <script src="<?=base_url()?>public/js/services/storage.services.js"></script>
     <script src="<?=base_url()?>public/js/services/services.js"></script>
-    <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
+    <script src="<?=base_url()?>public/js/controllers/user.controllers.js"></script>
+    <script src="<?=base_url()?>public/libs/gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-0ZU-ALSF2FLNUjtq"></script>
     <script>
+    
         $('#password, #confirm_password').on('keyup', function () {
             if ($('#password').val() == $('#confirm_password').val()) {
                 $('#message').html('Matching').css('color', 'green');
             } else
                 $('#message').html('Not Matching').css('color', 'red');
         });
+        
     </script>
+    <script type="text/javascript">
+        $('#pay-button').click(function (event) {
+        event.preventDefault();
+        // $(this).attr("disabled", "disabled");
+
+        $.ajax({
+        url: '<?=site_url()?>/snap/token',
+        cache: false,
+
+        success: function(data) {
+            //location = data;
+
+            console.log('token = '+data);
+
+            var resultType = document.getElementById('result-type');
+            var resultData = document.getElementById('result-data');
+
+            function changeResult(type,data){
+            $("#result-type").val(type);
+            $("#result-data").val(JSON.stringify(data));
+            //resultType.innerHTML = type;
+            //resultData.innerHTML = JSON.stringify(data);
+            }
+
+            snap.pay(data, {
+
+            onSuccess: function(result){
+                changeResult('success', result);
+                console.log(result.status_message);
+                console.log(result);
+                $("#payment-form").submit();
+            },
+            onPending: function(result){
+                changeResult('pending', result);
+                console.log(result.status_message);
+                $("#payment-form").submit();
+            },
+            onError: function(result){
+                changeResult('error', result);
+                console.log(result.status_message);
+                $("#payment-form").submit();
+            }
+            });
+        }
+        });
+        });
+
+</script>
 
 	</body>
 </html>

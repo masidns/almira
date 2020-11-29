@@ -37,7 +37,6 @@ class Snap extends CI_Controller
 
     public function token()
     {
-
         // Required
         $transaction_details = array(
             'order_id' => rand(),

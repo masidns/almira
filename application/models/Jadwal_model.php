@@ -21,14 +21,10 @@ class Jadwal_model extends CI_Model
     public function update($data = null)
     {
         $jadwal = [
-            'layananlain' => $data['layananlain'],
-            'promo' => $data['promo'],
-            'kontak' => $data['kontak'],
-            'namaperusahaan' => $data['namaperusahaan'],
-            'alamat' => $data['alamat'],
-            'email' => $data['email'],
-            'visi' => $data['visi'],
-            'misi' => $data['misi'],
+            'hari' => $data['hari'],
+            'jadwal' => $data['jadwal'],
+            'jammulai' => $data['jammulai'],
+            'jamselesai' => $data['jamselesai'],
         ];
         $this->db->where('idjadwal', $data['idjadwal']);
         $this->db->update('jadwal', $jadwal);
@@ -39,7 +35,6 @@ class Jadwal_model extends CI_Model
         $this->db->where('idjadwal', $idjadwal);
         return $this->db->delete('jadwal');
     }
-
 }
 
 /* End of file Jadwal_model.php */

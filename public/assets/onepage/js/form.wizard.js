@@ -20,6 +20,7 @@ $(document).ready(function () {
         }
     });
 
+
     allNextBtn.click(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
