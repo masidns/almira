@@ -298,7 +298,7 @@
 									<option value="">---Pilih Jadwal---</option>
 									<?php foreach ($jadwal as $key => $value): ?>
 									<option value="<?=$value->idjadwal?>">
-										<?=$value->hari . ' ' . $value->jadwal . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
+										<?=$value->hari . ' ' . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
 									</option>
 									<?php endforeach;?>
 								</select>
@@ -389,7 +389,7 @@
 								<div class="form-group row">
 									<label for="Paket" class="col-sm-4 col-form-label">Paket Khursus</label>
 									<div class="col-sm-8">
-										<input type="text" readonly class="form-control-plaintext" id="Paket" value="{{dataPembayaran.namapaket}}">
+										<input type="text" readonly class="form-control-plaintext" id="Paket" value="{{paket.namapaket}}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -423,9 +423,10 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="status" class="col-sm-4 col-form-label">Status</label>
+									<label class="col-sm-4 col-form-label"></label>
 									<div class="col-sm-8">
-									<button class="btn btn-warning" type="button">Next</button>
+									<button class="btn btn-warning" type="button" ng-show="dataPembayaran.pembayaran.transaction_status != 'settlement' || dataPembayaran.pembayaran.transaction_status!='pending'">Pembayaran DP</button>
+									<button class="btn btn-warning" type="button">Pembayaran Sisa </button>
 									</div>
 								</div>
 							</div>
