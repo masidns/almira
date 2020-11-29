@@ -19,6 +19,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
         if (pembayaran != "") {
             $scope.showRegistrasi = false;
             $scope.dataPembayaran = JSON.parse(pembayaran);
+
             console.log(JSON.parse(pembayaran));
         }
     })

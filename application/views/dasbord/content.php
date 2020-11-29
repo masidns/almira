@@ -298,7 +298,7 @@
 									<option value="">---Pilih Jadwal---</option>
 									<?php foreach ($jadwal as $key => $value): ?>
 									<option value="<?=$value->idjadwal?>">
-										<?=$value->hari . ' ' . $value->jadwal . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
+										<?=$value->hari . ' ' . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
 									</option>
 									<?php endforeach;?>
 								</select>
@@ -423,9 +423,10 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="status" class="col-sm-4 col-form-label">Status</label>
+									<label class="col-sm-4 col-form-label"></label>
 									<div class="col-sm-8">
-									<button class="btn btn-warning" type="button">Next</button>
+									<button class="btn btn-warning" type="button">Pembayaran DP</button>
+									<button class="btn btn-warning" type="button">Pembayaran Sisa</button>
 									</div>
 								</div>
 							</div>
