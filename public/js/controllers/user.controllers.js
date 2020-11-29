@@ -20,6 +20,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
         if (pembayaran != "") {
             $scope.showRegistrasi = false;
             $scope.dataPembayaran = JSON.parse(pembayaran);
+            $scope.dataPembayaran.sisa = parseInt($scope.dataPembayaran.nominal) - parseInt($scope.dataPembayaran.nominaldp);
             PaketServices.getId($scope.dataPembayaran.idpaket).then(resultPaket => {
                 $scope.paket = resultPaket;
             })
@@ -152,6 +153,9 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                 }
             });
         })
+    }
+    $scope.pembayaransisa = () => {
+
     }
     $scope.setCookie = (cname, cvalue, exdays) => {
         var d = new Date();
