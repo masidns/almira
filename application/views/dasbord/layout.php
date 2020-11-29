@@ -26,7 +26,7 @@
 		<script src="<?=base_url()?>public/assets/onepage/js/custom.js"></script>
 		<script src="<?=base_url()?>public/assets/onepage/js/form.wizard.js"></script>
 	</head>
-	<body id="top">
+	<body id="top" ng-app="appsusers">
 
 		<!-- start preloader -->
 		<div class="preloader">

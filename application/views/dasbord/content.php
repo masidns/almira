@@ -1,5 +1,5 @@
 <!-- start navigation -->
-<nav class="navbar navbar-default templatemo-nav" role="navigation">
+<nav class="navbar navbar-default templatemo-nav" role="navigation" ng-controller="loginController">
 	<div class="container">
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,7 +18,7 @@
 				<li><a href="#pendaftaran">PENDAFTARAN</a></li>
 				<li><a href="#contact">CONTACT</a></li>
 				<li>
-					<a href="<?=base_url('login')?>">LOGIN</a>
+					<a href="javascript:void()" ng-click = "login()">LOGIN</a>
 				</li>
 
 
@@ -186,7 +186,7 @@
 		</div>
 	</div>
 </section>
-<section id="pendaftaran" ng-app="appsusers" ng-controller="registrasiController">
+<section id="pendaftaran" ng-controller="registrasiController">
 	<div class="container">
 		<div class="col-md-12">
 			<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PENDAFTARAN <span>ALMIRA</span>

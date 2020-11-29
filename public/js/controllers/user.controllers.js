@@ -1,7 +1,8 @@
 angular.module('userctrl', [])
     .controller('registrasiController', registrasiController)
+    .controller('loginController', loginController)
 
-function registrasiController($scope, PersyaratanServices, RegisterServices, PembayaranServices) {
+function registrasiController($scope, PersyaratanServices, RegisterServices, PembayaranServices, helperServices) {
     $scope.Title = "Page Header";
     $scope.fileTitle;
     $scope.myFile;
@@ -168,5 +169,14 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
             }
         }
         return "";
+    }
+    $scope.login =()=>{
+        document.location.href = helperServices.url + '/login';
+    }
+}
+function loginController($scope, helperServices) {
+    $scope.Title = "Page Header";
+    $scope.login =()=>{
+        document.location.href = helperServices.url + '/login';
     }
 }

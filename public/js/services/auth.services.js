@@ -26,18 +26,14 @@ function AuthService($http, $q, StorageService, helperServices) {
 
     function login(user) {
         var def = $q.defer();
-        var a = helperServices.url;
-        var b = getHeader();
         $http({
             method: 'POST',
-            url: helperServices.url + "users/authenticate",
+            url: helperServices.url + "/login/login",
             data: user,
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            var user = res.data;
-            StorageService.addObject("user", user);
             def.resolve(user);
         }, err => {
             def.reject(err);
