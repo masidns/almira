@@ -351,7 +351,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="control-label">Nama</label>
+							<label class="control-label">{{item.namasiswa}}</label>
 							<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
 								class="form-control" placeholder="Nama Anda" />
 						</div>
