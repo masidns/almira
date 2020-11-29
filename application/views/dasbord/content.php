@@ -188,197 +188,253 @@
 </section>
 <section id="pendaftaran" ng-controller="registrasiController">
 	<div class="container">
-		<div class="col-md-12">
-			<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PENDAFTARAN <span>ALMIRA</span>
-				JAYAPURA</h2>
-		</div>
-		<div  ng-show="showRegistrasi">
-			<div class="stepwizard">
-				<div class="stepwizard-row setup-panel">
-					<div class="stepwizard-step col-xs-3">
-						<a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
-						<p><small>User</small></p>
-					</div>
-					<div class="stepwizard-step col-xs-3">
-						<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-						<p><small>Biodata</small></p>
-					</div>
-					<div class="stepwizard-step col-xs-3">
-						<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-						<p><small>Paket</small></p>
-					</div>
-					<div class="stepwizard-step col-xs-3">
-						<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-						<p><small>Peryaratan</small></p>
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">PENDAFTARAN <span>ALMIRA</span>
+					JAYAPURA</h2>
 			</div>
-
-			<form>
-				<div class="panel panel-primary setup-content" id="step-1">
-					<div class="panel-heading">
-						<h3 class="panel-title">User</h3>
-					</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label class="control-label">Email</label>
-							<input maxlength="100" type="email" required="required" ng-model="model.email"
-								class="form-control" placeholder="Enter Email" />
+			<div  ng-show="showRegistrasi">
+				<div class="stepwizard">
+					<div class="stepwizard-row setup-panel">
+						<div class="stepwizard-step col-xs-3">
+							<a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+							<p><small>User</small></p>
 						</div>
-
-						<div class="form-group">
-							<label class="control-label">Password</label>
-							<input maxlength="100" type="password" ng-model="model.password" required="required"
-								class="form-control" placeholder="Enter Last Name" id="password" />
+						<div class="stepwizard-step col-xs-3">
+							<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+							<p><small>Biodata</small></p>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Re-Password</label>
-							<input maxlength="100" type="password" ng-model="model.repassword" required="required"
-								class="form-control" placeholder="Enter Last Name" id="confirm_password" />
-							<span id='message'></span>
+						<div class="stepwizard-step col-xs-3">
+							<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+							<p><small>Paket</small></p>
 						</div>
-
-
-						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+						<div class="stepwizard-step col-xs-3">
+							<a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+							<p><small>Peryaratan</small></p>
+						</div>
 					</div>
 				</div>
 
-				<div class="panel panel-primary setup-content" id="step-2">
-					<div class="panel-heading">
-						<h3 class="panel-title">Biodata</h3>
-					</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label class="control-label">Nama</label>
-							<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
-								class="form-control" placeholder="Nama Anda" />
+				<form>
+					<div class="panel panel-primary setup-content" id="step-1">
+						<div class="panel-heading">
+							<h3 class="panel-title">User</h3>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Alamat</label>
-							<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
-								placeholder="Alamat"></textarea>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Tempat Lahir</label>
-							<input maxlength="200" type="text" ng-model="model.tempatlahir" required="required"
-								class="form-control" placeholder="Tempat Lahir" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Tanggal Lahir</label>
-							<input maxlength="200" type="date" ng-model="model.tanggallahir" required="required"
-								class="form-control" placeholder="Tempat Lahir" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Kontak</label>
-							<input maxlength="200" type="text" ng-model="model.notlpn" required="required"
-								class="form-control" placeholder="kontak" />
-						</div>
-						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-					</div>
-				</div>
-
-				<div class="panel panel-primary setup-content" id="step-3">
-					<div class="panel-heading">
-						<h3 class="panel-title">Paket</h3>
-					</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label class="control-label">Paket</label>
-							<select class="form-control" ng-model="model.idpaket" id="idpaket">
-								<option value="">---Pilih Paket---</option>
-								<?php foreach ($paket as $key => $value): ?>
-								<option value="<?=$value->idpaket?>"><?=$value->namapaket?></option>
-								<?php endforeach;?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Tanggal Mulai Kursus</label>
-							<select class="form-control" ng-model="model.idjadwal" id="idjadwal">
-								<option value="">---Pilih Jadwal---</option>
-								<?php foreach ($jadwal as $key => $value): ?>
-								<option value="<?=$value->idjadwal?>">
-									<?=$value->hari . ' ' . $value->jadwal . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
-								</option>
-								<?php endforeach;?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="control-label">Jenis Bayar</label>
-							<div class="form-check form-check-inline">
-								<label class="form-check-label">
-									<input class="form-check-input" type="radio" name="jenisbayar1"
-										ng-model="model.jenisbayar" value="Lunas"
-										ng-change="setJenisBayar(model.jenisbayar)"> Lunas
-									<input class="form-check-input" type="radio" name="jenisbayar1"
-										ng-model="model.jenisbayar" value="DP" ng-change="setJenisBayar(model.jenisbayar)">
-									DP
-								</label>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="control-label">Email</label>
+								<input maxlength="100" type="email" required="required" ng-model="model.email"
+									class="form-control" placeholder="Enter Email" />
 							</div>
-						</div>
-						<div class="form-group" ng-show="model.jenisbayar=='DP'">
-							<label class="control-label">Nominal DP</label>
-							<input maxlength="100" type="number" ng-model="model.nominaldp" required="required"
-								class="form-control" placeholder="Nominal DP" />
-						</div>
-						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-					</div>
-				</div>
 
-				<div class="panel panel-primary setup-content" id="step-4">
-					<div class="panel-heading">
-						<h3 class="panel-title">Perysaratan</h3>
-					</div>
-					<div class="panel-body">
-						<?php foreach ($persyaratan as $key => $value): ?>
-						<div class="form-group">
-							<label class="control-label"><?=$value->namapersyaratan;?></label>
-							<input type="file" required="required" class="form-control" id="inputFile"
-								file-model="model.<?=$value->file?>" accept="image/*, application/pdf"
-								onchange="angular.element(this).scope().ChangeFile(this)" />
-						</div>
-						<?php endforeach;?>
-						<button class="btn btn-success pull-right" type="submit" ng-click="simpan()">Finish!</button>
-					</div>
-				</div>
-			</form>
-		</div>
+							<div class="form-group">
+								<label class="control-label">Password</label>
+								<input maxlength="100" type="password" ng-model="model.password" required="required"
+									class="form-control" placeholder="Password" id="password" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">Re-Password</label>
+								<input maxlength="100" type="password" ng-model="model.repassword" required="required"
+									class="form-control" placeholder="Re-Password" id="confirm_password" />
+								<span id='message'></span>
+							</div>
 
-		<div ng-if="!showRegistrasi">
-			<form action="">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Biodata</h3>
+
+							<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+						</div>
 					</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label class="control-label">Nama</label>
-							<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
-								class="form-control" placeholder="Nama Anda" />
+
+					<div class="panel panel-primary setup-content" id="step-2">
+						<div class="panel-heading">
+							<h3 class="panel-title">Biodata</h3>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Alamat</label>
-							<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
-								placeholder="Alamat"></textarea>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="control-label">Nama</label>
+								<input maxlength="200" type="text" ng-model="model.namasiswa" required="required"
+									class="form-control" placeholder="Nama Anda" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">Alamat</label>
+								<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
+									placeholder="Alamat"></textarea>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Tempat Lahir</label>
+								<input maxlength="200" type="text" ng-model="model.tempatlahir" required="required"
+									class="form-control" placeholder="Tempat Lahir" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">Tanggal Lahir</label>
+								<input maxlength="200" type="date" ng-model="model.tanggallahir" required="required"
+									class="form-control" placeholder="Tempat Lahir" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">Kontak</label>
+								<input maxlength="200" type="text" ng-model="model.notlpn" required="required"
+									class="form-control" placeholder="kontak" />
+							</div>
+							<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
 						</div>
-						<div class="form-group">
-							<label class="control-label">Tempat Lahir</label>
-							<input maxlength="200" type="text" ng-model="model.tempatlahir" required="required"
-								class="form-control" placeholder="Tempat Lahir" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Tanggal Lahir</label>
-							<input maxlength="200" type="date" ng-model="model.tanggallahir" required="required"
-								class="form-control" placeholder="Tempat Lahir" />
-						</div>
-						<div class="form-group">
-							<label class="control-label">Kontak</label>
-							<input maxlength="200" type="text" ng-model="model.notlpn" required="required" class="form-control"
-								placeholder="kontak" />
-						</div>
-						<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
 					</div>
-				</div>
-			</form>
+
+					<div class="panel panel-primary setup-content" id="step-3">
+						<div class="panel-heading">
+							<h3 class="panel-title">Paket</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="control-label">Paket</label>
+								<select class="form-control" ng-model="model.idpaket" id="idpaket">
+									<option value="">---Pilih Paket---</option>
+									<?php foreach ($paket as $key => $value): ?>
+									<option value="<?=$value->idpaket?>"><?=$value->namapaket?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Tanggal Mulai Kursus</label>
+								<select class="form-control" ng-model="model.idjadwal" id="idjadwal">
+									<option value="">---Pilih Jadwal---</option>
+									<?php foreach ($jadwal as $key => $value): ?>
+									<option value="<?=$value->idjadwal?>">
+										<?=$value->hari . ' ' . $value->jadwal . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
+									</option>
+									<?php endforeach;?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Jenis Bayar</label>
+								<div class="form-check form-check-inline">
+									<label class="form-check-label">
+										<input class="form-check-input" type="radio" name="jenisbayar1"
+											ng-model="model.jenisbayar" value="Lunas"
+											ng-change="setJenisBayar(model.jenisbayar)"> Lunas
+										<input class="form-check-input" type="radio" name="jenisbayar1"
+											ng-model="model.jenisbayar" value="DP" ng-change="setJenisBayar(model.jenisbayar)">
+										DP
+									</label>
+								</div>
+							</div>
+							<div class="form-group" ng-show="model.jenisbayar=='DP'">
+								<label class="control-label">Nominal DP</label>
+								<input maxlength="100" type="number" ng-model="model.nominaldp" required="required"
+									class="form-control" placeholder="Nominal DP" />
+							</div>
+							<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+						</div>
+					</div>
+
+					<div class="panel panel-primary setup-content" id="step-4">
+						<div class="panel-heading">
+							<h3 class="panel-title">Perysaratan</h3>
+						</div>
+						<div class="panel-body">
+							<?php foreach ($persyaratan as $key => $value): ?>
+							<div class="form-group">
+								<label class="control-label"><?=$value->namapersyaratan;?></label>
+								<input type="file" required="required" class="form-control" id="inputFile"
+									file-model="model.<?=$value->file?>" accept="image/*, application/pdf"
+									onchange="angular.element(this).scope().ChangeFile(this)" />
+							</div>
+							<?php endforeach;?>
+							<button class="btn btn-success pull-right" type="submit" ng-click="simpan()">Finish!</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<br>
+			<div ng-show="!showRegistrasi">
+			<div class="col-md-12">
+			
+				<form action="">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Biodata</h3>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{dataPembayaran.email}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="nama" class="col-sm-4 col-form-label">Nama</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="nama" value="{{dataPembayaran.namasiswa}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="Alamat" class="col-sm-4 col-form-label">Alamat</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="Alamat" value="{{dataPembayaran.alamatsiswa}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="Kontak" class="col-sm-4 col-form-label">Kontak</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="Kontak" value="{{dataPembayaran.notlpn}}">
+									</div>
+								</div>
+								<!-- <div class="form-group row">
+									<label for="jadwal" class="col-sm-4 col-form-label">Jadwal</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="jadwal" value="{{dataPembayaran.jadwal}}">
+									</div>
+								</div> -->
+							</div>
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label for="Paket" class="col-sm-4 col-form-label">Paket Khursus</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="Paket" value="{{dataPembayaran.namapaket}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="nama" class="col-sm-4 col-form-label">Harga Paket</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="nama" value="{{dataPembayaran.nominal}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="Jenis" class="col-sm-4 col-form-label">Jenis Pembayaran</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="Jenis" value="{{dataPembayaran.jenisbayar}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="nominaldp" class="col-sm-4 col-form-label">Nominal DP</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="nominaldp" value="{{dataPembayaran.nominaldp}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="sisa" class="col-sm-4 col-form-label">Sisa</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="sisa" value="{{dataPembayaran.nominalsisa}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="status" class="col-sm-4 col-form-label">Status</label>
+									<div class="col-sm-8">
+										<input type="text" readonly class="form-control-plaintext" id="status" value="{{dataPembayaran.status}}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="status" class="col-sm-4 col-form-label">Status</label>
+									<div class="col-sm-8">
+									<button class="btn btn-warning" type="button">Next</button>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
 		</div>
 	</div>
 </section>
