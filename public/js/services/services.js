@@ -7,8 +7,7 @@ angular.module('services', [])
     .factory('PersyaratanServices', PersyaratanServices)
     .factory('RegisterServices', RegisterServices)
     .factory('PembayaranServices', PembayaranServices)
-    .factory('JadwalServices', JadwalServices)
-    ;
+    .factory('JadwalServices', JadwalServices);
 
 function UserServices($http, $q, helperServices) {
     var controller = helperServices.url + 'users';
@@ -269,7 +268,8 @@ function PaketServices($http, $q, helperServices, AuthService) {
     return {
         get: get,
         post: post,
-        put: put
+        put: put,
+        getId: getId
     };
 
     function get() {
@@ -294,6 +294,25 @@ function PaketServices($http, $q, helperServices, AuthService) {
                 }
             );
         }
+        return def.promise;
+    }
+
+    function getId(id) {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'get/' + id,
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                console.log(err.data);
+                def.reject(err);
+
+            }
+        );
         return def.promise;
     }
 
@@ -554,8 +573,8 @@ function RegisterServices($http, $q, helperServices, AuthService) {
             url: controller + 'add',
             data: param,
             headers: {
-				'Content-Type': undefined
-			}
+                'Content-Type': undefined
+            }
         }).then(
             (res) => {
                 service.data.push(res.data);
@@ -567,7 +586,7 @@ function RegisterServices($http, $q, helperServices, AuthService) {
                     title: "Information!",
                     text: err.data,
                     icon: "error",
-                  });
+                });
             }
         );
         return def.promise;
@@ -603,7 +622,7 @@ function PembayaranServices($http, $q, helperServices, AuthService) {
         get: get,
         post: post,
         put: put,
-        status:status,
+        status: status,
     };
 
     function get() {
@@ -659,8 +678,8 @@ function PembayaranServices($http, $q, helperServices, AuthService) {
             url: controller + 'add',
             data: param,
             headers: {
-				'Content-Type': undefined
-			}
+                'Content-Type': undefined
+            }
         }).then(
             (res) => {
                 service.data.push(res.data);

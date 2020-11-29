@@ -2,12 +2,13 @@ angular.module('userctrl', [])
     .controller('registrasiController', registrasiController)
     .controller('loginController', loginController)
 
-function registrasiController($scope, PersyaratanServices, RegisterServices, PembayaranServices, helperServices) {
+function registrasiController($scope, PersyaratanServices, RegisterServices, PembayaranServices, helperServices, PaketServices) {
     $scope.Title = "Page Header";
     $scope.fileTitle;
     $scope.myFile;
     $scope.model = {};
     $scope.persyaratan = [];
+    $scope.paket = {};
     $scope.showRegistrasi = true;
     $scope.dataPembayaran = {}
     var fd = new FormData();
@@ -19,7 +20,9 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
         if (pembayaran != "") {
             $scope.showRegistrasi = false;
             $scope.dataPembayaran = JSON.parse(pembayaran);
-
+            PaketServices.getId($scope.dataPembayaran.idpaket).then(resultPaket => {
+                $scope.paket = resultPaket;
+            })
             console.log(JSON.parse(pembayaran));
         }
     })

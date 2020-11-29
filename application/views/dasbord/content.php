@@ -389,7 +389,7 @@
 								<div class="form-group row">
 									<label for="Paket" class="col-sm-4 col-form-label">Paket Khursus</label>
 									<div class="col-sm-8">
-										<input type="text" readonly class="form-control-plaintext" id="Paket" value="{{dataPembayaran.namapaket}}">
+										<input type="text" readonly class="form-control-plaintext" id="Paket" value="{{paket.namapaket}}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -425,7 +425,7 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label"></label>
 									<div class="col-sm-8">
-									<button class="btn btn-warning" type="button">Pembayaran DP</button>
+									<button class="btn btn-warning" type="button" ng-show="dataPembayaran.pembayaran.transaction_status != 'settlement' || dataPembayaran.pembayaran.transaction_status!='pending'">Pembayaran DP</button>
 									<button class="btn btn-warning" type="button">Pembayaran Sisa</button>
 									</div>
 								</div>
