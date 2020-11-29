@@ -19,9 +19,9 @@ class Jadwal extends CI_Controller
         $this->load->view('_sharedadmin/layout', $data);
     }
 
-    public function get($idsiswa = null)
+    public function get($idjadwal = null)
     {
-        $result = $this->Jadwal_model->select($idsiswa);
+        $result = $this->Jadwal_model->select($idjadwal);
         echo json_encode($result);
     }
 

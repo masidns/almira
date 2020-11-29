@@ -24,7 +24,6 @@ class Kendaraan_model extends CI_Model
             'namamobil' => $data['namamobil'],
             'jenismobil' => $data['jenismobil'],
             'merkmobil' => $data['merkmobil'],
-            'stok' => $data['stok'],
         ];
         $this->db->where('idkendaraan', $data['idkendaraan']);
         $this->db->update('kendaraan', $kendaraan);

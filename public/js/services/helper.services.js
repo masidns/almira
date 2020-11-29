@@ -26,6 +26,7 @@ function helperServices($location) {
     service.roles = [{ idrule: 1, rule: 'Admin' }, { id: 2, role: 'Siswa' }]
     service.sex = ['Pria', 'Wanita'];
     service.ketPaket = ['Dengan SIM', 'Tanpa SIM'];
+    service.hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
     service.romanize = (num) => {
         if (isNaN(num))
             return NaN;
