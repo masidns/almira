@@ -7,7 +7,8 @@ angular.module('adminctrl', [])
     .controller('SiswaController', SiswaController)
     .controller('PaketController', PaketController)
     .controller('KendaraanController', KendaraanController)
-    .controller('PersyaratanController', PersyaratanController);
+    .controller('PersyaratanController', PersyaratanController)
+    .controller('JadwalController', JadwalController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -149,5 +150,39 @@ function PersyaratanController($scope, helperServices, PersyaratanServices) {
     }
     $scope.edit = (item) => {
         $scope.model = angular.copy(item);
+    }
+}
+function JadwalController($scope, helperServices, JadwalServices, KendaraanServices) {
+    $scope.days = helperServices.hari;
+    $scope.simpan = true;
+    $scope.datas = [];
+    $scope.kendaraans = [];
+    $scope.model = {};
+    JadwalServices.get().then(x => {
+        $scope.datas = x;
+        KendaraanServices.get().then(resultkendaraan=>{
+            $scope.kendaraans = resultkendaraan;
+        })
+    })
+    $scope.save = (item) => {
+        item.jammulai = item.jammulai.getHours() + ':'+ item.jammulai.getMinutes();
+        item.jamselesai = item.jamselesai.getHours() + ':'+ item.jamselesai.getMinutes();
+        if (item.idjadwal) {
+            JadwalServices.put(item).then(_x => {
+
+            })
+        } else {
+            JadwalServices.post(item).then(_x => {
+                $scope.model = {};
+            })
+        }
+    }
+    $scope.edit = (item) => {
+        $scope.model = angular.copy(item);
+        var jammulai = $scope.model.jammulai.split(':');
+        $scope.model.jammulai = new Date(2010, 1,1, jammulai[0],jammulai[1]);
+
+        var jamselesai = $scope.model.jamselesai.split(':');
+        $scope.model.jamselesai = new Date(2010, 1,1, jamselesai[0],jamselesai[1]);
     }
 }

@@ -10,8 +10,7 @@ Content-Type: application/json
 {
   "namamobil": "Nice Car",
   "jenismobil": "Pickup",
-  "merkmobil": "Daihatsu",
-  "stok": "2"
+  "merkmobil": "Daihatsu"
 }
 
 ###
@@ -23,8 +22,7 @@ Content-Type: application/json
   "idkendaraan": "2",
   "namamobil": "Nice Car",
   "jenismobil": "Pickup",
-  "merkmobil": "Daihatsu",
-  "stok": "2"
+  "merkmobil": "Daihatsu"
 }
 
 ###

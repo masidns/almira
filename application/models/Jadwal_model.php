@@ -4,17 +4,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Jadwal_model extends CI_Model
 {
-    public function select($idsiswa = null)
+    public function select($idjadwal = null)
     {
-        if ($idsiswa == null) {
-            return $this->db->get('jadwal')->result();
+        if ($idjadwal == null) {
+            $result = $this->db->get('jadwal')->result();
+            foreach ($result as $key => $value) {
+                $value->kendaraan = $this->db->get_where('kendaraan', ['idkendaraan'=>$value->idkendaraan])->row_array();
+            }
+            return $result;
         } else {
-            return $this->db->get_where('jadwal', ['idsiswa' => $idsiswa])->result();
+            $result =  $this->db->get_where('jadwal', ['idjadwal' => $idjadwal])->row_array();
+            $result['kendaraan'] = $this->db->get_where('kendaraan', ['idkendaraan'=>$result['idkendaraan']])->row_array();
+            return $result;
         }
     }
     public function insert($data)
     {
-        $this->db->insert('jadwal', $data);
+        $item = [
+            'hari'=>$data['hari'],
+            'jammulai'=>$data['jammulai'],
+            'jamselesai'=>$data['jamselesai'],
+            'idkendaraan'=>$data['kendaraan']['idkendaraan'],
+        ];
+        $this->db->insert('jadwal', $item);
         $data['idjadwal'] = $this->db->insert_id();
         return $data;
     }
@@ -25,6 +37,7 @@ class Jadwal_model extends CI_Model
             'jadwal' => $data['jadwal'],
             'jammulai' => $data['jammulai'],
             'jamselesai' => $data['jamselesai'],
+            'idkendaraan'=>$data['kendaraan']['idkendaraan'],
         ];
         $this->db->where('idjadwal', $data['idjadwal']);
         $this->db->update('jadwal', $jadwal);
