@@ -426,7 +426,7 @@
 									<label class="col-sm-4 col-form-label"></label>
 									<div class="col-sm-8">
 									<button class="btn btn-warning" type="button" ng-show="dataPembayaran.pembayaran.transaction_status != 'settlement' || dataPembayaran.pembayaran.transaction_status!='pending'">Pembayaran DP</button>
-									<button class="btn btn-warning" type="button">Pembayaran Sisa</button>
+									<button class="btn btn-warning" type="button">Pembayaran Sisa </button>
 									</div>
 								</div>
 							</div>
