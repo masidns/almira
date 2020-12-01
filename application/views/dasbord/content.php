@@ -1,3 +1,4 @@
+
 <!-- start navigation -->
 <nav class="navbar navbar-default templatemo-nav" role="navigation" ng-controller="loginController">
 	<div class="container">
@@ -46,11 +47,8 @@
 						kegiatan kursus di Almira ini khususnya dalam perolehan SIM A.
 						Setiap peserta kursus sebelum mendapatkan SIM A akan di ujin oleh jajaran lantas dari Polresta
 						Jayapura.</div>
-					<!-- <div class="sub-element">Awesome Template is provided by templatemo.com website for everyone</div>
-                            <div class="sub-element">Download, edit and apply this awesome template for your websites</div> -->
+					
 				</div>
-				<a data-scroll href="#pendaftaran" class="btn btn-default wow fadeInUp" data-wow-offset="50"
-					data-wow-delay="0.6s">GET STARTED</a>
 			</div>
 		</div>
 	</div>
@@ -77,7 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-offset="50" data-wow-delay="0.9s">
+			<!-- <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-offset="50" data-wow-delay="0.9s">
 				<div class="media">
 					<div class="media-heading-wrapper">
 						<div class="media-object pull-left">
@@ -102,7 +100,7 @@
 						<p>Kami juga melayani antar jemput siswa sekolah untuk wilayah tertentu.</p>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
@@ -120,7 +118,7 @@
 			<center>
 				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s">
 					<div class="team-wrapper">
-						<img src="public/assets/onepage/images/team-img1.jpg" class="img-responsive" alt="team img 1">
+						<!-- <img src="public/assets/onepage/images/team-img1.jpg" class="img-responsive" alt="team img 1"> -->
 						<div class="team-des">
 							<h4><?=$value->namastaf;?></h4>
 							<span><?=$value->tlpn;?></span>
@@ -130,36 +128,6 @@
 				</div>
 			</center>
 			<?php endforeach;?>
-			<!-- <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.6s">
-    					<div class="team-wrapper">
-    						<img src="public/assets/onepage/images/team-img2.jpg" class="img-responsive" alt="team img 2">
-    							<div class="team-des">
-    								<h4>MARY</h4>
-    								<span>Developer</span>
-    								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
-    							</div>
-    					</div>
-    				</div>
-    				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s">
-    					<div class="team-wrapper">
-    						<img src="public/assets/onepage/images/team-img3.jpg" class="img-responsive" alt="team img 3">
-    							<div class="team-des">
-    								<h4>JULIA</h4>
-    								<span>Director</span>
-    								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
-    							</div>
-    					</div>
-    				</div>
-    				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.6s">
-    					<div class="team-wrapper">
-    						<img src="public/assets/onepage/images/team-img4.jpg" class="img-responsive" alt="team img 4">
-    							<div class="team-des">
-    								<h4>LINDA</h4>
-    								<span>Manager</span>
-    								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molest.</p>
-    							</div>
-    					</div>
-    				</div> -->
 		</div>
 	</div>
 </section>
@@ -471,12 +439,19 @@
 				</address>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInRight" data-wow-offset="50" data-wow-delay="0.6s">
-				<address>
+				<!-- <address>
 					<p class="address-title">KHURSUS MENGEMUDI ALMIRA</p>
 					<span>Bimbingan ketrampilan mengemudi di Almira Jayapura. Murah dan cepat lincah.</span>
 					<p><i class="fa fa-phone"></i> 0812-486-7587 / 0813-4474-8244</p>
 					<p><i class="fa fa-envelope-o"></i> awesome@company.com</p>
 					<p><i class="fa fa-map-marker"></i> 663 New Walk Roadside, Birdeye View, GO 11020</p>
+				</address> -->
+				<address>
+						<p class="address-title">KHURSUS MENGEMUDI <?= $profile['namaperusahaan'];?></p>
+						<span><?= $profile['layananlain']; ?></span>
+						<p><i class="fa fa-phone"></i> <?=$profile['kontak'];?></p>
+						<p><i class="fa fa-envelope-o"></i> <?=$profile['email'];?></p>
+						<p><i class="fa fa-map-marker"></i> <?=$profile['alamat'];?></p>
 				</address>
 				<ul class="social-icon">
 					<li>

@@ -39,7 +39,7 @@
                         </div>
                         <label ng-if="simpan" for="">Akses</label>
                         <div class="input-group sm-3" ng-if="simpan">
-                            <select ui-select2 class="form-control" ng-options="item as item.role for item in roles"
+                            <select ui-select2 class="form-control" ng-options="item as item.rule for item in roless"
                                 ng-model="model.roles">
                             </select>
                         </div><br>

@@ -12,10 +12,12 @@ class dasbord extends CI_Controller
         $this->load->model('Staff_model');
         $this->load->model('Jadwal_model');
         $this->load->model('Persyaratan_model');
+        $this->load->model('Profile_model');
     }
 
     public function index()
     {
+        $result['profile'] = $this->Profile_model->select();
         $result['staf'] = $this->Staff_model->select();
         $result['paket'] = $this->Paket_model->select(null);
         $result['jadwal'] = $this->Jadwal_model->select(null);

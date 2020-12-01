@@ -23,7 +23,7 @@ function helperServices($location) {
         });
         return map;
     };
-    service.roles = [{ idrule: 1, rule: 'Admin' }, { id: 2, role: 'Siswa' }]
+    service.roles = [{ idrule: 1, rule: 'Admin' }, { idrule: 2, rule: 'Siswa' }]
     service.sex = ['Pria', 'Wanita'];
     service.ketPaket = ['Dengan SIM', 'Tanpa SIM'];
     service.hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -33,7 +33,8 @@ function helperServices($location) {
         var digits = String(+num).split(""),
             key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
                 "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
-                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],
+                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+            ],
             roman = "",
             i = 3;
         while (i--)

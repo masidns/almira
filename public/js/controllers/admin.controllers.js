@@ -34,7 +34,7 @@ function UserController($scope, helperServices) {
 }
 
 function StaffController($scope, helperServices, StaffServices) {
-    $scope.roles = helperServices.roles;
+    $scope.roless = helperServices.roles;
     $scope.sex = helperServices.sex;
     $scope.title = "candrakampret";
     $scope.simpan = true;
@@ -102,22 +102,25 @@ function SiswaController($scope, helperServices, SiswaServices, KriteriaServices
                 //     $.LoadingOverlay("hide");
                 // })
                 $.LoadingOverlay("hide");
+                $scope.model = {};
             })
         } else {
             PenilaianServices.post($scope.model).then(x => {
                 var data = $scope.datas.find(siswa => siswa.idsiswa == $scope.model.idsiswa);
                 data.penilaian = x;
-                // swal({
-                //     title: "Information!",
-                //     text: "Proses berhasil",
-                //     icon: "success",
-                // });
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
                 // KriteriaServices.get().then(param=>{
                 //     $scope.model = {};
                 //     $scope.kriterianilai = angular.copy(param);
                 //     $.LoadingOverlay("hide");
                 // })
                 $.LoadingOverlay("hide");
+                $scope.model = {};
+                $('#penilaian').modal('hide');
             })
         }
     }
@@ -137,7 +140,7 @@ function SiswaController($scope, helperServices, SiswaServices, KriteriaServices
     }
     $scope.pembayaran = (item) => {
         $scope.nilai = angular.copy(item);
-        $scope.nilai.bayar = { dp: 0, sisa: 0, lunas: 0, Total:0 };
+        $scope.nilai.bayar = { dp: 0, sisa: 0, lunas: 0, Total: 0 };
         $scope.nilai.pembayaran.forEach(itembayar => {
             if (itembayar.jenis == 'DP') {
                 $scope.nilai.bayar.dp = parseInt(itembayar.nominal);
@@ -166,11 +169,11 @@ function PaketController($scope, helperServices, PaketServices) {
     $scope.save = (item) => {
         if (item.idpaket) {
             PaketServices.put(item).then(_x => {
-
+                $scope.model = {};
             })
         } else {
             PaketServices.post(item).then(_x => {
-
+                $scope.model = {};
             })
         }
     }
@@ -191,11 +194,11 @@ function KendaraanController($scope, helperServices, KendaraanServices) {
     $scope.save = (item) => {
         if (item.idkendaraan) {
             KendaraanServices.put(item).then(_x => {
-
+                $scope.model = {};
             })
         } else {
             KendaraanServices.post(item).then(_x => {
-
+                $scope.model = {};
             })
         }
     }
@@ -216,11 +219,11 @@ function PersyaratanController($scope, helperServices, PersyaratanServices) {
     $scope.save = (item) => {
         if (item.idpersyaratan) {
             PersyaratanServices.put(item).then(_x => {
-
+                $scope.model = {};
             })
         } else {
             PersyaratanServices.post(item).then(_x => {
-
+                $scope.model = {};
             })
         }
     }
@@ -228,6 +231,7 @@ function PersyaratanController($scope, helperServices, PersyaratanServices) {
         $scope.model = angular.copy(item);
     }
 }
+
 function JadwalController($scope, helperServices, JadwalServices, KendaraanServices) {
     $scope.days = helperServices.hari;
     $scope.simpan = true;
@@ -246,7 +250,7 @@ function JadwalController($scope, helperServices, JadwalServices, KendaraanServi
         item.jamselesai = item.jamselesai.getHours() + ':' + item.jamselesai.getMinutes();
         if (item.idjadwal) {
             JadwalServices.put(item).then(_x => {
-
+                $scope.model = {};
             })
         } else {
             JadwalServices.post(item).then(_x => {
@@ -304,46 +308,46 @@ function PembayaranController($scope, helperServices, SiswaServices) {
     $scope.model = {};
     $scope.Total = 0;
     SiswaServices.get().then(x => {
-        $scope.datas = x;
-        $scope.datas.forEach(element => {
-            element.bayar = { dp: 0, sisa: 0, lunas: 0 };
-            element.pembayaran.forEach(itembayar => {
-                if (itembayar.jenis == 'DP') {
-                    element.bayar.dp = parseInt(itembayar.nominal);
-                } else if (itembayar.jenis == 'Sisa') {
-                    element.bayar.sisa = parseInt(itembayar.nominal);
-                } else {
-                    element.bayar.lunas = parseInt(itembayar.nominal);
-                }
+            $scope.datas = x;
+            $scope.datas.forEach(element => {
+                element.bayar = { dp: 0, sisa: 0, lunas: 0 };
+                element.pembayaran.forEach(itembayar => {
+                    if (itembayar.jenis == 'DP') {
+                        element.bayar.dp = parseInt(itembayar.nominal);
+                    } else if (itembayar.jenis == 'Sisa') {
+                        element.bayar.sisa = parseInt(itembayar.nominal);
+                    } else {
+                        element.bayar.lunas = parseInt(itembayar.nominal);
+                    }
 
+                });
+                $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
             });
-            $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
-        });
-        console.log($scope.datas);
-        $.LoadingOverlay("hide");
-    })
-    // $scope.save = (item) => {
-    //     if (item.idkriterianilai) {
-    //         KriteriaServices.put(item).then(_x => {
-    //             swal({
-    //                 title: "Information!",
-    //                 text: "Proses berhasil",
-    //                 icon: "success",
-    //             });
-    //             $scope.model ={};
-    //         })
-    //     } else {
-    //         KriteriaServices.post(item).then(_x => {
-    //             swal({
-    //                 title: "Information!",
-    //                 text: "Proses berhasil",
-    //                 icon: "success",
-    //             });
-    //             $scope.model ={};
-    //         })
-    //     }
-    // }
-    // $scope.edit = (item) => {
-    //     $scope.model = angular.copy(item);
-    // }
+            console.log($scope.datas);
+            $.LoadingOverlay("hide");
+        })
+        // $scope.save = (item) => {
+        //     if (item.idkriterianilai) {
+        //         KriteriaServices.put(item).then(_x => {
+        //             swal({
+        //                 title: "Information!",
+        //                 text: "Proses berhasil",
+        //                 icon: "success",
+        //             });
+        //             $scope.model ={};
+        //         })
+        //     } else {
+        //         KriteriaServices.post(item).then(_x => {
+        //             swal({
+        //                 title: "Information!",
+        //                 text: "Proses berhasil",
+        //                 icon: "success",
+        //             });
+        //             $scope.model ={};
+        //         })
+        //     }
+        // }
+        // $scope.edit = (item) => {
+        //     $scope.model = angular.copy(item);
+        // }
 }

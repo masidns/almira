@@ -29,12 +29,6 @@
                                 placeholder="Merek Mobil" aria-label="Default"
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
-                        <label for="kendaraan" class="control-label">Stok Mobil</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" ng-model="model.stok" required placeholder="Jumlah Pertemuan"
-                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        
                         <br>
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
@@ -61,7 +55,6 @@
                                     <th scope="col">Nama Mobil</th>
                                     <th scope="col">Jenis Mobil</th>
                                     <th scope="col">Merek Mobil</th>
-                                    <th scope="col">Stok</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -73,7 +66,6 @@
                                     <td>{{item.namamobil}}</td>
                                     <td>{{item.jenismobil}}</td>
                                     <td>{{item.merkmobil}}</td>
-                                    <td>{{item.stok}}</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>

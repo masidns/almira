@@ -27,6 +27,13 @@ class Auth extends CI_Controller
 
     }
 
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('dasbord');
+        
+    }
+
     public function add()
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
