@@ -39,9 +39,9 @@
                         <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
+                                    <th scope="col" width="10%">No</th>
                                     <th scope="col">Nama Persyaratan</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

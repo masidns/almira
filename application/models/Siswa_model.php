@@ -10,7 +10,24 @@ class Siswa_model extends CI_Model
             $siswas = $this->db->get('siswa')->result();
             foreach ($siswas as $key => $value) {
                 $value->paket = $this->db->get_where('paket', ['idpaket' => $value->idpaket])->row_array();
-                $value->pembayaran = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa])->row_array();
+                $result = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa]);
+                $value->num =$result->num_rows();
+                $value->pembayaran =$result->result();
+                $value->penilaian = $this->db->query("SELECT
+                    `penilaian`.`idpenilaian`,
+                    `penilaian`.`idsiswa`,
+                    `penilaian`.`idkriterianilai`,
+                    `penilaian`.`idstaf`,
+                    `penilaian`.`hasil`,
+                    `penilaian`.`Keterangan`,
+                    `kriterianilai`.`listkriteria`,
+                    `staf`.`namastaf`
+                FROM
+                    `kriterianilai`
+                    LEFT JOIN `penilaian` ON `penilaian`.`idkriterianilai` =
+                    `kriterianilai`.`idkriterianilai`
+                    LEFT JOIN `staf` ON `staf`.`idstaf` = `penilaian`.`idstaf` WHERE penilaian.idsiswa = $value->idsiswa")->result();
+
                 $value->roles = $this->db->query("SELECT
                     `rule`.`idrule`,
                     `rule`.`rule`
@@ -18,12 +35,34 @@ class Siswa_model extends CI_Model
                     `user`
                     LEFT JOIN `userrule` ON `userrule`.`iduser` = `user`.`iduser`
                     LEFT JOIN `rule` ON `rule`.`idrule` = `userrule`.`idrule` WHERE user.iduser = $value->iduser")->row_array();
+                $value->persyaratan = $this->db->query("SELECT
+                    `persyaratan`.`namapersyaratan`,
+                    `detailpersyaratan`.`iddetaipersyaratan`,
+                    `detailpersyaratan`.`berkas`
+                FROM
+                    `persyaratan`
+                    LEFT JOIN `detailpersyaratan` ON `detailpersyaratan`.`idpersyaratan` =
+                    `persyaratan`.`idpersyaratan` WHERE detailpersyaratan.idsiswa = $value->idsiswa")->result();
             }
             return $siswas;
         } else {
             $siswa = $this->db->get_where('siswa', ['idsiswa' => $idsiswa])->row_array();
             $siswa['paket'] = $this->db->get_where('paket', ['idpaket' => $siswa['idpaket']])->row_array();
-            $siswa['pembayaran'] = $this->db->get_where('pembayaran', ['idsiswa' => $idsiswa])->row_array();
+            $siswa['pembayaran'] = $this->db->get_where('pembayaran', ['idsiswa' => $idsiswa])->result();
+            $siswa['penilaian'] = $this->db->query("SELECT
+                `penilaian`.`idpenilaian`,
+                `penilaian`.`idsiswa`,
+                `penilaian`.`idkriterianilai`,
+                `penilaian`.`idstaf`,
+                `penilaian`.`hasil`,
+                `penilaian`.`Keterangan`,
+                `kriterianilai`.`listkriteria`,
+                `staf`.`namastaf`
+            FROM
+                `kriterianilai`
+                LEFT JOIN `penilaian` ON `penilaian`.`idkriterianilai` =
+                `kriterianilai`.`idkriterianilai`
+                LEFT JOIN `staf` ON `staf`.`idstaf` = `penilaian`.`idstaf` WHERE penilaian.idsiswa = $idsiswa")->result();
             $iduser = $siswa['iduser'];
             $siswa['roles'] = $this->db->query("SELECT
                 `rule`.`idrule`,
@@ -32,6 +71,14 @@ class Siswa_model extends CI_Model
                 `user`
                 LEFT JOIN `userrule` ON `userrule`.`iduser` = `user`.`iduser`
                 LEFT JOIN `rule` ON `rule`.`idrule` = `userrule`.`idrule` WHERE user.iduser = $iduser")->row_array();
+            $siswa['persyaratan'] = $this->db->query("SELECT
+                `persyaratan`.`namapersyaratan`,
+                `detailpersyaratan`.`iddetaipersyaratan`,
+                `detailpersyaratan`.`berkas`
+            FROM
+                `persyaratan`
+                LEFT JOIN `detailpersyaratan` ON `detailpersyaratan`.`idpersyaratan` =
+                `persyaratan`.`idpersyaratan` WHERE detailpersyaratan.idsiswa = $idsiswa")->result();
             return $siswa;
         }
     }

@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?=base_url()?>public/libs/select2/css/select2.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>public/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -66,6 +67,10 @@
     <script type="text/javascript" src="<?=base_url()?>public/assets/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<?=base_url()?>public/assets/js/plugins/dataTables.bootstrap.min.js"></script>
     <script src="<?=base_url()?>public/libs/select2/js/select2.full.min.js"></script>
+    <script src="<?=base_url()?>public/libs/gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="<?=base_url()?>public/libs/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="<?=base_url()?>public/libs/angular-datatables/dist/angular-datatables.min.js"></script>
     <script type="text/javascript">
         $('#sampleTable').DataTable();
     </script>
@@ -74,6 +79,12 @@
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="<?=base_url()?>public/assets/js/plugins/chart.js"></script>
     <!-- Google analytics script-->
+    <script>
+      $.LoadingOverlay("show", {
+          image       : "",
+          fontawesome : "fa fa-cog fa-spin"
+      });
+    </script>
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

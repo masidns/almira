@@ -5,7 +5,8 @@ angular.module('apps', [
     "ui.select2",
     "auth.service",
     "storage.services",
-    'adminctrl'
+    'adminctrl',
+    'datatables'
 ])
 .directive('fileModel', function ($parse) {
     return {
