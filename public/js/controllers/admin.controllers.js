@@ -315,7 +315,7 @@ function PembayaranController($scope, helperServices, SiswaServices) {
                     if (itembayar.jenis == 'DP') {
                         element.bayar.dp = parseInt(itembayar.nominal);
                     } else if (itembayar.jenis == 'Sisa') {
-                        element.bayar.sisa = parseInt(itembayar.nominal);
+                        element.bayar.sisa = parseInt(element.paket.hargapaket) - parseInt(itembayar.nominal);
                     } else {
                         element.bayar.lunas = parseInt(itembayar.nominal);
                     }

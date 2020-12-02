@@ -30,7 +30,7 @@ class Home extends CI_Controller {
                 foreach ($value->pembayaran as $key1 => $pembayaran) {
                     if($pembayaran->jenis=='DP'){
                         $data['total'] += $pembayaran->nominal;
-                        $data['piutang'] += $value->paket['harga'] - $pembayaran->nominal;
+                        $data['piutang'] += $value->paket['hargapaket'] - $pembayaran->nominal;
                     }else{
                         $data['total'] += $pembayaran->nominal;
                     }
