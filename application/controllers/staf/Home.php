@@ -37,8 +37,8 @@ class Home extends CI_Controller {
                 } 
             }
         }
-        $c['content'] = $this->load->view('siswa/home', $data, true);
-        $this->load->view('_sharedsiswa/layout',$c);
+        $c['content'] = $this->load->view('staf/home', $data,true);
+        $this->load->view('_sharedstaf/layout',$c);
         
     }
 

@@ -42,7 +42,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <i class="fa fa-table mr-1"></i> Daftar User
+                            <i class="fa fa-table mr-1"></i> Daftar Kendaraan
                         </div>
                     </div>
                 </div>

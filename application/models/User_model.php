@@ -27,9 +27,17 @@ class User_model extends CI_Model
             LEFT JOIN `rule` ON `rule`.`idrule` = `userrule`.`idrule` WHERE username='$username' AND password='$password'")->row_array();
         if($result != null){
             if($result['rule']=='Admin'){
-                return $this->db->get_where('staf', ['iduser'=>$result['iduser']])->row_array();
+                $staf = $this->db->get_where('staf', ['iduser'=>$result['iduser']])->row_array();
+                $staf['rule'] = $result;
+                return $staf;
+            }else if($result['rule']=='Staf'){
+                $staf = $this->db->get_where('staf', ['iduser'=>$result['iduser']])->row_array();
+                $staf['rule'] = $result;
+                return $staf;
             }else{
-                return $this->db->get_where('siswa', ['iduser'=>$result['iduser']])->row_array();
+                $siswa = $this->db->get_where('siswa', ['iduser'=>$result['iduser']])->row_array();
+                $siswa['rule']= $result;
+                return $siswa;
             }
         }else{
             return false;

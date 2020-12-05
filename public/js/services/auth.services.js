@@ -1,9 +1,9 @@
 angular.module("auth.service", [])
 
-    .factory("AuthService", AuthService)
+.factory("AuthService", AuthService)
 
 
-    ;
+;
 
 
 
@@ -34,7 +34,7 @@ function AuthService($http, $q, StorageService, helperServices) {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            def.resolve(user);
+            def.resolve(res.data);
         }, err => {
             def.reject(err);
             message.error(err);
@@ -82,6 +82,7 @@ function AuthService($http, $q, StorageService, helperServices) {
             return result.token;
         }
     }
+
     function getUserId() {
         if (userIsLogin) {
             var result = StorageService.getObject("user");

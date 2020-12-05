@@ -33,9 +33,9 @@
         redirect('login');
       }
       
-      $this->load->view('_sharedsiswa/header');
+      $this->load->view('_sharedstaf/header');
     ?>
-  <?php $this->load->view("_sharedsiswa/sidebar");?>
+  <?php $this->load->view("_sharedstaf/sidebar");?>
     <main class="app-content">
       <div class="app-title">
         <div>

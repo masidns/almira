@@ -13,7 +13,7 @@ class Kriteria extends CI_Controller
 
     public function index()
     {
-        $data ['title'] = 'Kriteria Penilaian';
+        $data ['title'] = 'KRITERIA PENILAIAN ALMIRA';
         $data['content'] = $this->load->view('admin/kriteria/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }

@@ -256,20 +256,24 @@
 								<select class="form-control" ng-model="model.idpaket" id="idpaket">
 									<option value="">---Pilih Paket---</option>
 									<?php foreach ($paket as $key => $value): ?>
-									<option value="<?=$value->idpaket?>"><?=$value->namapaket?></option>
+									<option value="<?=$value->idpaket?>"><?=$value->namapaket.' - '.$value->hargapaket?></option>
 									<?php endforeach;?>
 								</select>
 							</div>
 							<div class="form-group">
-								<label class="control-label">Tanggal Mulai Kursus</label>
+								<label class="control-label">Jadwal</label>
 								<select class="form-control" ng-model="model.idjadwal" id="idjadwal">
 									<option value="">---Pilih Jadwal---</option>
 									<?php foreach ($jadwal as $key => $value): ?>
 									<option value="<?=$value->idjadwal?>">
-										<?=$value->hari . ' ' . ': ' . $value->jammulai . ' s/d ' . $value->jamselesai?>
+										<?=$value->jammulai . ' s/d ' . $value->jamselesai?>
 									</option>
 									<?php endforeach;?>
 								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Tanggal Mulai</label>
+								<input type="date" class="form-control" ng-model="model.tanggalmulai">
 							</div>
 							<div class="form-group">
 								<label class="control-label">Jenis Bayar</label>

@@ -14,7 +14,7 @@ class Siswa extends CI_Controller
 
     public function index()
     {
-        $data ['title'] = 'Daftar Khursus Siswa Almira';
+        $data ['title'] = 'DATA KHURSUS SISWA ALMIRA';
         $data['content'] = $this->load->view('admin/siswa/index', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }

@@ -37,6 +37,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
     }
     $scope.simpan = () => {
         console.log($scope.model);
+        // $scope.model.tanggallahir = tanggallahir.getDay() + "-" + (tanggallahir.getMonth() + 1) + "-" + tanggallahir.getFullYear();
         for (var prop in $scope.model) {
             var type = typeof $scope.model[prop];
             if (typeof $scope.model[prop] == 'object' && $scope.model[prop].length == 1)

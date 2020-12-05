@@ -1,67 +1,5 @@
 <div class="container-fluid" ng-controller="SiswaController">
     <div class="row">
-        <!-- <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <i class="fa fa-table mr-1"></i> Tambah User
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form ng-submit="save(model)">
-                        <label for="iduser" class="control-label">Nama Siswa</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" ng-model="model.namasiswa" required
-                                placeholder="Nama" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                                autofocus>
-                        </div>
-                        <label for="iduser" class="control-label">Alamat</label>
-                        <div class="input-group mb-3">
-                            <textarea rows="3" class="form-control" ng-model="model.alamatsiswa" required></textarea>
-                        </div>
-                        <label for="iduser" class="control-label">Tempat Lahir</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" ng-model="model.tempatlahir" required
-                                placeholder="Tempat Lahir" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <label for="iduser" class="control-label">Tanggal Lahir</label>
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control" ng-model="model.tanggallahir" required
-                                placeholder="Tanggal Lahir" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <label for="iduser" class="control-label">Telepon</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" ng-model="model.notlpn" required
-                                placeholder="Nomor Telepon" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <label for="iduser" class="control-label">Email</label>
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" ng-model="model.email" required placeholder="email"
-                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <label ng-if="simpan" for="iduser" class="control-label">Password</label>
-                        <div class="input-group mb-3" ng-show="simpan">
-                            <input type="password" class="form-control" ng-model="model.password"
-                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                        </div>
-                        <label ng-if="simpan" for="">Akses</label>
-                        <div class="input-group sm-3" ng-if="simpan">
-                            <select ui-select2 class="form-control" ng-options="item as item.role for item in roles"
-                                ng-model="model.roles">
-                            </select>
-                        </div><br>
-                        <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> -->
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">
@@ -106,8 +44,8 @@
                                                 class="fa fa-eye"></i> </a>
                                         <a class="btn btn-info btn-sm" ng-click="pembayaran(item)"><i
                                                 class="fa fa-money"></i> </a>
-                                        <!-- <a class="btn btn-secondary btn-sm" ng-click="penilaian(item)" ng-show="item.penilaian.length==0"><i
-                                                class="fa fa-file"></i> </a> -->
+                                        <a class="btn btn-secondary btn-sm" ng-click="penilaian(item)" ng-show="item.penilaian.length==0"><i
+                                                class="fa fa-file"></i> </a>
                                     </td>
                                 </tr>
                             </tbody>

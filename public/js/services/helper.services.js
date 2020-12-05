@@ -23,9 +23,10 @@ function helperServices($location) {
         });
         return map;
     };
-    service.roles = [{ idrule: 1, rule: 'Admin' }, { idrule: 2, rule: 'Siswa' }]
+    service.roles = [{ idrule: 1, rule: 'Admin' }, { idrule: 2, rule: 'Siswa' }, { idrule: 3, rule: 'Staf' }]
     service.sex = ['Pria', 'Wanita'];
     service.ketPaket = ['Dengan SIM', 'Tanpa SIM'];
+    service.nilai = ['A - Sangat Baik', 'B - Baik', 'C - Cukup', 'D - Kurang', 'E - Sangat Kurang'];
     service.hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
     service.romanize = (num) => {
         if (isNaN(num))

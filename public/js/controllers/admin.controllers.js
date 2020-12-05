@@ -17,10 +17,35 @@ function pageController($scope) {
     $.LoadingOverlay("hide");
 }
 
-function profileController($scope) {
+function profileController($scope, helperServices, ProfileServices) {
+    // $.LoadingOverlay("hide");
+    $scope.roless = helperServices.roles;
+    $scope.sex = helperServices.sex;
     $scope.title = "candrakampret";
-    $.LoadingOverlay("hide");
+    $scope.simpan = true;
+    $scope.datas = [];
+    $scope.model = {};
+    ProfileServices.get().then(x => {
+        $scope.datas = x;
+        $.LoadingOverlay("hide");
+    })
+    $scope.save = (item) => {
+        if (item.idprofile) {
+            ProfileServices.put(item).then(_x => {
+
+            })
+        } else {
+            ProfileServices.post(item).then(_x => {
+
+            })
+        }
+    }
+    $scope.edit = (item) => {
+        $scope.model = angular.copy(item);
+        $scope.simpan = false;
+    }
 }
+
 
 function LoginController($scope) {
     $scope.title = "candrakampret";
@@ -63,6 +88,7 @@ function StaffController($scope, helperServices, StaffServices) {
 
 function SiswaController($scope, helperServices, SiswaServices, KriteriaServices, StaffServices, PenilaianServices) {
     $scope.roles = helperServices.roles;
+    $scope.nilaisiswa = helperServices.nilai;
     $scope.title = "candrakampret";
     $scope.simpan = true;
     $scope.nilai = [];

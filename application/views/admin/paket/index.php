@@ -52,7 +52,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <i class="fa fa-table mr-1"></i> Daftar User
+                            <i class="fa fa-table mr-1"></i> Daftar Paket Almira
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>
-                                        <a class="btn btn-danger btn-sm" ng-click="delete(item)"><i
+                                        <a class="btn btn-danger btn-sm" ng-click="Delete(item)"><i
                                                 class="fa fa-trash"></i> </a>
                                     </td>
                                 </tr>

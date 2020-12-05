@@ -57,7 +57,7 @@ class Staff_model extends CI_Model
         $this->db->trans_begin();
         $user = [
             'username' => $data['email'],
-            'password' => md5($data['email']),
+            'password' => md5($data['password']),
         ];
         $this->db->insert('user', $user);
         $iduser = $this->db->insert_id();

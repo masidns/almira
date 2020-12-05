@@ -1,6 +1,6 @@
 @controller=http://localhost/almira/admin/kendaraan
 
-GET {{controller}}/get/2 HTTP/1.1
+GET {{controller}}/get HTTP/1.1
 Content-Type: application/json
 
 ###

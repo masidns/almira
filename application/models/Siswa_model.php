@@ -145,6 +145,7 @@ class Siswa_model extends CI_Model
             'iduser' => $data['iduser'],
             'idjadwal' => $data['idjadwal'],
             'status' => 'Pendaftaran',
+            'tanggalmulai' => $data['tanggalmulai']
         ];
         $this->db->insert('siswa', $siswa);
         $data['idsiswa'] = $this->db->insert_id();
