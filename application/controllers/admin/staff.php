@@ -28,7 +28,7 @@ class staff extends CI_Controller
 
     public function add()
     {
-        $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
+        $data = $_POST;
         $result = $this->Staff_model->insert($data);
         echo json_encode($result);
     }

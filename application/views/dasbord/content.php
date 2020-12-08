@@ -118,7 +118,7 @@
 			<center>
 				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-offset="50" data-wow-delay="1.3s">
 					<div class="team-wrapper">
-						<!-- <img src="public/assets/onepage/images/team-img1.jpg" class="img-responsive" alt="team img 1"> -->
+						<img src="<?= base_url('public/fotostaf/').$value->foto?>" class="img-responsive" alt="team img 1">
 						<div class="team-des">
 							<h4><?=$value->namastaf;?></h4>
 							<span><?=$value->tlpn;?></span>

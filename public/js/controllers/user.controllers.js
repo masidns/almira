@@ -14,18 +14,16 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
     var fd = new FormData();
     PersyaratanServices.get().then(x => {
         $scope.persyaratan = x;
-        var pembayaran = $scope.getCookie('data');
-        // pembayaran.detailpembayaran.status = "Success";
-        // $scope.setCookie('data', JSON.stringify(pembayaran), 14);
-        if (pembayaran != "") {
-            $scope.showRegistrasi = false;
-            $scope.dataPembayaran = JSON.parse(pembayaran);
-            $scope.dataPembayaran.sisa = parseInt($scope.dataPembayaran.nominal) - parseInt($scope.dataPembayaran.nominaldp);
-            PaketServices.getId($scope.dataPembayaran.idpaket).then(resultPaket => {
-                $scope.paket = resultPaket;
-            })
-            console.log(JSON.parse(pembayaran));
-        }
+        // var pembayaran = $scope.getCookie('data');
+        // if (pembayaran != "") {
+        //     $scope.showRegistrasi = false;
+        //     $scope.dataPembayaran = JSON.parse(pembayaran);
+        //     $scope.dataPembayaran.sisa = parseInt($scope.dataPembayaran.nominal) - parseInt($scope.dataPembayaran.nominaldp);
+        //     PaketServices.getId($scope.dataPembayaran.idpaket).then(resultPaket => {
+        //         $scope.paket = resultPaket;
+        //     })
+        //     console.log(JSON.parse(pembayaran));
+        // }
     })
     $scope.ChangeFile = (x) => {
         $scope.fileTitle = x.files[0].name;
@@ -37,7 +35,8 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
     }
     $scope.simpan = () => {
         console.log($scope.model);
-        // $scope.model.tanggallahir = tanggallahir.getDay() + "-" + (tanggallahir.getMonth() + 1) + "-" + tanggallahir.getFullYear();
+        $scope.model.tanggalmulai = $scope.model.tanggalmulai.getFullYear() + "-" + ($scope.model.tanggalmulai.getMonth() + 1) + "-" + $scope.model.tanggalmulai.getDay();
+        $scope.model.tanggallahir = $scope.model.tanggallahir.getFullYear() + "-" + ($scope.model.tanggallahir.getMonth() + 1) + "-" + $scope.model.tanggallahir.getDay();
         for (var prop in $scope.model) {
             var type = typeof $scope.model[prop];
             if (typeof $scope.model[prop] == 'object' && $scope.model[prop].length == 1)
@@ -82,7 +81,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                             });
                         }
                         x.pembayaran = statuspembayaran;
-                        $scope.setCookie('data', JSON.stringify(x), 14);
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
                         console.log(x);
                     })
                 },
@@ -120,7 +119,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                             });
                         }
                         x.pembayaran = statuspembayaran;
-                        $scope.setCookie('data', JSON.stringify(x), 14);
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
                         console.log(x);
                     })
 
@@ -148,7 +147,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                             });
                         }
                         x.pembayaran = statuspembayaran;
-                        $scope.setCookie('data', JSON.stringify(x), 14);
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
                         console.log(x);
                     })
                 }

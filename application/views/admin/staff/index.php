@@ -27,6 +27,12 @@
                                 placeholder="Telepon" aria-label="Default"
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
+                        <label for="iduser" class="control-label">Upload Foto</label>
+                        <div class="input-group mb-3">
+                        <input type="file" required="required" class="form-control" id="inputFile"
+									file-model="myFile" accept="image/*"
+									onchange="angular.element(this).scope().ChangeFile(this)" />
+                        </div>
                         <label for="iduser" class="control-label">Email</label>
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" ng-model="model.email" required placeholder="email"
@@ -40,7 +46,7 @@
                         <label ng-if="simpan" for="">Akses</label>
                         <div class="input-group sm-3" ng-if="simpan">
                             <select ui-select2 class="form-control" ng-options="item as item.rule for item in roless"
-                                ng-model="model.roles">
+                                ng-model="model.roles"ng-change="model.idrule = model.roles.idrule">
                             </select>
                         </div><br>
                         <div class="input-group mb-3">
@@ -69,6 +75,7 @@
                                     <th scope="col">Telepon</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Sebagai</th>
+                                    <th scope="col">Foto</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Status</th>
                                 </tr>
@@ -82,6 +89,7 @@
                                     <td>{{item.tlpn}}</td>
                                     <td>{{item.email}}</td>
                                     <td>{{item.roles.rule}}</td>
+                                    <td><img src="<?= base_url()?>public/fotostaf/{{item.foto}}" alt="" width="50%"></td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>

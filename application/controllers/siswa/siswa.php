@@ -24,6 +24,7 @@ class Siswa extends CI_Controller
         $result = $this->Siswa_model->select($idsiswa);
         echo json_encode($result);
     }
+    
 
     public function add()
     {

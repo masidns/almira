@@ -180,7 +180,7 @@ function ProfileServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.idstaf == param.idstaf);
+                var data = service.data.find(x => x.idprofile == param.idprofile);
                 if (data) {
                     data.layanananlain = param.layanananlain;
                     data.promo = param.promo;
@@ -265,7 +265,9 @@ function StaffServices($http, $q, helperServices, AuthService) {
             method: 'post',
             url: controller + 'add',
             data: param,
-            headers: AuthService.getHeader()
+            headers: {
+                'Content-Type': undefined
+            }
         }).then(
             (res) => {
                 service.data.push(res.data);
@@ -316,7 +318,8 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         get: get,
         post: post,
         put: put,
-        getId: getId
+        getId: getId,
+        byId: byId
     };
 
     function get() {
@@ -344,7 +347,26 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         return def.promise;
     }
 
-    function getId(id) {
+    function getId() {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'getid',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                console.log(err.data);
+                def.reject(err);
+
+            }
+        );
+        return def.promise;
+    }
+
+    function byId(id) {
         var def = $q.defer();
         $http({
             method: 'get',
@@ -394,7 +416,7 @@ function SiswaServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.id == param.id);
+                var data = service.data.find(x => x.idsiswa == param.idsiswa);
                 if (data) {
                     data.firstName = param.firstName;
                     data.lastName = param.lastName;
@@ -498,7 +520,7 @@ function PaketServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.id == param.id);
+                var data = service.data.find(x => x.idpaket == param.idpaket);
                 if (data) {
                     data.namapaket = param.namapaket;
                     data.hargapaket = param.hargapaket;
@@ -583,12 +605,11 @@ function KendaraanServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.id == param.id);
+                var data = service.data.find(x => x.idkendaraan == param.idkendaraan);
                 if (data) {
                     data.namamobil = param.namamobil;
                     data.jenismobil = param.jenismobil;
                     data.merkmobil = param.merkmobil;
-                    data.stok = param.stok;
                 }
                 def.resolve(res.data);
             },
@@ -667,7 +688,7 @@ function PersyaratanServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.id == param.id);
+                var data = service.data.find(x => x.idpersyaratan == param.idpersyaratan);
                 if (data) {
                     data.namapersyaratan = param.namapersyaratan;
                 }
@@ -1021,7 +1042,7 @@ function KriteriaServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.id == param.id);
+                var data = service.data.find(x => x.idkriterianilai == param.idkriterianilai);
                 if (data) {
                     data.listkriteria = param.listkriteria;
                 }

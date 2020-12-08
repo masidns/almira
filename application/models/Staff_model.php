@@ -14,6 +14,7 @@ class Staff_model extends CI_Model
             `staf`.`tlpn`,
             `staf`.`email`,
             `staf`.`iduser`,
+            `staf`.`foto`,
             `user`.`password`
           FROM
             `staf`
@@ -36,6 +37,7 @@ class Staff_model extends CI_Model
                 `staf`.`tlpn`,
                 `staf`.`email`,
                 `staf`.`iduser`,
+                `staf`.`foto`,
                 `user`.`password`
             FROM
                 `staf`
@@ -63,19 +65,34 @@ class Staff_model extends CI_Model
         $iduser = $this->db->insert_id();
         $role = [
             'iduser' => $iduser,
-            'idrule' => $data['roles']['idrule'],
+            'idrule' => $data['idrule'],
         ];
         $this->db->insert('userrule', $role);
-        $staf = [
-            'namastaf' => $data['namastaf'],
-            'alamat' => $data['alamat'],
-            'tlpn' => $data['tlpn'],
-            'email' => $data['email'],
-            'iduser' => $iduser,
-        ];
-        $this->db->insert('staf', $staf);
-        $data['idstaf'] = $this->db->insert_id();
-        $data['iduser'] = $iduser;
+        
+        $itemFile = $_FILES['file'];
+            if ($itemFile != null) {
+                $config['upload_path'] = './public/fotostaf';
+                $config['allowed_types'] = 'gif|jpg|png|pdf';
+                $config['max_size'] = 5000;
+                $config['encrypt_name'] = true;
+
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file')) {
+                    $staf = [
+                        'namastaf' => $data['namastaf'],
+                        'alamat' => $data['alamat'],
+                        'tlpn' => $data['tlpn'],
+                        'email' => $data['email'],
+                        'iduser' => $iduser,
+                        'foto'=>$this->upload->data()['file_name'],
+                    ];
+                    $this->db->insert('staf', $staf);
+                    $data['idstaf'] = $this->db->insert_id();
+                    $data['iduser'] = $iduser;
+                    $data['roles'] = $this->db->get_where('rule', ['idrule'=>$data['idrule']])->row_array();
+                }
+            }
+            
         if ($this->db->trans_status()) {
             $this->db->trans_commit();
             return $data;

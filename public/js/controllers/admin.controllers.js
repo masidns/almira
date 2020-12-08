@@ -10,7 +10,8 @@ angular.module('adminctrl', [])
     .controller('PersyaratanController', PersyaratanController)
     .controller('JadwalController', JadwalController)
     .controller('KriteriaController', KriteriaController)
-    .controller('PembayaranController', PembayaranController);
+    .controller('PembayaranController', PembayaranController)
+    .controller('UserSiswaController', UserSiswaController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -63,19 +64,28 @@ function StaffController($scope, helperServices, StaffServices) {
     $scope.sex = helperServices.sex;
     $scope.title = "candrakampret";
     $scope.simpan = true;
+    $scope.myFile;
     $scope.datas = [];
+    var fd = new FormData();
     $scope.model = {};
     StaffServices.get().then(x => {
         $scope.datas = x;
         $.LoadingOverlay("hide");
     })
+    $scope.ChangeFile = (x) => {
+        $scope.fileTitle = x.files[0].name;
+    };
     $scope.save = (item) => {
+        fd.append('file', $scope.myFile[0]);
+        for (var prop in $scope.model) {
+            fd.append(prop, $scope.model[prop]);
+        }
         if (item.idstaf) {
             StaffServices.put(item).then(_x => {
 
             })
         } else {
-            StaffServices.post(item).then(_x => {
+            StaffServices.post(fd).then(_x => {
 
             })
         }
@@ -376,4 +386,100 @@ function PembayaranController($scope, helperServices, SiswaServices) {
         // $scope.edit = (item) => {
         //     $scope.model = angular.copy(item);
         // }
+}
+
+function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServices, StaffServices, PenilaianServices) {
+    $scope.roles = helperServices.roles;
+    $scope.nilaisiswa = helperServices.nilai;
+    $scope.title = "candrakampret";
+    $scope.simpan = true;
+    $scope.nilai = [];
+    $scope.datas = [];
+    $scope.model = {};
+    $scope.staff = [];
+    $scope.kriterianilai = [];
+    SiswaServices.getId().then(x => {
+        $scope.datas = x;
+        StaffServices.get().then(staff => {
+            $scope.staff = staff;
+            KriteriaServices.get().then(param => {
+                $scope.kriterianilai = angular.copy(param);
+                $.LoadingOverlay("hide");
+            })
+        })
+    })
+
+    $scope.save = (item) => {
+        $.LoadingOverlay("show", {
+            image: "",
+            fontawesome: "fa fa-cog fa-spin"
+        });
+        $scope.model.nilai = item;
+        if ($scope.model.penilaian.length != 0) {
+            PenilaianServices.put($scope.model).then(x => {
+                var data = $scope.datas.find(siswa => siswa.idsiswa == $scope.model.idsiswa);
+                data.penilaian = x;
+                // swal({
+                //     title: "Information!",
+                //     text: "Proses berhasil",
+                //     icon: "success",
+                // });
+                // KriteriaServices.get().then(param=>{
+                //     $scope.model = {};
+                //     $scope.kriterianilai = angular.copy(param);
+                //     $.LoadingOverlay("hide");
+                // })
+                $.LoadingOverlay("hide");
+                $scope.model = {};
+            })
+        } else {
+            PenilaianServices.post($scope.model).then(x => {
+                var data = $scope.datas.find(siswa => siswa.idsiswa == $scope.model.idsiswa);
+                data.penilaian = x;
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
+                // KriteriaServices.get().then(param=>{
+                //     $scope.model = {};
+                //     $scope.kriterianilai = angular.copy(param);
+                //     $.LoadingOverlay("hide");
+                // })
+                $.LoadingOverlay("hide");
+                $scope.model = {};
+                $('#penilaian').modal('hide');
+            })
+        }
+    }
+
+    $scope.edit = (item) => {
+        $scope.model = angular.copy(item);
+        $scope.simpan = false;
+    }
+
+    $scope.penilaian = (item) => {
+        $scope.model = item;
+        $('#penilaian').modal('show');
+    }
+    $scope.view = (item) => {
+        $scope.nilai = item.penilaian;
+        $('#viewpenilaian').modal('show');
+    }
+    $scope.pembayaran = (item) => {
+        $scope.nilai = angular.copy(item);
+        $scope.nilai.bayar = { dp: 0, sisa: 0, lunas: 0, Total: 0 };
+        $scope.nilai.pembayaran.forEach(itembayar => {
+            if (itembayar.jenis == 'DP') {
+                $scope.nilai.bayar.dp = parseInt(itembayar.nominal);
+            } else if (itembayar.jenis == 'Sisa') {
+                $scope.nilai.bayar.sisa = parseInt(itembayar.nominal);
+            } else {
+                $scope.nilai.bayar.lunas = parseInt(itembayar.nominal);
+            }
+
+        });
+        $scope.nilai.bayar.Total += $scope.nilai.bayar.dp == 0 ? $scope.nilai.bayar.lunas : ($scope.nilai.bayar.dp + $scope.nilai.bayar.sisa);
+        $('#pembayaran').modal('show');
+    }
 }
