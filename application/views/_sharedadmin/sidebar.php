@@ -18,6 +18,14 @@
             <li><a class="treeview-item" href="<?= base_url('admin/persyaratan')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Persyaratan</span></a></li>
          </ul>
         </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file"></i><span class="app-menu__label">Laporan</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/siswa') ?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Lap. Siswa</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/staf')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Lap. Staf</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/kendaraan')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Lap. Kendaraan</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/keuangan')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Lap. Keuangan</span></a></li>
+         </ul>
+        </li>
         <!-- <li><a class="app-menu__item" href="<?= base_url('admin/penilaian')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Penilaian</span></a></li> -->
         <!-- <li><a class="app-menu__item" href="<?= base_url('admin/pembayaran')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Pembayaran</span></a></li> -->
         <!-- <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li> -->

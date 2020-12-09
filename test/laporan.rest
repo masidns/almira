@@ -1,0 +1,28 @@
+@controller=http://localhost/almira/admin/laporan
+
+###
+POST {{controller}}/getsiswa HTTP/1.1
+Content-Type: application/json
+
+{
+    "awal": "2020-12-01",
+    "akhir": "2020-12-31"
+}
+
+###
+
+PUT {{controller}}/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "idpaket": "1",
+    "namapaket": "Reguler",
+    "hargapaket": "1290000",
+    "ketpaket": "Dengan Sim",
+    "jumlahkali": "12",
+    "durasiwaktu": "2 Jam"
+}
+
+###
+
+DELETE {{controller}}/delete/3 HTTP/1.1

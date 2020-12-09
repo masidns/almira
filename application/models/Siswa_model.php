@@ -11,8 +11,8 @@ class Siswa_model extends CI_Model
             foreach ($siswas as $key => $value) {
                 $value->paket = $this->db->get_where('paket', ['idpaket' => $value->idpaket])->row_array();
                 $result = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa]);
-                $value->num =$result->num_rows();
-                $value->pembayaran =$result->result();
+                $value->num = $result->num_rows();
+                $value->pembayaran = $result->result();
                 $value->penilaian = $this->db->query("SELECT
                     `penilaian`.`idpenilaian`,
                     `penilaian`.`idsiswa`,
@@ -145,19 +145,20 @@ class Siswa_model extends CI_Model
             'iduser' => $data['iduser'],
             'idjadwal' => $data['idjadwal'],
             'status' => 'Pendaftaran',
-            'tanggalmulai' => $data['tanggalmulai']
+            'tanggalmulai' => $data['tanggalmulai'],
+            'tanggaldaftar' => date('Y-m-d'),
         ];
         $this->db->insert('siswa', $siswa);
         $data['idsiswa'] = $this->db->insert_id();
         $pembayaran = [
-            'idsiswa'=>$data['idsiswa'],
-            'nominal'=>$data['jenisbayar'] == 'DP' ? $data['nominaldp']: $data['nominal'],
-            'jenis'=>$data['jenisbayar'],
-            'order_id'=>$data['order_id'],
-            'status'=>'Proses',
+            'idsiswa' => $data['idsiswa'],
+            'nominal' => $data['jenisbayar'] == 'DP' ? $data['nominaldp'] : $data['nominal'],
+            'jenis' => $data['jenisbayar'],
+            'order_id' => $data['order_id'],
+            'status' => 'Proses',
         ];
         $this->db->insert('pembayaran', $pembayaran);
-        $pembayaran['idpembayaran']= $this->db->insert_id();
+        $pembayaran['idpembayaran'] = $this->db->insert_id();
         $data['detailpembayaran'] = $pembayaran;
         $persyaratan = $this->Persyaratan_model->select();
         $data['persyaratan'] = [];
@@ -195,7 +196,7 @@ class Siswa_model extends CI_Model
     {
         $item = [
             'tgl_bayar' => $data['transaction_time'],
-            'status' => $data['transaction_status']
+            'status' => $data['transaction_status'],
         ];
         $this->db->where('idpembayaran', $data['idpembayaran']);
         return $this->db->update('pembayaran', $item);
@@ -225,7 +226,49 @@ class Siswa_model extends CI_Model
         $this->db->where('iduser', $iduser);
         return $this->db->delete('user');
     }
+    public function selectlaporan($data)
+    {
+        $awal = $data['awal'];
+        $akhir = $data['akhir'];
+        $siswas = $this->db->query("SELECT * FROM siswa where tanggaldaftar > '$awal' AND tanggaldaftar < '$akhir'")->result();
+        foreach ($siswas as $key => $value) {
+            $value->paket = $this->db->get_where('paket', ['idpaket' => $value->idpaket])->row_array();
+            $result = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa]);
+            $value->num = $result->num_rows();
+            $value->pembayaran = $result->result();
+            $value->penilaian = $this->db->query("SELECT
+                    `penilaian`.`idpenilaian`,
+                    `penilaian`.`idsiswa`,
+                    `penilaian`.`idkriterianilai`,
+                    `penilaian`.`idstaf`,
+                    `penilaian`.`hasil`,
+                    `penilaian`.`Keterangan`,
+                    `kriterianilai`.`listkriteria`,
+                    `staf`.`namastaf`
+                FROM
+                    `kriterianilai`
+                    LEFT JOIN `penilaian` ON `penilaian`.`idkriterianilai` =
+                    `kriterianilai`.`idkriterianilai`
+                    LEFT JOIN `staf` ON `staf`.`idstaf` = `penilaian`.`idstaf` WHERE penilaian.idsiswa = $value->idsiswa")->result();
 
+            $value->roles = $this->db->query("SELECT
+                    `rule`.`idrule`,
+                    `rule`.`rule`
+                FROM
+                    `user`
+                    LEFT JOIN `userrule` ON `userrule`.`iduser` = `user`.`iduser`
+                    LEFT JOIN `rule` ON `rule`.`idrule` = `userrule`.`idrule` WHERE user.iduser = $value->iduser")->row_array();
+            $value->persyaratan = $this->db->query("SELECT
+                    `persyaratan`.`namapersyaratan`,
+                    `detailpersyaratan`.`iddetaipersyaratan`,
+                    `detailpersyaratan`.`berkas`
+                FROM
+                    `persyaratan`
+                    LEFT JOIN `detailpersyaratan` ON `detailpersyaratan`.`idpersyaratan` =
+                    `persyaratan`.`idpersyaratan` WHERE detailpersyaratan.idsiswa = $value->idsiswa")->result();
+        }
+        return $siswas;
+    }
 }
 
 /* End of file Siswa_model.php */

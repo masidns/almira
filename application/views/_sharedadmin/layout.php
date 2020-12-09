@@ -23,7 +23,33 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?=base_url()?>public/libs/select2/css/select2.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>public/libs/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" />
+    <link href="<?=base_url()?>public/libs/daterangepicker/daterangepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <style>
+            .containerr {
+                display: flex;
+                height: 60vh;
+                justify-content: center;
+                align-items: center;
+                direction: row;
+            }
+         
+            @media screen {
+                #print {
+                    /* font-family:verdana, arial, sans-serif; */
+                }
+                .screen{
+                    display:none;
+                }
+            }
+
+            @media print {
+                /* #print {font-family:georgia, times, serif;} */
+                .screen{
+                    display:block;
+                }
+            }
+        </style>
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -51,7 +77,7 @@
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
-    <script src="<?=base_url()?>public/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?=base_url()?>public/libs/jquery/jquery.min.js"></script>
     <script src="<?=base_url()?>public/libs/angular/angular.min.js"></script>
     <script src="<?=base_url()?>public/libs/angular-ui-select2/src/select2.js"></script>
     <script src="<?=base_url()?>public/libs/angular-local-storage/dist/angular-local-storage.js"></script>
@@ -61,6 +87,7 @@
     <script src="<?=base_url()?>public/js/services/storage.services.js"></script>
     <script src="<?=base_url()?>public/js/services/services.js"></script>
     <script src="<?=base_url()?>public/js/controllers/admin.controllers.js"></script>
+    <script src="<?=base_url()?>public/libs/moment/moment.min.js"></script>
     <script src="<?=base_url()?>public/assets/js/popper.min.js"></script>
     <script src="<?=base_url()?>public/assets/js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>public/assets/js/main.js"></script>
@@ -71,6 +98,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="<?=base_url()?>public/libs/datatables.net/js/jquery.dataTables.js"></script>
     <script src="<?=base_url()?>public/libs/angular-datatables/dist/angular-datatables.min.js"></script>
+    <script src="<?=base_url()?>public/libs/daterangepicker/daterangepicker.js"></script>
+    <script src="<?php echo base_url('public/js/jquery.PrintArea.js'); ?>"></script>
     <script type="text/javascript">
         $('#sampleTable').DataTable();
     </script>
@@ -95,5 +124,18 @@
       	ga('send', 'pageview');
       }
     </script>
+    <script>
+    $(function () {
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({
+        timePicker: false,
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+      })
+    })
+  </script>
   </body>
 </html>

@@ -11,7 +11,8 @@ angular.module('adminctrl', [])
     .controller('JadwalController', JadwalController)
     .controller('KriteriaController', KriteriaController)
     .controller('PembayaranController', PembayaranController)
-    .controller('UserSiswaController', UserSiswaController);
+    .controller('UserSiswaController', UserSiswaController)
+    .controller('LaporanController', LaporanController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -482,4 +483,71 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
         $scope.nilai.bayar.Total += $scope.nilai.bayar.dp == 0 ? $scope.nilai.bayar.lunas : ($scope.nilai.bayar.dp + $scope.nilai.bayar.sisa);
         $('#pembayaran').modal('show');
     }
+}
+function LaporanController($scope, helperServices, LaporanServices) {
+    $scope.roles = helperServices.roles;
+    $scope.nilaisiswa = helperServices.nilai;
+    $scope.simpan = true;
+    $scope.nilai = [];
+    $scope.datas = [];
+    $scope.stafs = [];
+    $scope.kendaraans = [];
+    $scope.model = {};
+    $scope.staff = [];
+    $scope.kriterianilai = [];
+    $scope.Init = ()=>{
+        LaporanServices.staf($scope.model).then(x=>{
+            $scope.stafs = x;
+            LaporanServices.kendaraan($scope.model).then(x=>{
+                $scope.kendaraans = x;
+                $.LoadingOverlay("hide");
+            })
+        })
+    }
+    $scope.showSiswa = (item)=>{
+        $.LoadingOverlay("show");
+        var a = item.split(' - ');
+        if(a[0]!==a[1]){
+            $scope.model.awal = a[0];
+            $scope.model.akhir = a[1];
+            LaporanServices.siswa($scope.model).then(x=>{
+                $scope.datas = x;
+                $.LoadingOverlay("hide");
+            })
+        }
+        $.LoadingOverlay("hide");
+    }
+
+    $scope.showKeuangan = (item)=>{
+        $.LoadingOverlay("show");
+        var a = item.split(' - ');
+        if(a[0]!==a[1]){
+            $scope.model.awal = a[0];
+            $scope.model.akhir = a[1];
+            LaporanServices.siswa($scope.model).then(x=>{
+                $scope.Total = 0;
+                $scope.datas = x;
+                $scope.datas.forEach(element => {
+                    element.bayar = { dp: 0, sisa: 0, lunas: 0 };
+                    element.pembayaran.forEach(itembayar => {
+                        if (itembayar.jenis == 'DP') {
+                            element.bayar.dp = parseInt(itembayar.nominal);
+                        } else if (itembayar.jenis == 'Sisa') {
+                            element.bayar.sisa = parseInt(element.paket.hargapaket) - parseInt(itembayar.nominal);
+                        } else {
+                            element.bayar.lunas = parseInt(itembayar.nominal);
+                        }
+    
+                    });
+                    $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
+                });
+                $.LoadingOverlay("hide");
+            })
+        }
+        $.LoadingOverlay("hide");
+    }
+    $scope.print = () => {
+        $("#print").printArea();
+    }
+
 }

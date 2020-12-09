@@ -10,7 +10,8 @@ angular.module('services', [])
     .factory('JadwalServices', JadwalServices)
     .factory('KriteriaServices', KriteriaServices)
     .factory('PenilaianServices', PenilaianServices)
-    .factory('ProfileServices', ProfileServices);
+    .factory('ProfileServices', ProfileServices)
+    .factory('LaporanServices', LaporanServices);
 
 function UserServices($http, $q, helperServices) {
     var controller = helperServices.url + 'users';
@@ -1136,4 +1137,71 @@ function PenilaianServices($http, $q, helperServices, AuthService) {
         return def.promise;
     }
 
+}
+function LaporanServices($http, $q, helperServices, AuthService) {
+    var controller = helperServices.url + '/admin/laporan/';
+    var service = {};
+    service.data = [];
+    service.instance = false;
+    return {
+        siswa: siswa,
+        staf: staf,
+        kendaraan: kendaraan
+    };
+
+    function siswa(param) {
+        var def = $q.defer();
+        $http({
+            method: 'post',
+            url: controller + 'getsiswa',
+            data: param,
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                console.log(err.data);
+                def.reject(err);
+
+            }
+        );
+        return def.promise;
+    }
+
+    function staf() {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'getstaf',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                def.reject(err);
+                message.error(err);
+            }
+        );
+        return def.promise;
+    }
+
+    function kendaraan() {
+        var def = $q.defer();
+        $http({
+            method: 'post',
+            url: controller + 'getkendaraan',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                def.reject(err);
+                message.error(err);
+            }
+        );
+        return def.promise;
+    }
 }
