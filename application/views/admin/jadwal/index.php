@@ -11,12 +11,6 @@
                 </div>
                 <div class="card-body">
                     <form ng-submit="save(model)">
-                        <label for="kendaraan" class="control-label">Hari</label>
-                        <div class="input-group mb-3">
-                              <select class="form-control" ng-options="item as item for item in days" ng-model="model.hari">
-                                <option value=""></option>
-                              </select>
-                        </div>
                         <label for="kendaraan" class="control-label">Jam Mulai</label>
                         <div class="input-group mb-3">
                             <input type="time" class="form-control" ng-model="model.jammulai" required
@@ -57,7 +51,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Hari</th>
                                     <th scope="col">Jam Mulai</th>
                                     <th scope="col">Jam Selesai</th>
                                     <th scope="col">Mobil</th>
@@ -69,7 +62,6 @@
                                     <th scope="row">
                                         {{$index+1}}
                                     </th>
-                                    <td>{{item.hari}}</td>
                                     <td>{{item.jammulai}}</td>
                                     <td>{{item.jamselesai}}</td>
                                     <td>{{item.kendaraan.namamobil}}</td>

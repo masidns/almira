@@ -25,6 +25,12 @@ class Siswa extends CI_Controller
         echo json_encode($result);
     }
     
+    public function getid()
+    {
+        $id = $this->session->userdata('idsiswa');
+        $result = $this->Siswa_model->select($id);
+        echo json_encode($result);
+    }
 
     public function add()
     {

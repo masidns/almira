@@ -1,6 +1,6 @@
 @controller=http://localhost/almira/admin/siswa
 
-GET {{controller}}/get/60 HTTP/1.1
+GET {{controller}}/get/64 HTTP/1.1
 Content-Type: application/json
 
 ###
@@ -36,19 +36,22 @@ PUT {{controller}}/update HTTP/1.1
 Content-Type: application/json
 
 {
-    "idsiswa": "3",
-    "idpaket": "1",
-    "namasiswa": "Candra Ewaw",
-    "alamatsiswa": "Tanah Hitam",
-    "tempatlahir": "kasur",
-    "tanggallahir": "1111-02-10",
-    "email": "candra212@mail.com",
-    "notlpn": "082111234165",
-    "iduser": "25",
+"idsiswa": "65",
+    "idpaket": "2",
+    "namasiswa": "Elton",
+    "alamatsiswa": "Entrop",
+    "tempatlahir": "Jayapura",
+    "tanggallahir": "1999-06-03",
+    "email": "denimalik207@gmail.com",
+    "notlpn": "08132878877",
+    "iduser": "82",
+    "idjadwal": "1",
+    "status": "Pendaftaran",
+    "tanggalmulai": "2020-12-04",
     "paket": {
-      "idpaket": "1",
-      "namapaket": "Reguler",
-      "hargapaket": "1290000",
+      "idpaket": "2",
+      "namapaket": "Regulerrrr",
+      "hargapaket": "900000",
       "ketpaket": "Dengan SIM",
       "jumlahkali": "12",
       "durasiwaktu": "2 Jam"
