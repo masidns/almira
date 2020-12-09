@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <i class="fa fa-table mr-1"></i> Tambah Informasi Perusahaan
+                            <i class=""></i> Tambah Informasi Perusahaan
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,6 @@
                                 placeholder="Email" aria-label="Default" aria-describedby="inputGroup-sizing-default"
                                 autofocus>
                         </div>
-                        
                         <br>
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
@@ -66,42 +65,70 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th scope="col" width="10%">No</th>
-                                    <th scope="col">Layanan Almira</th>
-                                    <th scope="col">Promo</th>
-                                    <th scope="col">Kontak</th>
-                                    <th scope="col">Nama Perusahaan</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Visi</th>
-                                    <th scope="col">Misi</th>
-                                    <th scope="col" width="10%">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in datas">
-                                    <th scope="row">
-                                        {{$index+1}}
-                                    </th>
-                                    <td>{{item.layananlain}}</td>
-                                    <td>{{item.promo}}</td>
-                                    <td>{{item.kontak}}</td>
-                                    <td>{{item.namaperusahaan}}</td>
-                                    <td>{{item.alamat}}</td>
-                                    <td>{{item.email}}</td>
-                                    <td>{{item.visi}}</td>
-                                    <td>{{item.misi}}</td>
-                                    <td>
-                                        <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
-                                                class="fa fa-edit"></i> </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-6 col-form-label">Nama Perusahaan</label>
+                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['namaperusahaan']?></label>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-6 col-form-label">Layanan Almira</label>
+                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['layananlain']?></label>
+                            </div>
+                            <hr>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-6 col-form-label">Layanan Almira</label>
+                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['layananlain']?></label>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-6 col-form-label">Kontak</label>
+                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['kontak']?></label>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-6 col-form-label">Email Kantor</label>
+                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['email']?></label>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="">
+                        <div>
+                            <i class="text-center"></i> VISI
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-12 col-form-label"><?= $profile['visi']?></label>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <i class="text-justify-content-between"></i> MISI
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-12 col-form-label"><?= $profile['misi']?></label>
+                            </div>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>

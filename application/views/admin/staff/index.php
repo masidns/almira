@@ -77,7 +77,7 @@
                                     <th scope="col">Sebagai</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Action</th>
-                                    <th scope="col">Status</th>
+                                    <!-- <th scope="col">Status</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,13 +94,13 @@
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="{{item.id}}"
                                                 ng-model="item.status" ng-checked="item.status" ng-change="save(item)">
                                             <label class="custom-control-label" for="{{item.id}}"></label>
                                         </div>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>

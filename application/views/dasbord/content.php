@@ -37,17 +37,8 @@
 				<h1 class="wow fadeIn" data-wow-offset="20" data-wow-delay="0.1s">KHURSUS MENGEMUDI <span>ALMIRA</span>
 					<b>Jayapura</b></h1>
 				<div class="element">
-					<div class="sub-element">Kegiatan kursus mengemudi di Almira (IWSS) Provinsi Papua di dukung oleh
-						Polantas Polda Papua.</div>
-					<div class="sub-element">Setiap pembukaan kursus di Almira akan di buka oleh pejabat dari jajaran
-						Polantas Polda Papua.</div>
-					<div class="sub-element">Ini membuktikan bahwa kursus di Almira resmi dan diakui oleh kepolisian.
-					</div>
-					<div class="sub-element">Selain dari pada itu dari jajaran lantas Polresta juga ikut andil dalam
-						kegiatan kursus di Almira ini khususnya dalam perolehan SIM A.
-						Setiap peserta kursus sebelum mendapatkan SIM A akan di ujin oleh jajaran lantas dari Polresta
-						Jayapura.</div>
-					
+					<div class="sub-element"><?= $profile['visi'] ?></div>
+					<div class="sub-element"><?= $profile['misi'] ?></div>
 				</div>
 			</div>
 		</div>

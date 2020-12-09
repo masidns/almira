@@ -12,7 +12,8 @@ angular.module('adminctrl', [])
     .controller('KriteriaController', KriteriaController)
     .controller('PembayaranController', PembayaranController)
     .controller('UserSiswaController', UserSiswaController)
-    .controller('LaporanController', LaporanController);
+    .controller('LaporanController', LaporanController)
+    .controller('JadwalStafController', JadwalStafController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -484,6 +485,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
         $('#pembayaran').modal('show');
     }
 }
+
 function LaporanController($scope, helperServices, LaporanServices) {
     $scope.roles = helperServices.roles;
     $scope.nilaisiswa = helperServices.nilai;
@@ -495,22 +497,22 @@ function LaporanController($scope, helperServices, LaporanServices) {
     $scope.model = {};
     $scope.staff = [];
     $scope.kriterianilai = [];
-    $scope.Init = ()=>{
-        LaporanServices.staf($scope.model).then(x=>{
+    $scope.Init = () => {
+        LaporanServices.staf($scope.model).then(x => {
             $scope.stafs = x;
-            LaporanServices.kendaraan($scope.model).then(x=>{
+            LaporanServices.kendaraan($scope.model).then(x => {
                 $scope.kendaraans = x;
                 $.LoadingOverlay("hide");
             })
         })
     }
-    $scope.showSiswa = (item)=>{
+    $scope.showSiswa = (item) => {
         $.LoadingOverlay("show");
         var a = item.split(' - ');
-        if(a[0]!==a[1]){
+        if (a[0] !== a[1]) {
             $scope.model.awal = a[0];
             $scope.model.akhir = a[1];
-            LaporanServices.siswa($scope.model).then(x=>{
+            LaporanServices.siswa($scope.model).then(x => {
                 $scope.datas = x;
                 $.LoadingOverlay("hide");
             })
@@ -518,13 +520,13 @@ function LaporanController($scope, helperServices, LaporanServices) {
         $.LoadingOverlay("hide");
     }
 
-    $scope.showKeuangan = (item)=>{
+    $scope.showKeuangan = (item) => {
         $.LoadingOverlay("show");
         var a = item.split(' - ');
-        if(a[0]!==a[1]){
+        if (a[0] !== a[1]) {
             $scope.model.awal = a[0];
             $scope.model.akhir = a[1];
-            LaporanServices.siswa($scope.model).then(x=>{
+            LaporanServices.siswa($scope.model).then(x => {
                 $scope.Total = 0;
                 $scope.datas = x;
                 $scope.datas.forEach(element => {
@@ -537,7 +539,7 @@ function LaporanController($scope, helperServices, LaporanServices) {
                         } else {
                             element.bayar.lunas = parseInt(itembayar.nominal);
                         }
-    
+
                     });
                     $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
                 });
@@ -550,4 +552,40 @@ function LaporanController($scope, helperServices, LaporanServices) {
         $("#print").printArea();
     }
 
+}
+
+function JadwalStafController($scope, helperServices, JadwalStafServices, KendaraanServices) {
+    $scope.days = helperServices.hari;
+    $scope.simpan = true;
+    $scope.datas = [];
+    $scope.kendaraans = [];
+    $scope.model = {};
+    JadwalStafServices.get().then(x => {
+        $scope.datas = x;
+        KendaraanServices.get().then(resultkendaraan => {
+            $scope.kendaraans = resultkendaraan;
+            $.LoadingOverlay("hide");
+        })
+    })
+    $scope.save = (item) => {
+        item.jammulai = item.jammulai.getHours() + ':' + item.jammulai.getMinutes();
+        item.jamselesai = item.jamselesai.getHours() + ':' + item.jamselesai.getMinutes();
+        if (item.idjadwal) {
+            JadwalStafServices.put(item).then(_x => {
+                $scope.model = {};
+            })
+        } else {
+            JadwalStafServices.post(item).then(_x => {
+                $scope.model = {};
+            })
+        }
+    }
+    $scope.edit = (item) => {
+        $scope.model = angular.copy(item);
+        var jammulai = $scope.model.jammulai.split(':');
+        $scope.model.jammulai = new Date(2010, 1, 1, jammulai[0], jammulai[1]);
+
+        var jamselesai = $scope.model.jamselesai.split(':');
+        $scope.model.jamselesai = new Date(2010, 1, 1, jamselesai[0], jamselesai[1]);
+    }
 }

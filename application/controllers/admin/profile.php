@@ -13,8 +13,9 @@ class profile extends CI_Controller
 
     public function index()
     {
+        $result['profile'] = $this->Profile_model->select();
         $data ['title'] = 'Profile Perusahaan';
-        $data['content'] = $this->load->view('admin/profile/index', '', true);
+        $data['content'] = $this->load->view('admin/profile/index', $result, true);
         $this->load->view('_sharedadmin/layout', $data);
     }
 

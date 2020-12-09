@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="JadwalController">
+<div class="container-fluid" ng-controller="JadwalStafController">
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12">
