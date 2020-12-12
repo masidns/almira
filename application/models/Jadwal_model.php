@@ -18,6 +18,55 @@ class Jadwal_model extends CI_Model
             return $result;
         }
     }
+    public function selectjadwal($idjadwal = null)
+    {
+        $datasiswa = [];
+        $siswas = $this->db->get('siswa')->result();
+            foreach ($siswas as $key => $value) {
+                
+                $value->paket = $this->db->get_where('paket', ['idpaket' => $value->idpaket])->row_object();
+                $days = '+ '.$value->paket->jumlahkali . ' days';
+                $value->tanggalselesai = date('Y-m-d', strtotime($value->tanggalmulai. $days));
+                $result = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa]);
+                $value->num = $result->num_rows();
+                $value->pembayaran = $result->result();
+                $value->jadwal = $this->db->get_where('jadwal', ['idjadwal'=>$value->idjadwal])->row_object();
+                $value->penilaian = $this->db->query("SELECT
+                    `penilaian`.`idpenilaian`,
+                    `penilaian`.`idsiswa`,
+                    `penilaian`.`idkriterianilai`,
+                    `penilaian`.`idstaf`,
+                    `penilaian`.`hasil`,
+                    `penilaian`.`Keterangan`,
+                    `kriterianilai`.`listkriteria`,
+                    `staf`.`namastaf`
+                FROM
+                    `kriterianilai`
+                    LEFT JOIN `penilaian` ON `penilaian`.`idkriterianilai` =
+                    `kriterianilai`.`idkriterianilai`
+                    LEFT JOIN `staf` ON `staf`.`idstaf` = `penilaian`.`idstaf` WHERE penilaian.idsiswa = $value->idsiswa")->result();
+
+                $value->roles = $this->db->query("SELECT
+                    `rule`.`idrule`,
+                    `rule`.`rule`
+                FROM
+                    `user`
+                    LEFT JOIN `userrule` ON `userrule`.`iduser` = `user`.`iduser`
+                    LEFT JOIN `rule` ON `rule`.`idrule` = `userrule`.`idrule` WHERE user.iduser = $value->iduser")->row_array();
+                $value->persyaratan = $this->db->query("SELECT
+                    `persyaratan`.`namapersyaratan`,
+                    `detailpersyaratan`.`iddetaipersyaratan`,
+                    `detailpersyaratan`.`berkas`
+                FROM
+                    `persyaratan`
+                    LEFT JOIN `detailpersyaratan` ON `detailpersyaratan`.`idpersyaratan` =
+                    `persyaratan`.`idpersyaratan` WHERE detailpersyaratan.idsiswa = $value->idsiswa")->result();
+                if($value->tanggalselesai>date('Y-m-d')){
+                    array_push($datasiswa, $value);
+                }
+            }
+            return $datasiswa;
+    }
     public function insert($data)
     {
         $item = [

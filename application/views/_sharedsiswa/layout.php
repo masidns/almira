@@ -78,6 +78,10 @@
     <script src="<?=base_url()?>public/assets/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="<?=base_url()?>public/assets/js/plugins/chart.js"></script>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-0ZU-ALSF2FLNUjtq"></script>
+    <script>
     <!-- Google analytics script-->
     <script>
       $.LoadingOverlay("show", {

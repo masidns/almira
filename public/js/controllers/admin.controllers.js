@@ -390,7 +390,7 @@ function PembayaranController($scope, helperServices, SiswaServices) {
         // }
 }
 
-function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServices, StaffServices, PenilaianServices) {
+function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServices, StaffServices, PenilaianServices, PembayaranServices, RegisterServices) {
     $scope.roles = helperServices.roles;
     $scope.nilaisiswa = helperServices.nilai;
     $scope.title = "candrakampret";
@@ -402,6 +402,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
     $scope.kriterianilai = [];
     SiswaServices.getId().then(x => {
         $scope.datas = x;
+        $scope.pembayaran($scope.datas);
         StaffServices.get().then(staff => {
             $scope.staff = staff;
             KriteriaServices.get().then(param => {
@@ -468,6 +469,167 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
         $scope.nilai = item.penilaian;
         $('#viewpenilaian').modal('show');
     }
+    $scope.pembayaransisa = (item)=>{
+        $.LoadingOverlay("show", {
+            image       : "",
+            fontawesome : "fa fa-cog fa-spin"
+        });
+        SiswaServices.getToken(item).then(x=>{
+            $.LoadingOverlay("hide");
+            snap.pay(x.token, {
+                onSuccess: function(result) {
+                    $.LoadingOverlay("show", {
+                        image       : "",
+                        fontawesome : "fa fa-cog fa-spin"
+                    });
+                    PembayaranServices.status(result.order_id).then(statuspembayaran => {
+                        
+                        if (statuspembayaran.transaction_status == 'settlement') {
+                            var itemUpdate = {};
+                            itemUpdate.idpembayaran = x.detailpembayaran.idpembayaran;
+                            itemUpdate.transaction_time = statuspembayaran.transaction_time;
+                            itemUpdate.transaction_status = statuspembayaran.transaction_status;
+
+                            RegisterServices.put(itemUpdate).then(value => {
+                                $.LoadingOverlay("hide");
+                                swal({
+                                    title: "Information!",
+                                    text: "Proses Pembayaran berhasil",
+                                    icon: "success",
+                                });
+                                SiswaServices.getId().then(x => {
+                                    $scope.datas = x;
+                                    $scope.pembayaran($scope.datas);
+                                    StaffServices.get().then(staff => {
+                                        $scope.staff = staff;
+                                        KriteriaServices.get().then(param => {
+                                            $scope.kriterianilai = angular.copy(param);
+                                            $.LoadingOverlay("hide");
+                                        })
+                                    })
+                                })
+                                $scope.model = {};
+                                fd = new FormData();
+                                $scope.showRegistrasi = false;
+                                x.detailpembayaran.status = 'Success';
+                            })
+                        } else if (statuspembayaran.transaction_status == 'pending') {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi sedang diproses",
+                                icon: "info",
+                            });
+
+                        } else {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi di batalkan",
+                                icon: "error",
+                            });
+                        }
+                        x.pembayaran = statuspembayaran;
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
+                        console.log(x);
+                    })
+                },
+                onPending: function(result) {
+                    $.LoadingOverlay("show", {
+                        image       : "",
+                        fontawesome : "fa fa-cog fa-spin"
+                    });
+                    PembayaranServices.status(result.order_id).then(statuspembayaran => {
+                        
+                        if (statuspembayaran.transaction_status == 'settlement') {
+                            var itemUpdate = {};
+                            itemUpdate.idpembayaran = x.detailpembayaran.idpembayaran;
+                            itemUpdate.transaction_time = statuspembayaran.transaction_time;
+                            itemUpdate.transaction_status = statuspembayaran.transaction_status;
+
+                            RegisterServices.put(itemUpdate).then(value => {
+                                $.LoadingOverlay("hide");
+                                swal({
+                                    title: "Information!",
+                                    text: "Proses Pembayaran berhasil",
+                                    icon: "success",
+                                });
+                                SiswaServices.getId().then(x => {
+                                    $scope.datas = x;
+                                    $scope.pembayaran($scope.datas);
+                                    StaffServices.get().then(staff => {
+                                        $scope.staff = staff;
+                                        KriteriaServices.get().then(param => {
+                                            $scope.kriterianilai = angular.copy(param);
+                                            $.LoadingOverlay("hide");
+                                        })
+                                    })
+                                })
+                                $scope.model = {};
+                                fd = new FormData();
+                                $scope.showRegistrasi = false;
+                                x.detailpembayaran.status = 'Success';
+                            })
+                        } else if (statuspembayaran.transaction_status == 'pending') {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi sedang diproses",
+                                icon: "info",
+                            });
+
+                        } else {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi di batalkan",
+                                icon: "error",
+                            });
+                        }
+                        x.pembayaran = statuspembayaran;
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
+                        console.log(x);
+                    })
+
+                },
+                onError: function(result) {
+                    $.LoadingOverlay("show", {
+                        image       : "",
+                        fontawesome : "fa fa-cog fa-spin"
+                    });
+                    PembayaranServices.status(result.order_id).then(statuspembayaran => {
+                        
+                        if (statuspembayaran.transaction_status == 'settlement') {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Proses Pembayaran berhasil",
+                                icon: "success",
+                            });
+                        } else if (statuspembayaran.transaction_status == 'pending') {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi sedang diproses",
+                                icon: "info",
+                            });
+
+                        } else {
+                            $.LoadingOverlay("hide");
+                            swal({
+                                title: "Information!",
+                                text: "Transaksi di batalkan",
+                                icon: "error",
+                            });
+                        }
+                        x.pembayaran = statuspembayaran;
+                        // $scope.setCookie('data', JSON.stringify(x), 14);
+                        console.log(x);
+                    })
+                }
+            });
+        })
+    }
     $scope.pembayaran = (item) => {
         $scope.nilai = angular.copy(item);
         $scope.nilai.bayar = { dp: 0, sisa: 0, lunas: 0, Total: 0 };
@@ -482,7 +644,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
 
         });
         $scope.nilai.bayar.Total += $scope.nilai.bayar.dp == 0 ? $scope.nilai.bayar.lunas : ($scope.nilai.bayar.dp + $scope.nilai.bayar.sisa);
-        $('#pembayaran').modal('show');
+        // $('#pembayaran').modal('show');
     }
 }
 
@@ -588,4 +750,5 @@ function JadwalStafController($scope, helperServices, JadwalStafServices, Kendar
         var jamselesai = $scope.model.jamselesai.split(':');
         $scope.model.jamselesai = new Date(2010, 1, 1, jamselesai[0], jamselesai[1]);
     }
+    
 }

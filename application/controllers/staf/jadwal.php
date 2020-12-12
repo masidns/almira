@@ -9,7 +9,7 @@ class Jadwal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Jadwal_model');
-
+        $this->load->model('Siswa_model');
     }
 
     public function index()
@@ -21,7 +21,7 @@ class Jadwal extends CI_Controller
 
     public function get($idjadwal = null)
     {
-        $result = $this->Jadwal_model->select($idjadwal);
+        $result = $this->Jadwal_model->selectjadwal(null);
         echo json_encode($result);
     }
 

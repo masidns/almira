@@ -95,9 +95,9 @@
               </div>
               <hr>
               <div class="form-group row">
-                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-info btn-sm" ng-click="pembayaran(datas)"><i
+                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#pembayaran" ng-click="pembayaran(datas)"><i
                                                 class="fa fa-money"></i>Detail Pembayaran</a></label>
-                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-warning btn-sm" ng-click="pembayaransisa(datas)"><i
+                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-warning btn-sm" ng-click="pembayaransisa(datas)" ng-show="nilai.bayar.dp != 0 && nilai.bayar.sisa==0"><i
                                                 class="fa fa-money"></i>Pembayaran Sisa</a></label>
               </div>
             </div>
@@ -112,36 +112,21 @@
         </div>
         <div class="card-body">
         <div class="card-title">
-        <Span>Tanggal Mulai</Span>
-        <Span>{{datas.tanggalmulai}}</Span>
+        <Span>Tanggal Kursus</Span>
+        <Span><strong>{{datas.tanggalmulai}}</strong> s/d <strong>{{datas.tanggalselesai}}</strong></Span>
         </div>
             <div class="table-responsive">
                 <table class="table table-hover ; text-justify" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Paket</th>
-                            <th scope="col">Harga Paket</th>
-                            <th scope="col">Ket Paket</th>
-                            <th scope="col">Jumlah Pertemuan</th>
-                            <th scope="col">Durasi</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Jam Mulai</th>
+                            <th scope="col">Jam Selesai</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">
-                                {{$index+1}}
-                            </th>
-                            <td>{{datas.paket.namapaket}}</td>
-                            <td>{{datas.paket.hargapaket}}</td>
-                            <td>{{datas.paket.ketpaket}}</td>
-                            <td>{{datas.paket.jumlahkali}}</td>
-                            <td>{{datas.paket.durasiwaktu}}</td>
-                            <td>
-                              <a class="btn btn-primary btn-sm" ng-click="view(item)"><i
-                              class="fa fa-eye"></i> </a>
-                            </td>
+                            <td>{{datas.jadwal.jammulai}}</td>
+                            <td>{{datas.jadwal.jamselesai}}</td>
                         </tr>
                     </tbody>
                 </table>

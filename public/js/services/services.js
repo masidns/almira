@@ -321,7 +321,8 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         post: post,
         put: put,
         getId: getId,
-        byId: byId
+        byId: byId,
+        getToken:getToken
     };
 
     function get() {
@@ -354,6 +355,25 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         $http({
             method: 'get',
             url: controller + 'getid',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                console.log(err.data);
+                def.reject(err);
+
+            }
+        );
+        return def.promise;
+    }
+    function getToken(param) {
+        var def = $q.defer();
+        $http({
+            method: 'post',
+            url: helperServices.url + '/siswa/register/gettoken',
+            data: param,
             headers: AuthService.getHeader()
         }).then(
             (res) => {
@@ -1208,7 +1228,7 @@ function LaporanServices($http, $q, helperServices, AuthService) {
 }
 
 function JadwalStafServices($http, $q, helperServices, AuthService) {
-    var controller = helperServices.url + '/admin/jadwal/';
+    var controller = helperServices.url + '/staf/jadwal/';
     var service = {};
     service.data = [];
     service.instance = false;

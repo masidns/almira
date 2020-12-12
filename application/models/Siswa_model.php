@@ -10,6 +10,8 @@ class Siswa_model extends CI_Model
             $siswas = $this->db->get('siswa')->result();
             foreach ($siswas as $key => $value) {
                 $value->paket = $this->db->get_where('paket', ['idpaket' => $value->idpaket])->row_array();
+                $days = '+ '.$value->paket['jumlahkali'] . ' days';
+                $value->tanggalselesai = date('Y-m-d', strtotime($value->tanggalmulai. $days));
                 $result = $this->db->get_where('pembayaran', ['idsiswa' => $value->idsiswa]);
                 $value->num = $result->num_rows();
                 $value->pembayaran = $result->result();
@@ -48,6 +50,8 @@ class Siswa_model extends CI_Model
         } else {
             $siswa = $this->db->get_where('siswa', ['idsiswa' => $idsiswa])->row_array();
             $siswa['paket'] = $this->db->get_where('paket', ['idpaket' => $siswa['idpaket']])->row_array();
+            $days = '+ '.$siswa['paket']['jumlahkali'] . ' days';
+            $siswa['tanggalselesai'] = date('Y-m-d', strtotime($siswa['tanggalmulai']. $days));
             $siswa['pembayaran'] = $this->db->get_where('pembayaran', ['idsiswa' => $idsiswa])->result();
             $siswa['penilaian'] = $this->db->query("SELECT
                 `penilaian`.`idpenilaian`,
@@ -79,6 +83,7 @@ class Siswa_model extends CI_Model
                 `persyaratan`
                 LEFT JOIN `detailpersyaratan` ON `detailpersyaratan`.`idpersyaratan` =
                 `persyaratan`.`idpersyaratan` WHERE detailpersyaratan.idsiswa = $idsiswa")->result();
+            $siswa['jadwal'] = $this->db->get_where('jadwal', ['idjadwal'=>$siswa['idjadwal']])->row_object();
             return $siswa;
         }
     }

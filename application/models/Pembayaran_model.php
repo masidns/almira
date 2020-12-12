@@ -14,8 +14,17 @@ class Pembayaran_model extends CI_Model
     }
     public function insert($data)
     {
-        $this->db->insert('paket', $data);
-        $data['idpaket'] = $this->db->insert_id();
+        $pembayaran = [
+            'idsiswa' => $data['idsiswa'],
+            'nominal' => $data['paket']['hargapaket'] - $data['pembayaran'][0]['nominal'],
+            'jenis' => "Sisa",
+            'order_id' => $data['order_id'],
+            'status' => 'Proses',
+        ];
+        $this->db->insert('pembayaran', $pembayaran);
+        $pembayaran['idpembayaran'] = $this->db->insert_id();
+        array_push($data['pembayaran'], $pembayaran);
+        $data['detailpembayaran'] = $pembayaran;
         return $data;
     }
     public function update($data = null)

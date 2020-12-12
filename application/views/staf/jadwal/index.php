@@ -15,9 +15,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Siswa</th>
+                                    <th scope="col">Tanggal Mulai</th>
+                                    <th scope="col">Tanggal Selesai</th>
                                     <th scope="col">Jam Mulai</th>
                                     <th scope="col">Jam Selesai</th>
-                                    <th scope="col">Mobil</th>
                                     <!-- <th scope="col">Action</th> -->
                                 </tr>
                             </thead>
@@ -26,9 +28,11 @@
                                     <th scope="row">
                                         {{$index+1}}
                                     </th>
-                                    <td>{{item.jammulai}}</td>
-                                    <td>{{item.jamselesai}}</td>
-                                    <td>{{item.kendaraan.namamobil}}</td>
+                                    <td>{{item.namasiswa}}</td>
+                                    <td>{{item.tanggalmulai}}</td>
+                                    <td>{{item.tanggalselesai}}</td>
+                                    <td>{{item.jadwal.jammulai}}</td>
+                                    <td>{{item.jadwal.jamselesai}}</td>
                                     <!-- <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>
