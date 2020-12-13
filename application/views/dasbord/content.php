@@ -214,6 +214,12 @@
 									class="form-control" placeholder="Nama Anda" />
 							</div>
 							<div class="form-group">
+								<label class="control-label">Jenis Kelamin</label>
+								<select class="form-control" ng-options="item as item for item in genders" ng-model="model.gender" id="idpaket">
+									<option value="">---Pilih gerder---</option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label class="control-label">Alamat</label>
 								<textarea maxlength="200" required ng-model="model.alamatsiswa" rows="3" class="form-control"
 									placeholder="Alamat"></textarea>

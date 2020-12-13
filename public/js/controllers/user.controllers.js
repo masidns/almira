@@ -5,6 +5,7 @@ angular.module('userctrl', [])
 function registrasiController($scope, PersyaratanServices, RegisterServices, PembayaranServices, helperServices, PaketServices) {
     $scope.Title = "Page Header";
     $scope.fileTitle;
+    $scope.genders = helperServices.sex;
     $scope.myFile;
     $scope.model = {};
     $scope.persyaratan = [];
@@ -45,7 +46,7 @@ function registrasiController($scope, PersyaratanServices, RegisterServices, Pem
                 fd.append(prop, $scope.model[prop]);
         }
         RegisterServices.post(fd).then(x => {
-            $scope.setCookie('data', JSON.stringify(x), 14);
+            // $scope.setCookie('data', JSON.stringify(x), 14);
             snap.pay(x.token, {
                 onSuccess: function(result) {
                     PembayaranServices.status(result.order_id).then(statuspembayaran => {

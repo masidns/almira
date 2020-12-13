@@ -1,6 +1,10 @@
 @controller=http://localhost/almira/admin/siswa
 
-GET {{controller}}/get/57 HTTP/1.1
+GET {{controller}}/grafik HTTP/1.1
+Content-Type: application/json
+
+###
+GET {{controller}}/get HTTP/1.1
 Content-Type: application/json
 
 ###

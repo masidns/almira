@@ -87,6 +87,56 @@ class Siswa_model extends CI_Model
             return $siswa;
         }
     }
+
+    public function grafik()
+    {
+        $siswas = $this->db->get('siswa')->result();
+        $data =[
+            'pria'=> 0,
+            'wanita' =>0
+        ];
+        $usia = [
+            '17-20'=>0,
+            '21-24'=>0,
+            '25-28'=>0,
+            '29-31'=>0,
+            '32-35'=>0,
+            '36-39'=>0,
+            '40-43'=>0,
+
+        ];
+        foreach ($siswas as $key => $value) {
+            if($value->gender=='Pria')
+                $data['pria'] += 1;
+            else 
+                $data['wanita'] += 1;
+            
+        }
+        $item =[];
+        foreach ($siswas as $key => $value) {
+            $tanggal = new DateTime($value->tanggallahir); 
+            $sekarang = new DateTime();
+            $perbedaan = $tanggal->diff($sekarang);
+
+            if($perbedaan->y >= 17 && $perbedaan->y <= 20)
+                $usia['17-20'] += 1;
+            else if($perbedaan->y >= 21 && $perbedaan->y <= 24)
+                $usia['21-24'] += 1;
+            else if($perbedaan->y >= 25 && $perbedaan->y <= 28)
+                $usia['25-28'] += 1;
+            else if($perbedaan->y >= 29 && $perbedaan->y <= 31)
+                $usia['29-31'] += 1;
+            else if($perbedaan->y >= 32 && $perbedaan->y <= 35)
+                $usia['32-35'] += 1;
+            else if($perbedaan->y >= 36 && $perbedaan->y <= 39)
+                $usia['36-39'] += 1;
+            else if($perbedaan->y >= 40 && $perbedaan->y <= 43)
+                $usia['40-43'] += 1;
+            
+        }
+        $param=['usia'=>$usia,'gender'=>$data];
+        return $param;
+    }
     public function insert($data)
     {
         $this->db->trans_begin();
@@ -109,6 +159,7 @@ class Siswa_model extends CI_Model
             'tanggallahir' => $data['tanggallahir'],
             'email' => $data['email'],
             'notlpn' => $data['notlpn'],
+            'gender' => $data['gender'],
             'iduser' => $data['iduser'],
         ];
         $this->db->insert('siswa', $siswa);
@@ -148,6 +199,7 @@ class Siswa_model extends CI_Model
             'email' => $data['email'],
             'notlpn' => $data['notlpn'],
             'iduser' => $data['iduser'],
+            'gender' => $data['gender'],
             'idjadwal' => $data['idjadwal'],
             'status' => 'Pendaftaran',
             'tanggalmulai' => $data['tanggalmulai'],

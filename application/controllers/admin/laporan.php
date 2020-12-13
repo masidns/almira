@@ -40,6 +40,12 @@ class Laporan extends CI_Controller
         $data['content'] = $this->load->view('admin/laporan/kendaraan', '', true);
         $this->load->view('_sharedadmin/layout', $data);
     }
+    public function grafik()
+    {
+        $data ['title'] = 'Grafik';
+        $data['content'] = $this->load->view('admin/laporan/grafik', '', true);
+        $this->load->view('_sharedadmin/layout', $data);
+    }
 
     public function getsiswa()
     {

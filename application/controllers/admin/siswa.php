@@ -30,6 +30,11 @@ class Siswa extends CI_Controller
         $result = $this->Siswa_model->select($id);
         echo json_encode($result);
     }
+    public function grafik()
+    {
+        $result = $this->Siswa_model->grafik();
+        echo json_encode($result);
+    }
     public function add()
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
