@@ -97,7 +97,7 @@
               <div class="form-group row">
                 <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#pembayaran" ng-click="pembayaran(datas)"><i
                                                 class="fa fa-money"></i>Detail Pembayaran</a></label>
-                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-warning btn-sm" ng-click="pembayaransisa(datas)" ng-show="nilai.bayar.dp != 0 && nilai.bayar.sisa==0"><i
+                <label for="status" class="col-sm-6 col-form-label"><a class="btn btn-warning btn-sm" ng-click="pembayaransisa(datas)" ng-show="nilai.bayar.dp != 0 && nilai.bayar.sisa==0 || statusSisa=='Proses'"><i
                                                 class="fa fa-money"></i>Pembayaran Sisa</a></label>
               </div>
             </div>

@@ -19,6 +19,7 @@ class Pembayaran_model extends CI_Model
             'nominal' => $data['paket']['hargapaket'] - $data['pembayaran'][0]['nominal'],
             'jenis' => "Sisa",
             'order_id' => $data['order_id'],
+            'token' => $data['token'],
             'status' => 'Proses',
         ];
         $this->db->insert('pembayaran', $pembayaran);

@@ -48,8 +48,8 @@ class Register extends CI_Controller
     {
         $data = json_decode($this->security->xss_clean($this->input->raw_input_stream), true);
         $data['order_id']=rand();
+        $data['token'] = $this->tokensisa($data);
         $result = $this->Pembayaran_model->insert($data);
-        $result['token'] = $this->tokensisa($result);
         echo json_encode($result);
     }
 
@@ -197,7 +197,7 @@ class Register extends CI_Controller
         $custom_expiry = array(
             'start_time' => date("Y-m-d H:i:s O", $time),
             'unit' => 'minute',
-            'duration' => 2,
+            'duration' => 3600,
         );
 
         $transaction_data = array(
