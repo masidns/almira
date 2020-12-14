@@ -100,6 +100,10 @@
     <script src="<?=base_url()?>public/libs/angular-datatables/dist/angular-datatables.min.js"></script>
     <script src="<?=base_url()?>public/libs/daterangepicker/daterangepicker.js"></script>
     <script src="<?php echo base_url('public/js/jquery.PrintArea.js'); ?>"></script>
+    <script src="<?=base_url()?>public/libs/chart.js/dist/Chart.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript">
         $('#sampleTable').DataTable();
     </script>

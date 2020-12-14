@@ -13,7 +13,8 @@ angular.module('adminctrl', [])
     .controller('PembayaranController', PembayaranController)
     .controller('UserSiswaController', UserSiswaController)
     .controller('LaporanController', LaporanController)
-    .controller('JadwalStafController', JadwalStafController);
+    .controller('JadwalStafController', JadwalStafController)
+    .controller('GrafikController', GrafikController);
 
 function pageController($scope) {
     $scope.Title = "Page Header";
@@ -469,7 +470,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
         $scope.nilai = item.penilaian;
         $('#viewpenilaian').modal('show');
     }
-    $scope.prosesBayar = (x)=>{
+    $scope.prosesBayar = (x) => {
         snap.pay(x.token, {
             onSuccess: function (result) {
                 $.LoadingOverlay("show", {
@@ -621,13 +622,13 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
                     console.log(x);
                 })
             },
-            
+
         });
     }
     $scope.pembayaransisa = (item) => {
-        if(item.token){
+        if (item.token) {
             $scope.prosesBayar($scope.datas);
-        }else{
+        } else {
             $.LoadingOverlay("show", {
                 image: "",
                 fontawesome: "fa fa-cog fa-spin"
@@ -762,5 +763,164 @@ function JadwalStafController($scope, helperServices, JadwalStafServices, Kendar
         var jamselesai = $scope.model.jamselesai.split(':');
         $scope.model.jamselesai = new Date(2010, 1, 1, jamselesai[0], jamselesai[1]);
     }
+
+}
+function GrafikController($scope, helperServices, SiswaServices) {
+    $scope.itemgrafik = helperServices.itemgrafik;
+    $scope.datas = {};
+    SiswaServices.getGrafik().then(x => {
+        $scope.datas = x;
+        // $scope.grafik();
+    })
+
+    $scope.showData = (item) => {
+        var dataset =[];
+        var sum;
+        if (item == 'Usia') {
+            var items = {};
+            var datas = angular.copy($scope.datas.usia);
+            var data = [];
+            var datasum = Object.values(datas);
+            sum = 0;
+            datasum.forEach(element => {
+                sum+= parseInt(element);
+            });
+            console.log(sum);
+            for (const [key, value] of Object.entries(datas)) {
+                var itemusia = {};
+                itemusia.name = `${key}`;
+                itemusia.y = parseInt(`${value}`)/sum*100;
+                itemusia.drilldown = `${key}`;
+                data.push(angular.copy(itemusia));
+            }
+            
+            items.name = item;
+            items.colorByPoint = true;
+            items.data = data;
+            dataset= items;
+            console.log(data);
+            // $scope.grafik();
+        }else{
+            var items = {};
+            var datas = angular.copy($scope.datas.gender);
+            var data = [];
+            var datasum = Object.values(datas);
+            sum = 0;
+            datasum.forEach(element => {
+                sum+= parseInt(element);
+            });
+            console.log(sum);
+            for (const [key, value] of Object.entries(datas)) {
+                var itemusia = {};
+                itemusia.name = `${key}`;
+                itemusia.y = parseInt(`${value}`)/sum*100;
+                itemusia.drilldown = `${key}`;
+                data.push(angular.copy(itemusia));
+            }
+            
+            items.name = item;
+            items.colorByPoint = true;
+            items.data = data;
+            dataset= items;
+            console.log(data);
+        }
+        var a = [
+                {
+                  name: "Chrome",
+                  y: 62.74,
+                  drilldown: "Chrome"
+                },
+                {
+                  name: "Firefox",
+                  y: 10.57,
+                  drilldown: "Firefox"
+                },
+                {
+                  name: "Internet Explorer",
+                  y: 7.23,
+                  drilldown: "Internet Explorer"
+                },
+                {
+                  name: "Safari",
+                  y: 5.58,
+                  drilldown: "Safari"
+                },
+                {
+                  name: "Edge",
+                  y: 4.02,
+                  drilldown: "Edge"
+                },
+                {
+                  name: "Opera",
+                  y: 1.92,
+                  drilldown: "Opera"
+                },
+                {
+                  name: "Other",
+                  y: 7.62,
+                  drilldown: null
+                }
+              ]
+              console.log(a);
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Grafik Presentase'
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category',
+                title: {
+                    text: item
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Jumlah'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> from<br/> ' + sum + ' Siswa'
+            },
+
+            series: [
+                {
+                  name: item,
+                  colorByPoint: true,
+                  data: dataset.data
+                }
+              ]
+        });
+    }
+    // Create the chart
+
+    $scope.grafik = (data) => {
+        // $('#myChart').remove(); // this is my <canvas> element
+        // $('.card-body').append(
+        //     '<canvas id="myChart"class="chartjs" width="770" height="385"style="display: block; width: 770px; height: 385px;"><canvas>'
+        // );
+        
+    };
 
 }

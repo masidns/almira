@@ -42,5 +42,6 @@ function helperServices($location) {
             roman = (key[+digits.pop() + (i * 10)] || "") + roman;
         return Array(+digits.join("") + 1).join("M") + roman;
     }
+    service.itemgrafik = ['Gender', 'Usia'];
     return service;
 }

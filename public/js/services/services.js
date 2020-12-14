@@ -322,7 +322,8 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         put: put,
         getId: getId,
         byId: byId,
-        getToken:getToken
+        getToken:getToken,
+        getGrafik:getGrafik
     };
 
     function get() {
@@ -347,6 +348,23 @@ function SiswaServices($http, $q, helperServices, AuthService) {
                 }
             );
         }
+        return def.promise;
+    }
+    function getGrafik() {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'grafik',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                console.log(err.data);
+                def.reject(err);
+            }
+        );
         return def.promise;
     }
 
