@@ -1,6 +1,6 @@
 angular.module('adminctrl', [])
     .controller('pageController', pageController)
-    .controller('profileController', profileController)
+    .controller('ProfileController', ProfileController)
     .controller('UserController', UserController)
     .controller('LoginController', LoginController)
     .controller('StaffController', StaffController)
@@ -21,7 +21,7 @@ function pageController($scope) {
     $.LoadingOverlay("hide");
 }
 
-function profileController($scope, helperServices, ProfileServices) {
+function ProfileController($scope, helperServices, ProfileServices) {
     // $.LoadingOverlay("hide");
     $scope.roless = helperServices.roles;
     $scope.sex = helperServices.sex;
@@ -219,6 +219,11 @@ function PaketController($scope, helperServices, PaketServices) {
     $scope.edit = (item) => {
         $scope.model = angular.copy(item);
     }
+    $scope.delete = (item) => {
+        PaketServices.delete(item.idpaket).then((x) => {
+            swal("Information!", "Berhasil dihapus", "success");
+        })
+    }
 }
 
 function KendaraanController($scope, helperServices, KendaraanServices) {
@@ -339,6 +344,11 @@ function KriteriaController($scope, helperServices, KriteriaServices) {
     $scope.edit = (item) => {
         $scope.model = angular.copy(item);
     }
+    $scope.delete = (item) => {
+        KriteriaServices.delete(item.idkriterianilai).then((x) => {
+            swal("Information!", "Berhasil dihapus", "success");
+        })
+    }
 }
 
 function PembayaranController($scope, helperServices, SiswaServices) {
@@ -347,48 +357,48 @@ function PembayaranController($scope, helperServices, SiswaServices) {
     $scope.model = {};
     $scope.Total = 0;
     SiswaServices.get().then(x => {
-        $scope.datas = x;
-        $scope.datas.forEach(element => {
-            element.bayar = { dp: 0, sisa: 0, lunas: 0 };
-            element.pembayaran.forEach(itembayar => {
-                if (itembayar.jenis == 'DP') {
-                    element.bayar.dp = parseInt(itembayar.nominal);
-                } else if (itembayar.jenis == 'Sisa') {
-                    element.bayar.sisa = parseInt(element.paket.hargapaket) - parseInt(itembayar.nominal);
-                } else {
-                    element.bayar.lunas = parseInt(itembayar.nominal);
-                }
+            $scope.datas = x;
+            $scope.datas.forEach(element => {
+                element.bayar = { dp: 0, sisa: 0, lunas: 0 };
+                element.pembayaran.forEach(itembayar => {
+                    if (itembayar.jenis == 'DP') {
+                        element.bayar.dp = parseInt(itembayar.nominal);
+                    } else if (itembayar.jenis == 'Sisa') {
+                        element.bayar.sisa = parseInt(element.paket.hargapaket) - parseInt(itembayar.nominal);
+                    } else {
+                        element.bayar.lunas = parseInt(itembayar.nominal);
+                    }
 
+                });
+                $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
             });
-            $scope.Total += element.bayar.dp == 0 ? element.bayar.lunas : (element.bayar.dp + element.bayar.sisa);
-        });
-        console.log($scope.datas);
-        $.LoadingOverlay("hide");
-    })
-    // $scope.save = (item) => {
-    //     if (item.idkriterianilai) {
-    //         KriteriaServices.put(item).then(_x => {
-    //             swal({
-    //                 title: "Information!",
-    //                 text: "Proses berhasil",
-    //                 icon: "success",
-    //             });
-    //             $scope.model ={};
-    //         })
-    //     } else {
-    //         KriteriaServices.post(item).then(_x => {
-    //             swal({
-    //                 title: "Information!",
-    //                 text: "Proses berhasil",
-    //                 icon: "success",
-    //             });
-    //             $scope.model ={};
-    //         })
-    //     }
-    // }
-    // $scope.edit = (item) => {
-    //     $scope.model = angular.copy(item);
-    // }
+            console.log($scope.datas);
+            $.LoadingOverlay("hide");
+        })
+        // $scope.save = (item) => {
+        //     if (item.idkriterianilai) {
+        //         KriteriaServices.put(item).then(_x => {
+        //             swal({
+        //                 title: "Information!",
+        //                 text: "Proses berhasil",
+        //                 icon: "success",
+        //             });
+        //             $scope.model ={};
+        //         })
+        //     } else {
+        //         KriteriaServices.post(item).then(_x => {
+        //             swal({
+        //                 title: "Information!",
+        //                 text: "Proses berhasil",
+        //                 icon: "success",
+        //             });
+        //             $scope.model ={};
+        //         })
+        //     }
+        // }
+        // $scope.edit = (item) => {
+        //     $scope.model = angular.copy(item);
+        // }
 }
 
 function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServices, StaffServices, PenilaianServices, PembayaranServices, RegisterServices) {
@@ -472,7 +482,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
     }
     $scope.prosesBayar = (x) => {
         snap.pay(x.token, {
-            onSuccess: function (result) {
+            onSuccess: function(result) {
                 $.LoadingOverlay("show", {
                     image: "",
                     fontawesome: "fa fa-cog fa-spin"
@@ -529,7 +539,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
                     console.log(x);
                 })
             },
-            onPending: function (result) {
+            onPending: function(result) {
                 $.LoadingOverlay("show", {
                     image: "",
                     fontawesome: "fa fa-cog fa-spin"
@@ -587,7 +597,7 @@ function UserSiswaController($scope, helperServices, SiswaServices, KriteriaServ
                 })
 
             },
-            onError: function (result) {
+            onError: function(result) {
                 $.LoadingOverlay("show", {
                     image: "",
                     fontawesome: "fa fa-cog fa-spin"
@@ -765,6 +775,7 @@ function JadwalStafController($scope, helperServices, JadwalStafServices, Kendar
     }
 
 }
+
 function GrafikController($scope, helperServices, SiswaServices) {
     $scope.itemgrafik = helperServices.itemgrafik;
     $scope.datas = {};
@@ -774,153 +785,150 @@ function GrafikController($scope, helperServices, SiswaServices) {
     })
 
     $scope.showData = (item) => {
-        var dataset =[];
-        var sum;
-        if (item == 'Usia') {
-            var items = {};
-            var datas = angular.copy($scope.datas.usia);
-            var data = [];
-            var datasum = Object.values(datas);
-            sum = 0;
-            datasum.forEach(element => {
-                sum+= parseInt(element);
-            });
-            console.log(sum);
-            for (const [key, value] of Object.entries(datas)) {
-                var itemusia = {};
-                itemusia.name = `${key}`;
-                itemusia.y = parseInt(`${value}`)/sum*100;
-                itemusia.drilldown = `${key}`;
-                data.push(angular.copy(itemusia));
-            }
-            
-            items.name = item;
-            items.colorByPoint = true;
-            items.data = data;
-            dataset= items;
-            console.log(data);
-            // $scope.grafik();
-        }else{
-            var items = {};
-            var datas = angular.copy($scope.datas.gender);
-            var data = [];
-            var datasum = Object.values(datas);
-            sum = 0;
-            datasum.forEach(element => {
-                sum+= parseInt(element);
-            });
-            console.log(sum);
-            for (const [key, value] of Object.entries(datas)) {
-                var itemusia = {};
-                itemusia.name = `${key}`;
-                itemusia.y = parseInt(`${value}`)/sum*100;
-                itemusia.drilldown = `${key}`;
-                data.push(angular.copy(itemusia));
-            }
-            
-            items.name = item;
-            items.colorByPoint = true;
-            items.data = data;
-            dataset= items;
-            console.log(data);
-        }
-        var a = [
-                {
-                  name: "Chrome",
-                  y: 62.74,
-                  drilldown: "Chrome"
-                },
-                {
-                  name: "Firefox",
-                  y: 10.57,
-                  drilldown: "Firefox"
-                },
-                {
-                  name: "Internet Explorer",
-                  y: 7.23,
-                  drilldown: "Internet Explorer"
-                },
-                {
-                  name: "Safari",
-                  y: 5.58,
-                  drilldown: "Safari"
-                },
-                {
-                  name: "Edge",
-                  y: 4.02,
-                  drilldown: "Edge"
-                },
-                {
-                  name: "Opera",
-                  y: 1.92,
-                  drilldown: "Opera"
-                },
-                {
-                  name: "Other",
-                  y: 7.62,
-                  drilldown: null
-                }
-              ]
-              console.log(a);
-        Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Grafik Presentase'
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                type: 'category',
-                title: {
-                    text: item
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Jumlah'
+            var dataset = [];
+            var sum;
+            if (item == 'Usia') {
+                var items = {};
+                var datas = angular.copy($scope.datas.usia);
+                var data = [];
+                var datasum = Object.values(datas);
+                sum = 0;
+                datasum.forEach(element => {
+                    sum += parseInt(element);
+                });
+                console.log(sum);
+                for (const [key, value] of Object.entries(datas)) {
+                    var itemusia = {};
+                    itemusia.name = `${key}`;
+                    itemusia.y = parseInt(`${value}`) / sum * 100;
+                    itemusia.drilldown = `${key}`;
+                    data.push(angular.copy(itemusia));
                 }
 
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%'
+                items.name = item;
+                items.colorByPoint = true;
+                items.data = data;
+                dataset = items;
+                console.log(data);
+                // $scope.grafik();
+            } else {
+                var items = {};
+                var datas = angular.copy($scope.datas.gender);
+                var data = [];
+                var datasum = Object.values(datas);
+                sum = 0;
+                datasum.forEach(element => {
+                    sum += parseInt(element);
+                });
+                console.log(sum);
+                for (const [key, value] of Object.entries(datas)) {
+                    var itemusia = {};
+                    itemusia.name = `${key}`;
+                    itemusia.y = parseInt(`${value}`) / sum * 100;
+                    itemusia.drilldown = `${key}`;
+                    data.push(angular.copy(itemusia));
+                }
+
+                items.name = item;
+                items.colorByPoint = true;
+                items.data = data;
+                dataset = items;
+                console.log(data);
+            }
+            var a = [{
+                    name: "Chrome",
+                    y: 62.74,
+                    drilldown: "Chrome"
+                },
+                {
+                    name: "Firefox",
+                    y: 10.57,
+                    drilldown: "Firefox"
+                },
+                {
+                    name: "Internet Explorer",
+                    y: 7.23,
+                    drilldown: "Internet Explorer"
+                },
+                {
+                    name: "Safari",
+                    y: 5.58,
+                    drilldown: "Safari"
+                },
+                {
+                    name: "Edge",
+                    y: 4.02,
+                    drilldown: "Edge"
+                },
+                {
+                    name: "Opera",
+                    y: 1.92,
+                    drilldown: "Opera"
+                },
+                {
+                    name: "Other",
+                    y: 7.62,
+                    drilldown: null
+                }
+            ]
+            console.log(a);
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Grafik Presentase'
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
                     }
-                }
-            },
+                },
+                xAxis: {
+                    type: 'category',
+                    title: {
+                        text: item
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Jumlah'
+                    }
 
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> from<br/> ' + sum + ' Siswa'
-            },
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}%'
+                        }
+                    }
+                },
 
-            series: [
-                {
-                  name: item,
-                  colorByPoint: true,
-                  data: dataset.data
-                }
-              ]
-        });
-    }
-    // Create the chart
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> from<br/> ' + sum + ' Siswa'
+                },
+
+                series: [{
+                    name: item,
+                    colorByPoint: true,
+                    data: dataset.data
+                }]
+            });
+        }
+        // Create the chart
 
     $scope.grafik = (data) => {
         // $('#myChart').remove(); // this is my <canvas> element
         // $('.card-body').append(
         //     '<canvas id="myChart"class="chartjs" width="770" height="385"style="display: block; width: 770px; height: 385px;"><canvas>'
         // );
-        
+
     };
 
 }

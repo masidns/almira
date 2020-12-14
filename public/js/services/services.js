@@ -322,8 +322,8 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         put: put,
         getId: getId,
         byId: byId,
-        getToken:getToken,
-        getGrafik:getGrafik
+        getToken: getToken,
+        getGrafik: getGrafik
     };
 
     function get() {
@@ -350,6 +350,7 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         }
         return def.promise;
     }
+
     function getGrafik() {
         var def = $q.defer();
         $http({
@@ -386,6 +387,7 @@ function SiswaServices($http, $q, helperServices, AuthService) {
         );
         return def.promise;
     }
+
     function getToken(param) {
         var def = $q.defer();
         $http({
@@ -484,6 +486,7 @@ function PaketServices($http, $q, helperServices, AuthService) {
         get: get,
         post: post,
         put: put,
+        delete: Delete,
         getId: getId
     };
 
@@ -573,6 +576,30 @@ function PaketServices($http, $q, helperServices, AuthService) {
             (err) => {
                 def.reject(err);
                 message.error(err);
+            }
+        );
+        return def.promise;
+    }
+
+    function Delete(param) {
+        var def = $q.defer();
+        $http({
+            method: 'Delete',
+            url: controller + 'delete',
+            data: param,
+            headers: AuthService.getHeader()
+        }).then(
+            (response) => {
+                var data = service.data.find((x) => x.idRpaket == idpaket);
+                if (data) {
+                    var index = service.data.indexOf(data);
+                    service.data.splice(index, 1);
+                    def.resolve(true);
+                }
+            },
+            (err) => {
+                swal("Information!", err.data, "error");
+                def.reject(err);
             }
         );
         return def.promise;
@@ -1024,7 +1051,8 @@ function KriteriaServices($http, $q, helperServices, AuthService) {
     return {
         get: get,
         post: post,
-        put: put
+        put: put,
+        delete: Delete
     };
 
     function get() {
@@ -1090,6 +1118,30 @@ function KriteriaServices($http, $q, helperServices, AuthService) {
             (err) => {
                 def.reject(err);
                 message.error(err);
+            }
+        );
+        return def.promise;
+    }
+
+    function Delete(param) {
+        var def = $q.defer();
+        $http({
+            method: 'delete',
+            url: controller + 'delete',
+            data: param,
+            headers: AuthService.getHeader()
+        }).then(
+            (response) => {
+                var data = service.data.find((x) => x.idkriterianilai == param);
+                if (data) {
+                    var index = service.data.indexOf(data);
+                    service.data.splice(index, 1);
+                    def.resolve(true);
+                }
+            },
+            (err) => {
+                swal("Information!", err.data, "error");
+                def.reject(err);
             }
         );
         return def.promise;

@@ -74,11 +74,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Nilai</label>
                                     <select class="form-control" name="nilai" ng-options="item as item for item in nilaisiswa" ng-model="item.nilai.hasil">
+                                    <option value="">---Nilai---</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Instruktur</label>
                                     <select class="form-control" ng-options="item as item.namastaf for item in staff" ng-model="item.staf">
+                                    <option value="">---Pilih Infrastruktur---</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-6">

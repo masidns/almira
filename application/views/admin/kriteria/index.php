@@ -54,6 +54,8 @@
                                     <td>
                                         <a class="btn btn-warning btn-sm" ng-click="edit(item)"><i
                                                 class="fa fa-edit"></i> </a>
+                                        <!-- <a class="btn btn-danger btn-sm" ng-click="delete(item)"><i
+                                        class="fa fa-trash"></i> </a> -->
                                     </td>
                                 </tr>
                             </tbody>

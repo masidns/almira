@@ -1,8 +1,8 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <ul class="app-menu">
-        <li><a href="<?= base_url('admin/Home')?>" class="app-menu__item active" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Home</span></a></li>
-        <li><a class="app-menu__item" href="<?= base_url('admin/profile')?>"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Profil</span></a></li>
+        <li><a href="<?= base_url('admin/Home')?>" class="app-menu__item active"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">Home</span></a></li>
+        <li><a class="app-menu__item" href="<?= base_url('admin/profile')?>"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Profil</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">User</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="<?= base_url('admin/siswa')?>"><i class="icon fa fa-user"></i><span class="app-menu__label">Siswa</span></a></li>
@@ -20,10 +20,10 @@
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file"></i><span class="app-menu__label">Laporan</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="<?= base_url('admin/laporan/siswa') ?>"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Lap. Siswa</span></a></li>
-            <li><a class="treeview-item" href="<?= base_url('admin/laporan/staf')?>"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Lap. Staf</span></a></li>
-            <li><a class="treeview-item" href="<?= base_url('admin/laporan/kendaraan')?>"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Lap. Kendaraan</span></a></li>
-            <li><a class="treeview-item" href="<?= base_url('admin/laporan/keuangan')?>"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Lap. Keuangan</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/siswa') ?>"><i class="icon fa fa-file-code-o"></i><span class="app-menu__label">Lap. Siswa</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/staf')?>"><i class="icon fa fa fa-file-code-o"></i><span class="app-menu__label">Lap. Staf</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/kendaraan')?>"><i class="icon fa fa fa-file-code-o"></i><span class="app-menu__label">Lap. Kendaraan</span></a></li>
+            <li><a class="treeview-item" href="<?= base_url('admin/laporan/keuangan')?>"><i class="icon fa fa fa-file-code-o"></i><span class="app-menu__label">Lap. Keuangan</span></a></li>
             <li><a class="treeview-item" href="<?= base_url('admin/laporan/grafik')?>"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Grafik</span></a></li>
          </ul>
         </li>

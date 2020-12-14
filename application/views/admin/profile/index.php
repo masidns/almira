@@ -1,6 +1,6 @@
 <div class="container-fluid" ng-controller="ProfileController">
     <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
@@ -54,13 +54,13 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8">
+        </div> -->
+        <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <i class="fa fa-table mr-1"></i> Profile Perusahaan Almira
+                            <i class="fa fa-table mr-1"></i> Profile Perusahaan 
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,10 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label for="status" class="col-sm-6 col-form-label">Nama Perusahaan</label>
-                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['namaperusahaan']?></label>
+                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="model.namaperusahaan" required
+                                placeholder="<?= $profile['namaperusahaan']?>" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                autofocus>
+                                <!-- <label for="status" class="col-sm-6 col-form-label"><?= $profile['namaperusahaan']?></label> -->
                             </div>
                             <hr>
                             <div class="form-group row">
@@ -128,6 +131,13 @@
                                 <label for="status" class="col-sm-12 col-form-label"><?= $profile['misi']?></label>
                             </div>
                             <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                        <div>
+                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
                         </div>
                     </div>
                 </div>
