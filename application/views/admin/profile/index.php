@@ -69,32 +69,30 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label for="status" class="col-sm-6 col-form-label">Nama Perusahaan</label>
-                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="model.namaperusahaan" required
-                                placeholder="<?= $profile['namaperusahaan']?>" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="datas.namaperusahaan" required
+                                placeholder="Nama Perusahaan" aria-label="Default" aria-describedby="inputGroup-sizing-default"
                                 autofocus>
                                 <!-- <label for="status" class="col-sm-6 col-form-label"><?= $profile['namaperusahaan']?></label> -->
                             </div>
                             <hr>
                             <div class="form-group row">
                                 <label for="status" class="col-sm-6 col-form-label">Layanan Almira</label>
-                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['layananlain']?></label>
+                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="datas.layananlain">
+                                <!-- <label for="status" class="col-sm-6 col-form-label"><?= $profile['layananlain']?></label> -->
                             </div>
                             <hr>
                             </div>
                             <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="status" class="col-sm-6 col-form-label">Layanan Almira</label>
-                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['layananlain']?></label>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
                                 <label for="status" class="col-sm-6 col-form-label">Kontak</label>
-                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['kontak']?></label>
+                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="datas.kontak">
+                                <!-- <label for="status" class="col-sm-6 col-form-label"><?= $profile['kontak']?></label> -->
                             </div>
                             <hr>
                             <div class="form-group row">
                                 <label for="status" class="col-sm-6 col-form-label">Email Kantor</label>
-                                <label for="status" class="col-sm-6 col-form-label"><?= $profile['email']?></label>
+                                <input type="text" class="form-control col-sm-6 col-form-label" ng-model="datas.email">
+                                <!-- <label for="status" class="col-sm-6 col-form-label"><?= $profile['email']?></label> -->
                             </div>
                             <hr>
                         </div>
@@ -111,7 +109,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label for="status" class="col-sm-12 col-form-label"><?= $profile['visi']?></label>
+                                <textarea class="form-control col-sm-6 col-form-label" ng-model="datas.visi" rows="4"></textarea>
+                                <!-- <label for="status" class="col-sm-12 col-form-label"><?= $profile['visi']?></label> -->
                             </div>
                             <hr>
                         </div>
@@ -128,7 +127,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label for="status" class="col-sm-12 col-form-label"><?= $profile['misi']?></label>
+                                <textarea class="form-control col-sm-6 col-form-label" ng-model="datas.misi" rows="4"></textarea>
+                                <!-- <label for="status" class="col-sm-12 col-form-label"><?= $profile['misi']?></label> -->
                             </div>
                             <hr>
                         </div>
@@ -137,7 +137,7 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-end">
                         <div>
-                            <button type="submit" class="btn btn-primary pull-right">{{simpan?'Simpan':'Ubah'}}</button>
+                            <button type="button" class="btn btn-primary pull-right" ng-click="save(datas)" >{{simpan?'Simpan':'Ubah'}}</button>
                         </div>
                     </div>
                 </div>

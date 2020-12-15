@@ -182,17 +182,6 @@ function ProfileServices($http, $q, helperServices, AuthService) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var data = service.data.find(x => x.idprofile == param.idprofile);
-                if (data) {
-                    data.layanananlain = param.layanananlain;
-                    data.promo = param.promo;
-                    data.kontak = param.kontak;
-                    data.namaperusahaan = param.namaperusahaan;
-                    data.alamat = param.alamat;
-                    data.email = param.email;
-                    data.visi = param.visi;
-                    data.misi = param.misi;
-                }
                 def.resolve(res.data);
             },
             (err) => {

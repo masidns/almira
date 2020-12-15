@@ -34,8 +34,8 @@ function ProfileController($scope, helperServices, ProfileServices) {
         $.LoadingOverlay("hide");
     })
     $scope.save = (item) => {
-        if (item.idprofile) {
-            ProfileServices.put(item).then(_x => {
+        if ($scope.datas.idprofile) {
+            ProfileServices.put($scope.datas).then(_x => {
                 swal({
                     title: "Information!",
                     text: "Proses berhasil",
@@ -43,7 +43,7 @@ function ProfileController($scope, helperServices, ProfileServices) {
                 });
             })
         } else {
-            ProfileServices.post(item).then(_x => {
+            ProfileServices.post($scope.datas).then(_x => {
                 swal({
                     title: "Information!",
                     text: "Proses berhasil",
