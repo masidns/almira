@@ -70,7 +70,6 @@ class Jadwal_model extends CI_Model
     public function insert($data)
     {
         $item = [
-            'hari'=>$data['hari'],
             'jammulai'=>$data['jammulai'],
             'jamselesai'=>$data['jamselesai'],
             'idkendaraan'=>$data['kendaraan']['idkendaraan'],
@@ -82,8 +81,6 @@ class Jadwal_model extends CI_Model
     public function update($data = null)
     {
         $jadwal = [
-            'hari' => $data['hari'],
-            'jadwal' => $data['jadwal'],
             'jammulai' => $data['jammulai'],
             'jamselesai' => $data['jamselesai'],
             'idkendaraan'=>$data['kendaraan']['idkendaraan'],

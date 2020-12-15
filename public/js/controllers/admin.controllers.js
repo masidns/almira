@@ -36,11 +36,19 @@ function ProfileController($scope, helperServices, ProfileServices) {
     $scope.save = (item) => {
         if (item.idprofile) {
             ProfileServices.put(item).then(_x => {
-
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             ProfileServices.post(item).then(_x => {
-
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
@@ -85,11 +93,19 @@ function StaffController($scope, helperServices, StaffServices) {
         }
         if (item.idstaf) {
             StaffServices.put(item).then(_x => {
-
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             StaffServices.post(fd).then(_x => {
-
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
@@ -130,6 +146,11 @@ function SiswaController($scope, helperServices, SiswaServices, KriteriaServices
             PenilaianServices.put($scope.model).then(x => {
                 var data = $scope.datas.find(siswa => siswa.idsiswa == $scope.model.idsiswa);
                 data.penilaian = x;
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
                 // swal({
                 //     title: "Information!",
                 //     text: "Proses berhasil",
@@ -209,10 +230,20 @@ function PaketController($scope, helperServices, PaketServices) {
         if (item.idpaket) {
             PaketServices.put(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             PaketServices.post(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
@@ -239,10 +270,20 @@ function KendaraanController($scope, helperServices, KendaraanServices) {
         if (item.idkendaraan) {
             KendaraanServices.put(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             KendaraanServices.post(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
@@ -264,10 +305,20 @@ function PersyaratanController($scope, helperServices, PersyaratanServices) {
         if (item.idpersyaratan) {
             PersyaratanServices.put(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             PersyaratanServices.post(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
@@ -295,10 +346,20 @@ function JadwalController($scope, helperServices, JadwalServices, KendaraanServi
         if (item.idjadwal) {
             JadwalServices.put(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         } else {
             JadwalServices.post(item).then(_x => {
                 $scope.model = {};
+                swal({
+                    title: "Information!",
+                    text: "Proses berhasil",
+                    icon: "success",
+                });
             })
         }
     }
